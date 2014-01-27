@@ -26,6 +26,9 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
              * formato:
              * 'nome_campo => valor,
              */
+            'titulo' => $request['titulo'],
+            'descricao' => $request['descricao'],
+            'url' => $request['url']
         );
         return $this->insert($dados);
     }
@@ -37,6 +40,9 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
              * formato:
              * 'nome_campo => valor,
              */
+            'titulo' => $request['titulo'],
+            'descricao' => $request['descricao'],
+            'url' => $request['url']
         );
         $where = $this->getAdapter()->quoteInto("idPrograma = ?", $request['idPrograma']);
         $this->update($dados, $where);
