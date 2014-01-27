@@ -246,7 +246,6 @@
                                 
                             <li>
                                 <article>
-                                    TESTE
                                     <div class="article-thumb border-img">                                        
                                         <a class="video-icon hover-effect" href="http://vimeo.com/46163823" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-1.jpg" alt="" /></a>
                                     </div><!--article-thumb-->
@@ -257,10 +256,18 @@
                             </li>
                             }
                             -->
-                            
+                            <?php for($i=0;$i<=3;$i++):?>
+                                <li>
+                                    <article>
+                                        <div class="article-thumb border-img">
+                                            <iframe width="300" height="315" src="http://www.youtube.com/embed/<?php echo $this->dadosProgramas[$i]['url'];?>?rel=0" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                    </article>
+                                </li>
+                                
+                            <?php endfor;?>        
                             <li>
                                 <article>
-                                    TESTE
                                     <div class="article-thumb border-img">                                        
                                         <a class="video-icon hover-effect" href="http://vimeo.com/46163823" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-1.jpg" alt="" /></a>
                                     </div><!--article-thumb-->
