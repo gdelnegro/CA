@@ -1,0 +1,25 @@
+    <header id="header">
+    	<div id="header-inner">
+            <div class="wrapper clearfix"> 
+				<div id="logo-image">
+					<a href="index.html"><img src="placeholders/logo.png" alt="" /></a>
+				</div><!--logo-image-->
+                <nav id="main-nav">
+                    <ul id="main-menu" class="clearfix">
+                        <li class="current-menu-item"><a href="<?php echo $this->url(array("controller"=>"index","action"=>"index"),null,true)?>">Home</a></li>
+                        <li><a href="<?php echo $this->url(array("controller"=>"revista","action"=>"index"),null,true)?>">Revista</a></li>
+                        <li><a href="<?php echo $this->url(array("controller"=>"programas","action"=>"index"),null,true)?>">Programa</a></li>
+                        <li><a href="#">Guia CasaSUL</a></li>
+                        <li><a href="#">Notícias</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul><!--end:main-menu-->
+                </nav><!--end:main-nav-->
+                <div class="search-box clearfix">
+                    <form action="#" class="search-form" method="get">
+                        <input type="text" onBlur="if(this.value=='')this.value=this.defaultValue;" onFocus="if(this.value==this.defaultValue)this.value='';" value="Procurar" name="s" class="search-text">
+                        <input type="submit" value="" name="submit" class="search-submit">
+                    </form><!-- search-form -->
+                </div><!--search-box-->
+            </div><!--wrapper-->
+        </div><!--header-inner-->
+    </header><!--header-->
