@@ -19,7 +19,7 @@
         <h1><b><?php echo ucfirst($programa['titulo']);?></b></h1>
         <h3><?php echo $programa['descricao'];?></h3>
         <small>Data de publicação: <?php echo $programa['dtInclusao'];?></small>
-        <iframe width="640" height="360" src="<?php #echo $programa['url'];?>" frameborder="0" allowfullscreen></iframe>    
+        <iframe width="560" height="315" src="http://www.youtube.com/embed/<?php echo $programa['url'];?>?rel=0" frameborder="0" allowfullscreen></iframe>
         <hr>
     <?php endforeach;?>
     

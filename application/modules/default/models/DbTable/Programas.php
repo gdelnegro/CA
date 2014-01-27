@@ -21,6 +21,10 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
     
     public function incluirPrograma(array $request){
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
+        
+        parse_str( parse_url( $request['url'], PHP_URL_QUERY ), $my_array_of_vars );
+        $url = $my_array_of_vars['v'];
+        
         $dados = array(
             /*
              * formato:
@@ -28,13 +32,18 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
              */
             'titulo' => $request['titulo'],
             'descricao' => $request['descricao'],
-            'url' => $request['url']
+            'url' => $url,
         );
         return $this->insert($dados);
     }
     
     public function alterarPrograma(array $request){
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
+        
+        parse_str( parse_url( $request['url'], PHP_URL_QUERY ), $my_array_of_vars );
+        $url = $my_array_of_vars['v'];
+        
+        
         $dados = array(
             /*
              * formato:
@@ -42,7 +51,7 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
              */
             'titulo' => $request['titulo'],
             'descricao' => $request['descricao'],
-            'url' => $request['url']
+            'url' => $url,
         );
         $where = $this->getAdapter()->quoteInto("idPrograma = ?", $request['idPrograma']);
         $this->update($dados, $where);
