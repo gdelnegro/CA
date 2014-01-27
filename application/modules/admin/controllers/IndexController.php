@@ -38,14 +38,15 @@ class Admin_IndexController extends Zend_Controller_Action
                 if( $result->isValid() ) {
                     $user = $authAdapter->getResultRowObject();
                     $auth->getStorage()->write($user);
-                    $this->_redirect('mensagens/index');
+                    $this->_redirect('admin/programas');
                 }
                 else{
-                    $this->_helper->flashMessenger->addMessage(array('alert alert-error'=>'Dados Invalidos'));
+                    $this->view->erro='Dados Invalidos';
                     $this->view->loginForm = $loginForm->populate($data);
                 }
             }else{
-                $this->_helper->flashMessenger->addMessage(array('alert alert-error'=>'Dados Invalidos'));
+                
+                $this->view->erro='Dados Invalidos';
                 $this->view->loginForm = $loginForm->populate($data);
             }
         }
@@ -54,8 +55,9 @@ class Admin_IndexController extends Zend_Controller_Action
     
     public function logoutAction()
     {
-        Zend_Auth::getInstance()->clearIdentity();
-        $this->_redirect('/');
+        $auth = Zend_Auth::getInstance();
+        $auth->clearIdentity();
+        $this->_redirect('admin/index');
     }
 
 
