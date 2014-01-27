@@ -1,50 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>CASA SUL - O Estilo de Vida da Região Sul</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<link href="/css/reset.css" rel="stylesheet">
-<link rel="stylesheet" href="/css/prettyPhoto.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/css/sequencejs-theme.apple-style.css" type="text/css" media="screen" />
-<link href="/css/style.css" rel="stylesheet">
-<link href="/css/responsive.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if IE 7]><link rel="stylesheet" href="/css/ie7.css" type="text/css" media="all" /><![endif]-->
-<!--[if IE 8]><link rel="stylesheet" href="/css/ie8.css" type="text/css" media="all" /><![endif]-->
-<!--[if IE ]><link rel="stylesheet" href="/css/ie.css" type="text/css" media="all" /><![endif]-->
-<!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<![endif]-->
-<!-- Le fav and touch icons -->
-<link rel="shortcut icon" href="/img/favicon.html">
-<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
+<?php $this->doctype('HTML5')?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=iso" />        
+        <title>Casa Sul</title>
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headLink()->appendStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl().'./media/css/bootstrap.css')?>
+        <style>
+        </style>
+    </head>
+    
+<!-- HEADER -->
 
-<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="/js/jflickrfeed.min.js"></script>
-<script src="/js/jquery.carouFredSel-5.6.4-packed.js" charset="utf-8"></script>
-<script type="text/javascript" src="/js/jquery.tweet.js"></script>
-<script type="text/javascript" src="/js/jquery.prettyPhoto.js"></script>
-<script type="text/javascript" src="/js/jquery.flexslider.js"></script>
-<script type="text/javascript" src="/js/sequence.jquery-min.js"></script>
-<script type="text/javascript" src="/js/jquery.masonry.min.js"></script>
-<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/js/jquery.form.js"></script>
-<script src="/js/custom.js" charset="utf-8"></script>
+<div class="page-header">
+    <h1><img src = "<?php $this->baseUrl().'../public/media/img/logo.png'?>" width='5%' height='5%' alt = "" />
+        <small>Administração de conteúdo</small></h1>
+    
+    <div id="area_login">
+                <table>
+                    <tr>
+                        <td>Ola <b><?php $this->layout()->usuario->nome; ?> <i class="icon-user"></i> </b></td>
+                        <td><a href="<?php $this->url(array("controller"=>"index","action"=>"logout"),null,true)?>">Logout</a></td>
+                    </tr>
+                </table>
+            </div>
+</div>
+<!-- HEADER -->
 
-</head>
-<body class="home">	
-    <?php echo $this->render('header.phtml') ?>
-	<?php echo $this->layout()->content; ?>	
-    <?php echo $this->render('footer.phtml') ?>
-</body>
-</html>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <!--Menu-->    
+      <!-- <ul class="nav nav-list bs-docs-sidenav"> -->
+          <ul class="nav nav-tabs nav-stacked bs-docs-sidenav affix">
+          <li><a href="<?php $this->url(array("controller"=>"mensagens","action"=>"index"),null,true)?>">Mensagens</a></li>          
+          <?php if( $this->layout()->usuario->idGrupo == 1){?>
+            <li><a>Administra��o</a></li>
+            <li><a href="<?php $this->url(array("controller"=>"group","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i> Administrar Usu�rios</a></li>
+            <li><a href="<?php $this->url(array("controller"=>"group","action"=>"new"),null,true)?>"><i class="icon-chevron-right"></i> Administrar grupos de usu�rios</a></li>
+            <li><a href="<?php $this->url(array("controller"=>"responder","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Ver Respostas</a></li>
+            <?php };?>
+          <li><a href="#icons"><i class="icon-chevron-right"></i> Icons by Glyphicons</a></li>
+        </ul>
+    </div>
+    <div class="span8">
+      <?php echo $this->layout()->content; ?>
+    </div>
+  </div><!-- div class=row -->
+</div>

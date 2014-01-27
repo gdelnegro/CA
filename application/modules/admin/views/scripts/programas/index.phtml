@@ -1,4 +1,58 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Programas</b> and script/action name <b>index</b></p>
-</div>
+<?php #var_dump($this->dados)?>
+
+<?php
+function custom_echo($x)
+{
+  if(strlen($x)<=50)
+  {
+    echo $x;
+  }
+  else
+  {
+    $y=substr($x,0,50) . '...';
+    echo $y;
+  }
+}
+
+?>
+
+<head>
+</head>
+<body>
+    
+    <?php #var_dump($this->dados)?>
+<center>
+    
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml'); ?>
+    
+    <table class="table table-striped table-hover table-bordered table-condensed" width="100%" cellpadding="3" cellspacing="0" border="1">
+   <tr>
+        <th><center>Título</center></th>
+        <th><center>Descrição</center></th>        
+        <th><center>Link</center></th>
+        <th><center>Status</center></th>
+        <th><center>Data de Inclusao</center></th>
+        <th><center>Alterado por</center></th>
+        <th><center>Data de Alteraçao</center></th>
+        <th><center>Açoes</center></th>
+   </tr>
+   <?php foreach($this->paginator AS $key => $programa):?>
+   <tr>
+      <td><center><?php echo $programa['titulo']?></center></td>
+        <td><center><?php  custom_echo($programa['descricao'])?></center></td>        
+        <td><center><?php echo$programa['url']?></center></td>
+        <td><center>Status</center></td>
+        <td><center><?php echo$programa['dtInclusao']?></center></td>
+        <td><center>Alterado por</center></td>
+        <td><center><?php echo$programa['dtAlteracao']?></center></td>
+      <td><center>
+         <a href="<?php $this->url(array("controller"=>"programa","action"=>"show","id"=>"{$programa['idPrograma']}"),null,true)?>" title="Visualizar Cadastro"><i class='icon-eye-open'> </i></a>
+         <a href="<?php $this->url(array("controller"=>"programa","action"=>"edit","id"=>"{$programa['idPrograma']}"),null,true)?>" title="Editar Cadastro"><i class='icon-pencil'></i></a> 
+         </center>
+      </td>
+   </tr>
+   <?php endforeach;?>
+</table>
+    
+</center>
+</body>
