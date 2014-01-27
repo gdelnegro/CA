@@ -22,8 +22,13 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
     public function incluirPrograma(array $request){
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
         
-        parse_str( parse_url( $request['url'], PHP_URL_QUERY ), $my_array_of_vars );
-        $url = $my_array_of_vars['v'];
+        if ( strlen($request['url']) > 12 ){
+            parse_str( parse_url( $request['url'], PHP_URL_QUERY ), $my_array_of_vars );
+            $url = $my_array_of_vars['v'];
+        }else{
+            $url = $request['url'];
+        }
+        
         
         $dados = array(
             /*
@@ -33,6 +38,7 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
             'titulo' => $request['titulo'],
             'descricao' => $request['descricao'],
             'url' => $url,
+            'dtInsercao' => $date,
         );
         return $this->insert($dados);
     }
@@ -40,8 +46,12 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
     public function alterarPrograma(array $request){
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
         
-        parse_str( parse_url( $request['url'], PHP_URL_QUERY ), $my_array_of_vars );
-        $url = $my_array_of_vars['v'];
+        if ( strlen($request['url']) > 12 ){
+            parse_str( parse_url( $request['url'], PHP_URL_QUERY ), $my_array_of_vars );
+            $url = $my_array_of_vars['v'];
+        }else{
+            $url = $request['url'];
+        }
         
         
         $dados = array(
@@ -52,6 +62,7 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
             'titulo' => $request['titulo'],
             'descricao' => $request['descricao'],
             'url' => $url,
+            'dtAlteracao' => $date,
         );
         $where = $this->getAdapter()->quoteInto("idPrograma = ?", $request['idPrograma']);
         $this->update($dados, $where);
