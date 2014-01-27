@@ -38,7 +38,7 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
             'titulo' => $request['titulo'],
             'descricao' => $request['descricao'],
             'url' => $url,
-            'dtInsercao' => $date,
+            'dtInclusao' => $date,
         );
         return $this->insert($dados);
     }
@@ -62,7 +62,7 @@ class Default_Model_DbTable_Programas extends Zend_Db_Table_Abstract
             'titulo' => $request['titulo'],
             'descricao' => $request['descricao'],
             'url' => $url,
-            'dtAlteracao' => $date,
+            'dtInclusao' => $date,
         );
         $where = $this->getAdapter()->quoteInto("idPrograma = ?", $request['idPrograma']);
         $this->update($dados, $where);
