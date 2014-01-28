@@ -15,7 +15,7 @@ class Admin_Form_Imagens extends Twitter_Form
                 ->addValidator('Extension',false,'jpg,png,gif');
         
         $descricao = new Zend_Form_Element_Textarea('descricao');
-        $descricao->setLabel('Descricação da Imagem')
+        $descricao->setLabel('Descrição da Imagem')
                 ->setRequired('true');
         
         $nome = new Zend_Form_Element_Text('nome');

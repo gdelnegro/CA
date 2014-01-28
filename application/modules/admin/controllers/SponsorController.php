@@ -21,10 +21,14 @@ class Admin_SponsorController extends Zend_Controller_Action
         $bdImagens = new Application_Model_DbTable_Imagens();
         $dadosImagens = $bdImagens->pesquisarImagem();
         
-        $this->view->dadosImagens = $dadosImagens;
+        $paginator = Zend_Paginator::factory($dadosImagens);
+        $paginator->setItemCountPerPage(50);
+        $paginator->setPageRange(10);
+        $paginator->setCurrentPageNumber($this->_request->getParam('pagina'));
+        $this->view->paginator = $paginator;
     }
     
-    public function sendAction()
+    public function uploadAction()
     {
         $titulo = $this->_getParam('nome');
         $dbImagens = new Application_Model_DbTable_Imagens();
@@ -56,7 +60,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         $dbImagens->incluirImagem($dados);        
     }
     
-    public function uploadAction()
+    public function newAction()
     {
         $formImagem = new Admin_Form_Imagens();
         $this->view->formImagem = $formImagem;
