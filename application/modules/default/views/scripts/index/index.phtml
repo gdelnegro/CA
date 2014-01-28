@@ -256,61 +256,21 @@
                             </li>
                             }
                             -->
-                            <?php for($i=0;$i<=3;$i++):?>
+                            <?php for($i=0;$i<=3;$i++):
+                                if ( is_null( $this->dadosProgramas[$i]['url'] )):
+                                    $i++;break;
+                                endif;?>
                                 <li>
                                     <article>
-                                        <div class="article-thumb border-img">
-                                            <iframe width="300" height="315" src="http://www.youtube.com/embed/<?php echo $this->dadosProgramas[$i]['url'];?>?rel=0" frameborder="0" allowfullscreen></iframe>
+                                        <div class="article-thumb border-img" >
+                                            <iframe width="300" height="315" src="http://www.youtube.com/embed/<?php echo $this->dadosProgramas[$i]['url'];?>?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+                                            <a class="entry-title" href="<?php echo $this->url(array("controller"=>"programa","action"=>"index",'video'=>$this->dadosProgramas[$i]['idPrograma']),null,true)?>"><?php echo ucwords( $this->dadosProgramas[$i]['titulo'] )?></a>
+                                            <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
                                         </div>
                                     </article>
                                 </li>
                                 
                             <?php endfor;?>        
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="video-icon hover-effect" href="http://vimeo.com/46163823" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-1.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href="placeholders/205x144/205x144-2.jpg" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-2.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="video-icon hover-effect" href="http://vimeo.com/46163823" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-3.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href="placeholders/205x144/205x144-4.jpg" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-4.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href="placeholders/205x144/205x144-3.jpg" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-3.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
                         </ul><!--end:recent-works-->
                         <div class="clear"></div>
                         <div class="carousel-nav clearfix">
@@ -325,3 +285,46 @@
 			
         </div><!--wrapper-->
     </div><!--main-content-->
+    
+    <script>// By Chris Coyier & tweaked by Mathias Bynens
+
+$(function() {
+
+	// Find all YouTube videos
+	var $allVideos = $("iframe[src^='http://www.youtube.com']"),
+
+	    // The element that is fluid width
+	    $fluidEl = $("iframe");
+
+	// Figure out and save aspect ratio for each video
+	$allVideos.each(function() {
+
+		$(this)
+			.data('aspectRatio', this.height / this.width)
+			
+			// and remove the hard coded width/height
+			.removeAttr('height')
+			.removeAttr('width');
+
+	});
+
+	// When the window is resized
+	// (You'll probably want to debounce this)
+	$(window).resize(function() {
+
+		var newWidth = $fluidEl.width();
+		
+		// Resize all videos according to their own aspect ratio
+		$allVideos.each(function() {
+
+			var $el = $(this);
+			$el
+				.width(newWidth)
+				.height(newWidth * $el.data('aspectRatio'));
+
+		});
+
+	// Kick off one resize to fix all videos on page load
+	}).resize();
+
+});</script>
