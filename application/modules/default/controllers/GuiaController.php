@@ -10,8 +10,11 @@ class Default_GuiaController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $dbImagens = new Application_Model_DbTable_Imagens();
+        $dadosImagens = $dbImagens->pesquisarImagem();
+        $this->view->dados = $dadosImagens;
     }
+    
 
 
 }

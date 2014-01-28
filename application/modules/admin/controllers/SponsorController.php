@@ -38,7 +38,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         
         foreach ($upload->getFileInfo() as $file => $info) {                                     
             $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-            $upload->addFilter('Rename', APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'. $extension, true);
+            $upload->addFilter('Rename', APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'. $extension);
         }
         
         try {
@@ -54,7 +54,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         $dados =array(
           'descricao'  =>   $this->_getParam('descricao'),
             'nome'      =>  'sponsor-'.$titulo.'.jpg',
-            'local'     =>  APPLICATION_PATH.'/../public/images/',
+            'local'     =>  '../public/images/',
         );
         
         $dbImagens->incluirImagem($dados);        

@@ -1,4 +1,4 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Guia</b> and script/action name <b>index</b></p>
-</div>
+<?php 
+foreach ($this->dados as $key => $imagens) :?>
+    <img src='<?php echo $imagens['local'].$imagens['nome'];?>'>
+<?php endforeach;?>
