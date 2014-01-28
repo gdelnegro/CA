@@ -1,12 +1,22 @@
-    <section id="slider-wrapper">
+<?php
+    $dbImagens = new Application_Model_DbTable_Imagens();
+    $dadosImagens = $dbImagens->pesquisarImagem();
+?>
+
+<section id="slider-wrapper">
         <div id="main-slider">               
             <div class="wave-bg">
 				<div id="sequence-wrapper">
                     <div id="sequence">
                         <ul>
-                            <li class="animate-in" style="text-align: center;">
+                            <!--<li class="animate-in" style="text-align: center;">
                                 <img src="placeholders/slider1.jpg" alt="" />
-                            </li>
+                            </li>-->
+                            <?php foreach ($dadosImagens as $key => $imagem):?>
+                                <li class="animate-in" style="text-align: center;">
+                                    <img src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php ucfirst($imagem[$i]['nome'])?>" /></a>
+                                </li>
+                            <?php endforeach ?>
                         </ul>
                     </div><!--sequence-->
                     <div class="controls">
