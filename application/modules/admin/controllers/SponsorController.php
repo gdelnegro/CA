@@ -28,6 +28,11 @@ class Admin_SponsorController extends Zend_Controller_Action
         $this->view->paginator = $paginator;
     }
     
+    
+    public function testeAction()
+    {
+        $this->view->dados = $this->getAllParams();
+    }
     public function uploadAction()
     {
         $titulo = $this->_getParam('nome');
@@ -62,7 +67,8 @@ class Admin_SponsorController extends Zend_Controller_Action
     
     public function newAction()
     {
-        $formImagem = new Admin_Form_Imagens();
+        #$formImagem = new Admin_Form_Imagens();
+        $formImagem = new Admin_Form_Sponsor();
         $this->view->formImagem = $formImagem;
     }
 
