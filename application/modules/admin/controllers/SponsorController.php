@@ -18,11 +18,13 @@ class Admin_SponsorController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $formImagem = new Admin_Form_Imagens();
-        $this->view->formImagem = $formImagem;
+        $bdImagens = new Application_Model_DbTable_Imagens();
+        $dadosImagens = $bdImagens->pesquisarImagem();
+        
+        $this->view->dadosImagens = $dadosImagens;
     }
     
-    public function uploadAction()
+    public function sendAction()
     {
         $titulo = $this->_getParam('nome');
         $dbImagens = new Application_Model_DbTable_Imagens();
@@ -51,7 +53,13 @@ class Admin_SponsorController extends Zend_Controller_Action
             'local'     =>  APPLICATION_PATH.'/../public/images/',
         );
         
-        $dbImagens->incluirImagem($dados);
+        $dbImagens->incluirImagem($dados);        
+    }
+    
+    public function uploadAction()
+    {
+        $formImagem = new Admin_Form_Imagens();
+        $this->view->formImagem = $formImagem;
     }
 
 }

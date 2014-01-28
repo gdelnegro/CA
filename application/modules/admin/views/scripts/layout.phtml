@@ -33,9 +33,9 @@
       <!--Menu-->    
       <!-- <ul class="nav nav-list bs-docs-sidenav"> -->
           <ul class="nav nav-tabs nav-stacked bs-docs-sidenav affix">
-          <li><a href="<?php $this->url(array("module"=>"admin","controller"=>"programas","action"=>"index"),null,true)?>">Programas</a></li>          
+          <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"index"),null,true)?>">Programas</a></li>          
           <li><a href="#">Midia</a></li>          
-          <li><a href="<?php $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i> Inserir Imagem Sponsor</a></li>
+          <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Sponsor</a></li>
           <?php if( $this->layout()->usuario->grupo == 1){?>
             <li><a>Administração</a></li>
             <li><a href="<?php $this->url(array("module"=>"admin","controller"=>"group","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i> Administrar Usuários</a></li>
