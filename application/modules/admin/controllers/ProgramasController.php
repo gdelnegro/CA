@@ -19,7 +19,7 @@ class Admin_ProgramasController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-        $dbProgramas = new Default_Model_DbTable_Programas();
+        $dbProgramas = new Application_Model_DbTable_Programas();
         $dados = $dbProgramas->pesquisarPrograma();
         
         $paginator = Zend_Paginator::factory($dados);

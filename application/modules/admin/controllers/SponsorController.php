@@ -6,6 +6,14 @@ class Admin_SponsorController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
+        $usuario = Zend_Auth::getInstance()->getIdentity();
+        //$this->view->usuario = $usuario;
+        Zend_Layout::getMvcInstance()->assign('usuario', $usuario);
+        
+        if ( !Zend_Auth::getInstance()->hasIdentity() ) {
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'index'), null, true);
+            //$this->_redirect('/');
+        }
     }
 
     public function indexAction()
@@ -17,7 +25,7 @@ class Admin_SponsorController extends Zend_Controller_Action
     public function uploadAction()
     {
         $titulo = $this->_getParam('nome');
-        $dbImagens = new Admin_Model_DbTable_Imagens();
+        $dbImagens = new Application_Model_DbTable_Imagens();
         
         /*Faz upload do arquivo*/
         $upload = new Zend_File_Transfer_Adapter_Http();
