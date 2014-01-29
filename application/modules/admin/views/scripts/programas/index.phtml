@@ -34,7 +34,7 @@ function custom_echo($x)
         <th><center>Data de Inclusao</center></th>
         <th><center>Alterado por</center></th>
         <th><center>Data de Alteraçao</center></th>
-        <th><center>Açoes</center></th>
+        <th><center>Ações</center></th>
    </tr>
    <?php foreach($this->paginator AS $key => $programa):?>
    <tr>
@@ -46,7 +46,6 @@ function custom_echo($x)
         <td><center>Alterado por</center></td>
         <td><center><?php echo$programa['dtAlteracao']?></center></td>
       <td><center>
-         <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"show","id"=>"{$programa['idPrograma']}"),null,true)?>" title="Visualizar Cadastro"><i class='icon-eye-open'> </i></a>
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"edit","id"=>"{$programa['idPrograma']}"),null,true)?>" title="Editar Cadastro"><i class='icon-pencil'></i></a> 
          </center>
       </td>

@@ -19,7 +19,7 @@
     <div id="area_login">
                 <table>
                     <tr>
-                        <td>Ola <b><?php $this->layout()->usuario->nome; ?> <i class="icon-user"></i> </b></td>
+                        <td>Ola <b><?php echo $this->layout()->usuario->nome; ?> <i class="icon-user"></i> </b></td>
                         <td><a href="<?php echo $this->url(array("controller"=>"index"),null,true);?>">Logout</a></td>
                     </tr>
                 </table>
@@ -38,9 +38,8 @@
           <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Sponsor</a></li>
           <?php if( $this->layout()->usuario->grupo == 1){?>
             <li><a>Administração</a></li>
-            <li><a href="<?php $this->url(array("module"=>"admin","controller"=>"group","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i> Administrar Usuários</a></li>
-            <li><a href="<?php $this->url(array("module"=>"admin","controller"=>"group","action"=>"new"),null,true)?>"><i class="icon-chevron-right"></i> Administrar grupos de usuários</a></li>
-            <li><a href="<?php $this->url(array("module"=>"admin","controller"=>"responder","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Ver Respostas</a></li>
+            <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"users","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i> Administrar Usuários</a></li>
+            <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"group","action"=>"new"),null,true)?>"><i class="icon-chevron-right"></i> Administrar grupos de usuários</a></li>            
             <?php };?>
         </ul>
     </div>

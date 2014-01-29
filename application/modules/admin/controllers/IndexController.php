@@ -5,7 +5,9 @@ class Admin_IndexController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $usuario = Zend_Auth::getInstance()->getIdentity();
+        //$this->view->usuario = $usuario;
+        Zend_Layout::getMvcInstance()->assign('usuario', $usuario);
     }
 
     public function indexAction()
