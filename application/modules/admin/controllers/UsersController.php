@@ -30,7 +30,16 @@ class Admin_UsersController extends Zend_Controller_Action
     
     public function newAction()
     {
+        $formUsuario = new Admin_Form_Usuario('new');
+        $this->view->formUsuario = $formUsuario;
         
+    }
+    
+    public function createAction()
+    {
+        $dados = $this->getAllParams();
+        
+        $this->view->dados = $dados;
     }
 
 
