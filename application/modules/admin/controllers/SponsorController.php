@@ -19,7 +19,7 @@ class Admin_SponsorController extends Zend_Controller_Action
     public function indexAction()
     {
         #$bdImagens = new Application_Model_DbTable_Imagens();
-        $bdImagens = new Admin_Model_DbTable_Sponsor();
+        $bdImagens = new Admin_Model_DbTable_Sponsor('sponsor');
         $dadosImagens = $bdImagens->pesquisarSponsor();
         
         $paginator = Zend_Paginator::factory($dadosImagens);
@@ -64,7 +64,13 @@ class Admin_SponsorController extends Zend_Controller_Action
             'local'     =>  '../public/images/',
         );
         
-        $dbImagens->incluirImagem($dados);        
+        $idImagem = $dbImagens->incluirImagem($dados);        
+        
+        $dadosSponsor = $this->getAllParams();
+        $dbSponsor = new Admin_Model_DbTable_Sponsor('patrocinador');
+        $dbSponsor->incluirSponsor($dadosSponsor, $idImagem);
+        
+        return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'sponsor'), null, true);
     }
     
     public function newAction()

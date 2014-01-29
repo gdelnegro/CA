@@ -3,9 +3,19 @@
 class Admin_Model_DbTable_Sponsor extends Zend_Db_Table_Abstract
 {
 
-    protected $_name = 'sponsor';
+    protected $_name = 'patrocinador';
     protected $_primary = 'idPatrocinador';
     
+    
+    public function __construct($nome = null,$options = null) {
+        if( !is_null(nome) ){
+            $this->_name = $nome;
+        }
+        
+        
+        parent::__construct($options);
+    }
+
     public function pesquisarSponsor($id = null, $where = null, $order = null, $limit = null){
         if( !is_null($id) ){
             $arr = $this->find($id)->toArray();
@@ -25,7 +35,7 @@ class Admin_Model_DbTable_Sponsor extends Zend_Db_Table_Abstract
      * @param array $request dados que serão enviados ao BD
      * @return inserção dos dados no BD
      */
-    public function incluirSponsor(array $request){
+    public function incluirSponsor(array $request, $idImagem){
         
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
         
@@ -34,9 +44,8 @@ class Admin_Model_DbTable_Sponsor extends Zend_Db_Table_Abstract
              * formato:
              * 'nome_campo => valor,
              */
-            'descricao' => $request['descricao'],
-            'local' => $request['local'],
             'nome' => $request['nome'],
+            'logo' => $idImagem
             
         );
         return $this->insert($dados);

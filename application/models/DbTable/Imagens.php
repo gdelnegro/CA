@@ -25,7 +25,7 @@ class Application_Model_DbTable_Imagens extends Zend_Db_Table_Abstract
      * @param array $request dados que serão enviados ao BD
      * @return inserção dos dados no BD
      */
-    public function incluirImagem(array $request){
+    public function incluirImagem(array $request, $categoria = null){
         
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
         
@@ -37,9 +37,14 @@ class Application_Model_DbTable_Imagens extends Zend_Db_Table_Abstract
             'descricao' => $request['descricao'],
             'local' => $request['local'],
             'nome' => $request['nome'],
+            'categoria' => '1'
             
         );
-        return $this->insert($dados);
+        
+        $this->insert($dados);
+        
+        $lastInsertId = $this->getAdapter()->lastInsertId();
+        return  $lastInsertId;
     }    
 
 }
