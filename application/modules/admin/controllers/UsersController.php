@@ -39,7 +39,14 @@ class Admin_UsersController extends Zend_Controller_Action
     {
         $dados = $this->getAllParams();
         
-        $this->view->dados = $dados;
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = $this->view->escape(ucfirst($user->idUsuario));
+        
+        $dbUsuarios = new Admin_Model_DbTable_Usuario();
+        $dbUsuarios->incluirUsuario($dados, $usr);
+        
+        return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'users'), null, true);
     }
 
 

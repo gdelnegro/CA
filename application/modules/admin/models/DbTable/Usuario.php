@@ -19,6 +19,26 @@ class Admin_Model_DbTable_Usuario extends Zend_Db_Table_Abstract
             return $this->fetchAll($select)->toArray();
         }
     }
+    
+    public function incluirUsuario(array $request, $usr){
+        $date = Zend_Date::now()->toString('yyyy-MM-dd HH:ii:ss');
+        $dados = array(
+            /*
+             * formato:
+             * 'nome_campo => valor,
+             */
+            'login'         =>  $request['login'],
+            'senha'         =>  md5( $request['senha'] ),
+            'email'         =>  $request['email'],
+            'nome'          =>  $request['nome'],
+            'grupo'         =>  $request['grupo'],
+            'dtInclusao'    =>  $date,
+            'usrAlterou'    =>  $usr,
+            'status'        =>  $request['status'],
+            
+        );
+        return $this->insert($dados);
+    }
 
 
 }

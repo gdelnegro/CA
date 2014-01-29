@@ -46,14 +46,23 @@ class Admin_Form_Usuario extends Twitter_Form
         
         $email = new Zend_Form_Element_Text('email');
         $email->setLabel('E-mail')
+                ->setAttrib('size', 25)
+                ->setAttrib('width', 500)
+                ->addValidator('EmailAddress')
+                ->setFilters(array( 'StringTrim' ))
                 ->setAttrib('autocomplete', 'off')
                 ->setAttrib('Placeholder', 'Favor digitar e-mail do usuário');
         
-        $grupo = new Zend_Form_Element_Text('grupo');
+        
+        $dbGrupo = new Admin_Model_DbTable_Grupo();
+        $listaGrupos = $dbGrupo->getListaGrupo();
+        
+        $grupo = new Zend_Form_Element_Select('grupo');
         $grupo->setLabel('Grupo')
                 ->setAttrib('disabled', $this->exibir)
                 ->setRequired('true')
-                ->setAttrib('autocomplete', 'off');
+                ->setAttrib('autocomplete', 'off')
+                ->addMultiOptions($listaGrupos);
         
         $status = new Zend_Form_Element_Checkbox('status');
         $status->setLabel('Ativo');
