@@ -48,6 +48,17 @@ class Admin_UsersController extends Zend_Controller_Action
         
         return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'users'), null, true);
     }
+    
+    public function editAction()
+    {
+        $dbUsuarios = new Admin_Model_DbTable_Usuario();
+        $dadosUsuario = $dbUsuarios->pesquisarUsuario($this->_getParam('id'));
+        
+        $formUsuario = new Admin_Form_Usuario('edit');
+        $formUsuario->populate($dadosUsuario);
+        
+        $this->view->formUsuario = $formUsuario;
+    }
 
 
 }
