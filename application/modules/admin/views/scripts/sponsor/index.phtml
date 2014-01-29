@@ -1,24 +1,25 @@
 <head>
 </head>
 <body>
+    <?php var_dump($this->dados);?>
 <center>
     
     <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml'); ?>
     <p class="text-right"> <a class="btn btn-primary" href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"new"),null,true)?>">Cadastrar Programa</a></p>
     <table class="table table-striped table-hover table-bordered table-condensed" width="100%" cellpadding="3" cellspacing="0" border="1">
    <tr>
-        <th><center>Título</center></th>
+        <th><center>Nome</center></th>
         <th><center>Descrição</center></th>        
-        <th><center>Link</center></th>
+        <th><center>Logo</center></th>
         <th><center>Status</center></th>
         <th><center>Data de Inclusao</center></th>
         <th><center>Alterado por</center></th>
         <th><center>Data de Alteraçao</center></th>
         <th><center>Açoes</center></th>
    </tr>
-   <?php foreach($this->paginator AS $key => $programa):?>
+   <?php foreach($this->paginator AS $key => $sponsor):?>
    <tr>
-      <td><center><?php echo $programa['nome']?></center></td>
+      <td><center><?php echo $sponsor['nome']?></center></td>
         <td><center><?php  echo $programa['descricao']?></center></td>        
         <td><center><?php echo$programa['url']?></center></td>
         <td><center>Status</center></td>

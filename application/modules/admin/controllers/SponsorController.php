@@ -18,14 +18,16 @@ class Admin_SponsorController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $bdImagens = new Application_Model_DbTable_Imagens();
-        $dadosImagens = $bdImagens->pesquisarImagem();
+        #$bdImagens = new Application_Model_DbTable_Imagens();
+        $bdImagens = new Admin_Model_DbTable_Sponsor();
+        $dadosImagens = $bdImagens->pesquisarSponsor();
         
         $paginator = Zend_Paginator::factory($dadosImagens);
         $paginator->setItemCountPerPage(50);
         $paginator->setPageRange(10);
         $paginator->setCurrentPageNumber($this->_request->getParam('pagina'));
         $this->view->paginator = $paginator;
+        $this->view->dados = $dadosImagens;
     }
     
     
