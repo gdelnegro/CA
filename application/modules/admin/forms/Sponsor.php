@@ -5,16 +5,24 @@ class Admin_Form_Sponsor extends Twitter_Form
 
     public function init()
     {
-        $formImagem = new Admin_Form_Imagens();
+        
         $nome = new Zend_Form_Element_Text('sponsor');
         $nome->setLabel('Nome')
                 ->setRequired('true');
         
+        $arquivo = new Zend_Form_Element_File('arquivo');
+        $arquivo->setLabel('Logotipo')
+                ->setRequired('true')
+                ->addValidator('Count', false, 1)
+                ->addValidator('Size',false,5502400)
+                ->addValidator('Extension',false,'jpg,png,gif');
+        
         $this->addElements(array(
             $nome,
+            $arquivo,
         ));
         
-        $this->addSubForm($formImagem, 'teste');
+        #$this->addSubForm($formImagem, 'teste');
         
         $submit = new Zend_Form_Element_Submit('enviar');
         

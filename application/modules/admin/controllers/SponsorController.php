@@ -37,7 +37,8 @@ class Admin_SponsorController extends Zend_Controller_Action
     }
     public function uploadAction()
     {
-        $titulo = $this->_getParam('nome');
+        $titulo = urldecode( $this->_getParam('sponsor') );
+        $titulo = str_replace(' ', '_',$titulo);
         $dbImagens = new Application_Model_DbTable_Imagens();
         
         /*Faz upload do arquivo*/
@@ -45,7 +46,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         
         foreach ($upload->getFileInfo() as $file => $info) {                                     
             $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-            $upload->addFilter('Rename', APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'. $extension);
+            $upload->addFilter('Rename', APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'.$extension);
         }
         
         try {
@@ -59,8 +60,8 @@ class Admin_SponsorController extends Zend_Controller_Action
         /*Adicionar dados no banco de dados*/
         
         $dados =array(
-          'descricao'  =>   $this->_getParam('descricao'),
-            'nome'      =>  'sponsor-'.$titulo.'.jpg',
+          'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
+            'nome'      =>  'sponsor-'.$titulo.'.'.$extension,
             'local'     =>  '../public/images/',
         );
         
@@ -69,7 +70,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         $dadosSponsor = $this->getAllParams();
         $dbSponsor = new Admin_Model_DbTable_Sponsor('patrocinador');
         $dbSponsor->incluirSponsor($dadosSponsor, $idImagem);
-        
+        #$this->view->dados = $extension;
         return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'sponsor'), null, true);
     }
     

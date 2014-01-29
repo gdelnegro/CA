@@ -44,7 +44,7 @@ class Admin_Model_DbTable_Sponsor extends Zend_Db_Table_Abstract
              * formato:
              * 'nome_campo => valor,
              */
-            'nome' => $request['nome'],
+            'nome' => $request['sponsor'],
             'logo' => $idImagem
             
         );
