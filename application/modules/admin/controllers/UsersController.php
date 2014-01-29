@@ -18,7 +18,19 @@ class Admin_UsersController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $dbUsuario = new Admin_Model_DbTable_Usuario();
+        $dadosUsuarios = $dbUsuario->pesquisarUsuario();
+        $paginator = Zend_Paginator::factory($dadosUsuarios);
+        
+        $paginator->setItemCountPerPage(50);
+        $paginator->setPageRange(10);
+        $paginator->setCurrentPageNumber($this->_request->getParam('pagina'));
+        $this->view->paginator = $paginator;
+    }
+    
+    public function newAction()
+    {
+        
     }
 
 

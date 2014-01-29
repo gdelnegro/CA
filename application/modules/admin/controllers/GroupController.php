@@ -18,7 +18,14 @@ class Admin_GroupController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $dbGrupo = new Admin_Model_DbTable_Grupo();
+        $dadosGrupo = $dbGrupo->pesquisarGrupo();
+        
+        $paginator = Zend_Paginator::factory($dadosGrupo);
+        $paginator->setItemCountPerPage(50);
+        $paginator->setPageRange(10);
+        $paginator->setCurrentPageNumber($this->_request->getParam('pagina'));
+        $this->view->paginator = $paginator;
     }
 
 
