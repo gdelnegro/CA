@@ -64,6 +64,23 @@ class Admin_Form_Materia extends Twitter_Form
                      ))
                ))
                 ->setAttrib('disabled', $this->exibir);
+        
+        $arquivo = new Zend_Form_Element_File('thumb');
+        $arquivo->setLabel('Miniatura')
+                ->setRequired('true')
+                ->addValidator('Count', false, 1)
+                ->addValidator('Size',false,5502400)
+                ->addValidator('Extension',false,'jpg,png,gif');
+        
+        $dbSponsor = new Admin_Model_DbTable_Sponsor();
+        $listaSponsor = $dbSponsor->getListaSponsor();
+        
+        $sponsor = new Zend_Form_Element_Select('sponsor');
+        $sponsor->setLabel('Patrocinador')
+                ->addMultiOptions(
+                        array('0'=>'Sem Patrocinador')
+                )
+                ->addMultiOptions($listaSponsor);
         #$tag;
         
         $this->addElements( array(
@@ -71,6 +88,8 @@ class Admin_Form_Materia extends Twitter_Form
             $titulo,
             $descricao,
             $texto,
+            $arquivo,
+            $sponsor
         ));
         
         

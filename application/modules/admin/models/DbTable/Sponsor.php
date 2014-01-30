@@ -8,8 +8,10 @@ class Admin_Model_DbTable_Sponsor extends Zend_Db_Table_Abstract
     
     
     public function __construct($nome = null,$options = null) {
-        if( !is_null(nome) ){
+        if( !is_null($nome) ){
             $this->_name = $nome;
+        }elseif (is_null($nome)) {
+            $this->_name = 'patrocinador';
         }
         
         
@@ -49,7 +51,15 @@ class Admin_Model_DbTable_Sponsor extends Zend_Db_Table_Abstract
             
         );
         return $this->insert($dados);
-    }   
+    }
+    
+    public function getListaSponsor(){
+        $select = $this->_db->select()
+                ->from($this->_name, array('key'=>'idPatrocinador','value'=>'nome'));
+        $result = $this->getAdapter()->fetchAll($select);
+        
+        return $result;
+    }
 
 
 }

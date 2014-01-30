@@ -5,20 +5,16 @@ class Admin_SponsorController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
         $usuario = Zend_Auth::getInstance()->getIdentity();
-        //$this->view->usuario = $usuario;
         Zend_Layout::getMvcInstance()->assign('usuario', $usuario);
         
         if ( !Zend_Auth::getInstance()->hasIdentity() ) {
                 return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'index'), null, true);
-            //$this->_redirect('/');
         }
     }
 
     public function indexAction()
     {
-        #$bdImagens = new Application_Model_DbTable_Imagens();
         $bdImagens = new Admin_Model_DbTable_Sponsor('sponsor');
         $dadosImagens = $bdImagens->pesquisarSponsor();
         
@@ -35,6 +31,7 @@ class Admin_SponsorController extends Zend_Controller_Action
     {
         $this->view->dados = $this->getAllParams();
     }
+    
     public function uploadAction()
     {
         $titulo = urldecode( $this->_getParam('sponsor') );
@@ -46,15 +43,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         
         foreach ($upload->getFileInfo() as $file => $info) {                                     
             $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-            #$upload->addFilter('Rename', APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'.$extension);
             
-            /*
-            $upload->addFilter('Rename', array(
-            'target' => '/images/'.$titulo.'.'.$extension,
-            'overwrite' => true,
-            ));
-             * 
-             */
         }
         
         try {

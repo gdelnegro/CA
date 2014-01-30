@@ -18,6 +18,31 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
             return $this->fetchAll($select)->toArray();
         }
     }
+    
+    public function incluirArtigo(array $request, $idImagem){
+        
+        $date = Zend_Date::now()->toString('yyyy-MM-dd');
+        
+        $dados = array(
+            /*
+             * formato:
+             * 'nome_campo => valor,
+             */
+            'titulo'        =>  $request['titulo'],
+            'descricao'     =>  $request['descricao'],
+            'texto'         =>  $request['texto'],
+            'dtInclusao'    =>  $date,
+            'patrocinador'  =>  $request['sponsor'],
+            'thumb' => $idImagem
+        );
+        
+        try {
+            $this->insert($dados);
+            return true;
+        } catch (Zend_Db_Exception $exc) {
+            echo $exc->getMessage();
+        }
+    }   
 
 
 }
