@@ -28,10 +28,8 @@ class Admin_Model_DbTable_Grupo extends Zend_Db_Table_Abstract
              * 'nome_campo => valor,
              */
             'descricao'      =>  $request['descricao'],
-            'dataUpdt'     =>  $date,
-            'idUsr'     =>  $usr,
-            
-            
+            'dtInclusao'     =>  $date,
+            'usrCriou'     =>  $usr,
         );
         return $this->insert($dados);
     }
@@ -44,8 +42,8 @@ class Admin_Model_DbTable_Grupo extends Zend_Db_Table_Abstract
              * 'nome_campo => valor,
              */
             'descricao'      =>  $request['descricao'],
-            'dataUpdt'     =>  $date,
-            'idUsr'     =>  $usr,
+            'dtAlteracao'     =>  $date,
+            'usrAlterou'     =>  $usr,
         );
         $where = $this->getAdapter()->quoteInto("idGrupo = ?", $request['idGrupo']);
         $this->update($dados, $where);
@@ -58,7 +56,5 @@ class Admin_Model_DbTable_Grupo extends Zend_Db_Table_Abstract
         
         return $result;
     }
-
-
 }
 

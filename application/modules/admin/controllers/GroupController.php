@@ -27,7 +27,32 @@ class Admin_GroupController extends Zend_Controller_Action
         $paginator->setCurrentPageNumber($this->_request->getParam('pagina'));
         $this->view->paginator = $paginator;
     }
-
-
+    
+    public function showAction()
+    {
+        
+    }
+    
+    public function newAction()
+    {
+        $formGrupo = new Admin_Form_Grupo();
+        $this->view->formGrupo = $formGrupo;
+    }
+    
+    public function createAction()
+    {
+        
+    }
+    
+    public function editAction()
+    {
+        $formGrupo = new Admin_Form_Grupo();
+        $dbGrupo = new Admin_Model_DbTable_Grupo();
+        $dadosGrupo = $dbGrupo->pesquisarGrupo( $this->_getParam('id') );
+        $formGrupo->populate( $dadosGrupo );
+        
+        $this->view->formGrupo = $formGrupo;
+    }
+   
 }
 

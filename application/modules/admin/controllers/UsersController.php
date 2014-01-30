@@ -44,9 +44,17 @@ class Admin_UsersController extends Zend_Controller_Action
         $usr = $this->view->escape(ucfirst($user->idUsuario));
         
         $dbUsuarios = new Admin_Model_DbTable_Usuario();
-        $dbUsuarios->incluirUsuario($dados, $usr);
+        #$this->view->dados = $dbUsuarios->incluirUsuario($dados, $usr);
+        #
+        #return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'users'), null, true);
         
-        return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'users'), null, true);
+        $result = $dbUsuarios->incluirUsuario($dados, $usr);
+        
+        if ( $result == 'ok' ){
+            return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'users'), null, true);
+        }else {
+            $this->view->dados = $result;
+        }
     }
     
     public function editAction()
