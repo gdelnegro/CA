@@ -1,4 +1,7 @@
+<?php 
 
+$dbImagens = new Application_Model_DbTable_Imagens();
+?>
     <div class="main-content clearfix">
     	<div id="left-corner"></div>
         <div class="wrapper">
@@ -103,42 +106,28 @@
                 <div class="main-col">
                     <div class="list-carousel responsive">
                         <ul class="recent-works clearfix">
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="video-icon hover-effect" href="http://vimeo.com/46163823" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-1.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href="placeholders/205x144/205x144-2.jpg" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-2.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="video-icon hover-effect" href="http://vimeo.com/46163823" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-3.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href="placeholders/205x144/205x144-4.jpg" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-4.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
+                            
+                           <!-- Notícias-->
+                
+                <div class="main-col">
+                    <div class="list-carousel responsive">
+                        <ul class="recent-works clearfix">
+                            
+                            <?php foreach($this->dadosNoticias as $key => $noticia):?>
+                            <?php $imgNoticia = $dbImagens->pesquisarImagem($noticia['thumb']);?>
+                                <li>
+                                    <article>
+                                        <div class="article-thumb border-img">                                        
+                                            <a class="video-icon hover-effect" href="#" rel="prettyPhoto"><img class="responsive-img" src="<?php echo $imgNoticia['local'].$imgNoticia['nome'];?>" alt="<?php ucfirst($this->noticia['titulo'])?>" /></a>
+                                        </div><!--article-thumb-->
+                                        <a class="entry-title" href="#"><?php echo $noticia['titulo']?></a>
+                                        <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
+                                    </article>
+                                </li>
+                            <?php endforeach;?>
+
+                        </ul><!--end:Notícias-->
+                            
                             <li>
                                 <article>
                                     <div class="article-thumb border-img">                                        

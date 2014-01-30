@@ -21,6 +21,11 @@ class Default_IndexController extends Zend_Controller_Action
         $dadosImagens = $dbImagens->pesquisarImagem();
         
         $this->view->dadosImagens = $dadosImagens;
+        
+        $dbNoticias = new Application_Model_DbTable_Artigo();
+        $dadosNoticias = $dbNoticias->pesquisarArtigo();
+        
+        $this->view->dadosNoticias = $dadosNoticias;
                 
     }
 

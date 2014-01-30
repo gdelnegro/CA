@@ -1,7 +1,20 @@
-<?php var_dump($this->noticias);?>
+<?php
+$dbImagens = new Application_Model_DbTable_Imagens();
+?>
 
-<h1><?php echo $this->noticias[0]['titulo']?></h1>
-<p><small>Resumo: <?php echo $this->noticias[0]['descricao']?></small></p>
-<p><small>Autor:<?php echo $this->noticias[0]['autor']?> Data de Publicação: <?php echo $this->noticias[0]['dtInclusao']?></small></p>
-<br>
-<?php echo $this->noticias[0]['texto']?>
+<?php foreach($this->noticias as $key => $noticia):
+    $imagem = $dbImagens->pesquisarImagem($noticia['thumb']);
+    ?>
+    <center>
+        <h1><?php echo $noticia['titulo']?></h1>
+        <p><small>Resumo: <?php echo $noticia['descricao']?></small></p>
+        <p><small>Autor:<?php echo $noticia['autor']?> Data de Publicação: <?php echo $this->noticias[0]['dtInclusao']?></small></p>
+        <br>
+        <img src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php echo $noticia['titulo']?>">
+        <div style="width:400px;word-wrap: break-word;text-align:justify;text-justify:inter-word;">
+            <?php echo $this->noticias[0]['texto']?>
+        </div>
+    </center>
+<?php
+endforeach;
+?>
