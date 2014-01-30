@@ -88,6 +88,7 @@ $dbImagens = new Application_Model_DbTable_Imagens();
                             <?php endfor;?>
 
                         </ul><!--end:Patrocinadores-->
+                        
                         <div class="clear"></div>
                         <div class="carousel-nav clearfix">
                             <a id="prev-1" class="carousel-prev" href="#">&nbsp;</a>
@@ -118,7 +119,7 @@ $dbImagens = new Application_Model_DbTable_Imagens();
                                 <li>
                                     <article>
                                         <div class="article-thumb border-img">                                        
-                                            <a class="video-icon hover-effect" href="#" rel="prettyPhoto"><img class="responsive-img" src="<?php echo $imgNoticia['local'].$imgNoticia['nome'];?>" alt="<?php ucfirst($this->noticia['titulo'])?>" /></a>
+                                            <a class="video-icon hover-effect" href="<?php echo $this->url(array("controller"=>"noticias","action"=>"show","id"=>$noticia['idMateria']),null,true)?>" rel="prettyPhoto"><img class="responsive-img" src="<?php echo $imgNoticia['local'].$imgNoticia['nome'];?>" alt="<?php ucfirst($this->noticia['titulo'])?>" /></a>
                                         </div><!--article-thumb-->
                                         <a class="entry-title" href="#"><?php echo $noticia['titulo']?></a>
                                         <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
@@ -127,16 +128,6 @@ $dbImagens = new Application_Model_DbTable_Imagens();
                             <?php endforeach;?>
 
                         </ul><!--end:Notícias-->
-                            
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href="placeholders/205x144/205x144-3.jpg" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-3.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
                         </ul><!--end:recent-works-->
                         <div class="clear"></div>
                         <div class="carousel-nav clearfix">

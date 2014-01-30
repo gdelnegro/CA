@@ -15,6 +15,12 @@ class Default_NoticiasController extends Zend_Controller_Action
         
         $this->view->noticias = $noticias;
     }
+    
+    public function showAction(){
+        $dbNoticias = new Application_Model_DbTable_Artigo();
+        $noticias = $dbNoticias->pesquisarArtigo( $this->_getParam('id') );
+        $this->view->noticia = $noticias;
+    }
 
 
 }
