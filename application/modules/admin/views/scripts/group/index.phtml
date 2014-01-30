@@ -6,7 +6,7 @@ $dbUsuario = new Admin_Model_DbTable_Usuario();?>
 <center>
     
     <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml'); ?>
-    <p class="text-right"> <a class="btn btn-primary" href="<?php echo $this->url(array("module"=>"admin","controller"=>"grupo","action"=>"new"),null,true)?>">Cadastrar Grupo</a></p>
+    <p class="text-right"> <a class="btn btn-primary" href="<?php echo $this->url(array("module"=>"admin","controller"=>"group","action"=>"new"),null,true)?>">Cadastrar Grupo</a></p>
     <table class="table table-striped table-hover table-bordered table-condensed" width="100%" cellpadding="3" cellspacing="0" border="1">
    <tr>
         <th><center>Descrição</center></th>
@@ -19,12 +19,12 @@ $dbUsuario = new Admin_Model_DbTable_Usuario();?>
    <?php foreach($this->paginator AS $key => $group):?>
    <tr>
         <td><center><?php  echo $group['descricao']?></center></td>
-        <td><center><?php $usuario = $dbUsuario->getListaUsuario( $group['usrCriou'] );
-                echo $usuario[0]['value']; ?></center></td>
+    <td><center><?php #$usuario = $dbUsuario->pesquisarUsuario( $group['usrCriou'] );
+                echo $group['usrCriou'] ;?></center></td>
         <td><center><?php echo$group['dtInclusao']?></center></td>
     
-        <td><center><?php $usuario = $dbUsuario->getListaUsuario( $group['usrAlterou'] );
-                echo $usuario[0]['value']; ?></center></td>
+        <td><center><?php ;
+                echo $group['usrAlterou']; ?></center></td>
         <td><center><?php echo$group['dtAlteracao']?></center></td>
       <td><center>
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"group","action"=>"show","id"=>"{$group['idGrupo']}"),null,true)?>" title="Visualizar Cadastro"><i class='icon-eye-open'> </i></a>

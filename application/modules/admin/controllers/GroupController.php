@@ -41,7 +41,17 @@ class Admin_GroupController extends Zend_Controller_Action
     
     public function createAction()
     {
+        $dados = $this->getAllParams();
+        $dbGrupo = new Admin_Model_DbTable_Grupo();
         
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = $this->view->escape(ucfirst($user->idUsuario));
+        
+        if( !is_null($dados['descricao'])  ){
+            $dbGrupo->incluirGrupo($dados, $usr);
+            return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'group'), null, true);
+        }
     }
     
     public function editAction()
@@ -52,6 +62,21 @@ class Admin_GroupController extends Zend_Controller_Action
         $formGrupo->populate( $dadosGrupo );
         
         $this->view->formGrupo = $formGrupo;
+    }
+    
+    public function updateAction(){
+        $dados = $this->getAllParams();
+        $dbGrupo = new Admin_Model_DbTable_Grupo();
+        
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = $this->view->escape(ucfirst($user->idUsuario));
+        
+        if( !is_null( $dados['descricao'] ) AND !is_null( $dados['idGrupo'] )){
+            $dbGrupo->alterarGrupo($dados, $usr);
+            
+            return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'group'), null, true);
+        }
     }
    
 }

@@ -21,21 +21,21 @@ class Admin_Model_DbTable_Grupo extends Zend_Db_Table_Abstract
     }
     
     public function incluirGrupo(array $request, $usr){
-        $date = Zend_Date::now()->toString('yyyy-MM-dd HH:ii:ss');
+        $date = Zend_Date::now()->toString('yyyy-MM-dd HH:mm:ss');
         $dados = array(
             /*
              * formato:
              * 'nome_campo => valor,
              */
             'descricao'      =>  $request['descricao'],
-            'dtInclusao'     =>  $date,
+            'dtInclusao'     =>  'NOW()',
             'usrCriou'     =>  $usr,
         );
         return $this->insert($dados);
     }
     
     public function alterarGrupo(array $request, $usr){
-        $date = Zend_Date::now()->toString('yyyy-MM-dd');
+        $date = Zend_Date::now()->toString('yyyy-MM-dd HH:mm:ss');
         $dados = array(
             /*
              * formato:

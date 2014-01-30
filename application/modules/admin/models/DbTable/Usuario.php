@@ -21,7 +21,7 @@ class Admin_Model_DbTable_Usuario extends Zend_Db_Table_Abstract
     }
     
     public function incluirUsuario(array $request, $usr){
-        $date = Zend_Date::now()->toString('yyyy-MM-dd HH:ii:ss');
+        $date = Zend_Date::now()->toString('yyyy-MM-dd HH:mm:ss');
         $dados = array(
             /*
              * formato:
