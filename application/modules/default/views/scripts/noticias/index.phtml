@@ -1,0 +1,7 @@
+<?php var_dump($this->noticias);?>
+
+<h1><?php echo $this->noticias[0]['titulo']?></h1>
+<p><small>Resumo: <?php echo $this->noticias[0]['descricao']?></small></p>
+<p><small>Autor:<?php echo $this->noticias[0]['autor']?> Data de Publicação: <?php echo $this->noticias[0]['dtInclusao']?></small></p>
+<br>
+<?php echo $this->noticias[0]['texto']?>
