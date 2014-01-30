@@ -8,7 +8,14 @@ class Admin_Form_Sponsor extends Twitter_Form
         
         $nome = new Zend_Form_Element_Text('sponsor');
         $nome->setLabel('Nome')
-                ->setRequired('true');
+                ->setRequired('true')
+                ->setValidators( array(
+                     array('notEmpty', true, array(
+                         'messages' => array(
+                             'isEmpty' => 'O nome do parceiro não pode ser nulo'
+                         )
+                     ))
+               ));
         
         $arquivo = new Zend_Form_Element_File('arquivo');
         $arquivo->setLabel('Logotipo')

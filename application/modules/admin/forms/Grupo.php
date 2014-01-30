@@ -29,7 +29,14 @@ class Admin_Form_Grupo extends Twitter_Form
         $descricao->setLabel('Nome do Grupo')
                 ->setRequired('true')
                 ->setAttrib('autocomplete', 'off')
-                ->setAttrib('disabled', $this->exibir);
+                ->setAttrib('disabled', $this->exibir)
+                ->setValidators( array(
+                     array('notEmpty', true, array(
+                         'messages' => array(
+                             'isEmpty' => 'O nome do grupo não pode ser nulo'
+                         )
+                     ))
+               ));
         
         $id = new Zend_Form_Element_Hidden('idGrupo');
         

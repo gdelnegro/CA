@@ -16,11 +16,25 @@ class Admin_Form_Imagens extends Twitter_Form
         
         $descricao = new Zend_Form_Element_Textarea('descricao');
         $descricao->setLabel('Descrição da Imagem')
-                ->setRequired('true');
+                ->setRequired('true')
+                ->setValidators( array(
+                     array('notEmpty', true, array(
+                         'messages' => array(
+                             'isEmpty' => 'A descrição não pode ser nula'
+                         )
+                     ))
+               ));
         
         $nome = new Zend_Form_Element_Text('nome');
         $nome->setLabel('Título da Imagem')
-                ->setRequired('true');
+                ->setRequired('true')
+                ->setValidators( array(
+                     array('notEmpty', true, array(
+                         'messages' => array(
+                             'isEmpty' => 'O nome da imagem não pode ser nulo'
+                         )
+                     ))
+               ));
         
         
         $enviar = new Zend_Form_Element_Submit('enviar');

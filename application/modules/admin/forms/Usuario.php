@@ -29,20 +29,41 @@ class Admin_Form_Usuario extends Twitter_Form
                 ->setAttrib('placeholder', 'Nome completo')
                 ->setRequired('true')
                 ->setAttrib('autocomplete', 'off')
-                ->setAttrib('disabled', $this->exibir);
+                ->setAttrib('disabled', $this->exibir)
+                ->setValidators( array(
+                     array('notEmpty', true, array(
+                         'messages' => array(
+                             'isEmpty' => 'O nome do usuário não pode ser nulo'
+                         )
+                     ))
+               ));
         
         $login = new Zend_Form_Element_Text('login');
         $login->setLabel('Login')
                 ->setAttrib('disabled', $this->exibir)
                 ->setAttrib('placeholder', 'Login')
                 ->setRequired('true')
-                ->setAttrib('autocomplete', 'off');
+                ->setAttrib('autocomplete', 'off')
+                ->setValidators( array(
+                     array('notEmpty', true, array(
+                         'messages' => array(
+                             'isEmpty' => 'O login do usuário não pode ser nulo'
+                         )
+                     ))
+               ));
         
         $senha = new Zend_Form_Element_Password('senha');
         $senha->setLabel('Senha')
                 ->setAttrib('disabled', $this->exibir)
                 ->setRequired('true')
-                ->setAttrib('autocomplete', 'off');
+                ->setAttrib('autocomplete', 'off')
+                ->setValidators( array(
+                     array('notEmpty', true, array(
+                         'messages' => array(
+                             'isEmpty' => 'a senha não pode ser nula'
+                         )
+                     ))
+               ));
         
         $email = new Zend_Form_Element_Text('email');
         $email->setLabel('E-mail')
