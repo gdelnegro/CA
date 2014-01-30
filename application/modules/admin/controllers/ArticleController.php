@@ -34,6 +34,7 @@ class Admin_ArticleController extends Zend_Controller_Action
         $titulo = str_replace(' ', '_',$titulo);
         
         $bdImagem = new Application_Model_DbTable_Imagens();
+        $dbArtigos = new Application_Model_DbTable_Artigo();
         
         $formMateria = new Admin_Form_Materia();
         
@@ -64,13 +65,10 @@ class Admin_ArticleController extends Zend_Controller_Action
                 );
         
                 $idImagem = $bdImagem->incluirImagem($dados);        
-        
-                #$dadosmateria = $this->getAllParams();
-                #$this->view->dados = $dadosmateria;
-                $dadosMateria = $this->getAllParams();
-                $dbMateria = new Application_Model_DbTable_Artigo();
-                #$dbMateria->
+                       
+                $dbArtigos->incluirArtigo($data, $idImagem);
                 return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'article'), null, true);
+                #$this->view->dados = $dadosMateria;
                 
             }else{
                 $this->view->erro='Dados Invalidos';
@@ -79,16 +77,4 @@ class Admin_ArticleController extends Zend_Controller_Action
         }
         $this->view->formMateria = $formMateria;
     }
-
-    public function createAction(){
-        $dados =array(
-          'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
-            'nome'      =>  'sponsor-'.$titulo.'.'.$extension,
-            'local'     =>  '../public/images/',
-        );
-        
-        $idImagem = $dbImagens->incluirImagem($dados);
-    }
-
 }
-

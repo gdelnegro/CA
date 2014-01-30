@@ -36,12 +36,12 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
             'thumb' => $idImagem
         );
         
-        try {
-            $this->insert($dados);
-            return true;
-        } catch (Zend_Db_Exception $exc) {
-            echo $exc->getMessage();
-        }
+        #try {
+           return $this->insert($dados);
+        #    return true;
+        #} catch (Zend_Db_Exception $exc) {
+        #    echo $exc->getMessage();
+        #}
     }   
 
 
