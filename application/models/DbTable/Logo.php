@@ -20,7 +20,7 @@ class Application_Model_DbTable_Logo extends Zend_Db_Table_Abstract
     }
     
      public function alterarLogo($cor){
-        $date = Zend_Date::now()->toString('yyyy-MM-dd');
+        $date = Zend_Date::now()->toString('yyyy-MM-dd HH:mm:ss');
         
         $dados = array(
             'corFundo' => $cor,
