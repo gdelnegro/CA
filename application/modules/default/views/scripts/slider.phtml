@@ -1,3 +1,5 @@
+<?php $baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl();?>
+
 <style>
     img.center {        
         position: absolute;
@@ -11,7 +13,8 @@
 
 <?php
     $dbImagens = new Application_Model_DbTable_Imagens();
-    $dadosImagens = $dbImagens->pesquisarImagem();
+    $where = 'categoria = 4';
+    $dadosImagens = $dbImagens->pesquisarImagem(null, $where);
 ?>
 
 <section id="slider-wrapper">
@@ -25,7 +28,7 @@
                             </li>-->
                             <?php foreach ($dadosImagens as $key => $imagem):?>
                                 <li class="animate-in" style="text-align: center;">
-                                    <img class='center' src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php ucfirst($imagem[$i]['nome'])?>" /></a>
+                                    <img class='center' src="<?php echo $baseUrl.$imagem['local'].$imagem['nome'];?>" alt="<?php ucfirst($imagem[$i]['nome'])?>" /></a>
                                 </li>
                             <?php endforeach ?>
                         </ul>

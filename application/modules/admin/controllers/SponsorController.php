@@ -43,7 +43,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         
         foreach ($upload->getFileInfo() as $file => $info) {                                     
             $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-            
+            $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'.$extension,'overwrite' => true,));
         }
         
         try {
