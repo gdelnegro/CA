@@ -18,7 +18,10 @@ class Default_IndexController extends Zend_Controller_Action
         $this->view->dadosProgramas = $dadosProgramas;
         
         $dbImagens = new Application_Model_DbTable_Imagens();
-        $dadosImagens = $dbImagens->pesquisarImagem();
+        #$dadosImagens = $dbImagens->pesquisarImagem();
+        
+        $where = 'categoria = 1';
+        $dadosImagens = $dbImagens->pesquisarImagem(null, $where);
         
         $this->view->dadosImagens = $dadosImagens;
         
@@ -26,6 +29,14 @@ class Default_IndexController extends Zend_Controller_Action
         $dadosNoticias = $dbNoticias->pesquisarArtigo();
         
         $this->view->dadosNoticias = $dadosNoticias;
+        
+        $dbGuia = Zend_Db_Table::getDefaultAdapter();
+        $select = $dbGuia->select()
+             ->from('guiaImagem');
+
+        $dadosGuias = $select->query()->fetchAll();
+        
+        $this->view->dadosGuias = $dadosGuias;
                 
     }
 

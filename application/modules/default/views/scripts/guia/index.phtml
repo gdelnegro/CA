@@ -1,4 +1,19 @@
+<style>
+    .lime {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        width: 80px;
+        height: 80px;
+        -moz-border-radius: 80px;
+        border-radius: 80px;
+        -webkit-border-radius: 80px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    }
+</style>
 <?php 
 foreach ($this->dados as $key => $imagens) :?>
-    <img src='<?php echo $imagens['local'].$imagens['nome'];?>'>
+    <img class ='lime' src='<?php echo $imagens['local'].$imagens['nome'];?>'>
 <?php endforeach;?>
