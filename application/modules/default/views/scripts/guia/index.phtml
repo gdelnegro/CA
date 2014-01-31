@@ -14,6 +14,16 @@
     }
 </style>
 <?php 
-foreach ($this->dados as $key => $imagens) :?>
-    <img class ='lime' src='<?php echo $imagens['local'].$imagens['nome'];?>'>
-<?php endforeach;?>
+$dbImagens = new Application_Model_DbTable_Imagens();
+?>
+
+<?php foreach($this->dados as $key => $guia):
+    $imagem = $dbImagens->pesquisarImagem($guia['thumb']);
+    ?>
+    <center>
+        <img class="lime" src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php echo $guia['titulo']?>">
+        <h2><?php echo $guia['nome']?></h2>
+    </center>
+<?php
+endforeach;
+?>
