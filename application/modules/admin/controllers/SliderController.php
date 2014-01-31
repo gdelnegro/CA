@@ -26,7 +26,7 @@ class Admin_SliderController extends Zend_Controller_Action
     
     public function newAction()
     {
-        $titulo = urldecode( $this->_getParam('titulo') );
+        $titulo = urldecode( $this->_getParam('nome') );
         $titulo = str_replace(' ', '_',$titulo);
         
         $bdImagem = new Application_Model_DbTable_Imagens();
@@ -61,8 +61,8 @@ class Admin_SliderController extends Zend_Controller_Action
         
                 $bdImagem->incluirImagem($dados);        
                        
-                #return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'article'), null, true);
-                $this->view->dados = $data;
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'slider'), null, true);
+                #$this->view->dados = $data;
                 
             }else{
                 $this->view->erro='Dados Invalidos';
@@ -71,4 +71,17 @@ class Admin_SliderController extends Zend_Controller_Action
         }
         $this->view->formSlider = $formSlider;
     }
+    
+    public function deleteAction(){
+        $id = $this->_getParam('id');
+        
+        $dbImagem = new Application_Model_DbTable_Imagens();
+        $dbImagem->excluirImagem($id);
+
+        return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'slider'), null, true);
+        
+    }
+
+
 }
+
