@@ -44,6 +44,7 @@ class Admin_Form_Imagens extends Twitter_Form
             $nome,
             $descricao,
             $arquivo,
+            $enviar
         ));
     }
 

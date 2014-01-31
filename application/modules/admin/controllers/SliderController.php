@@ -29,13 +29,14 @@ class Admin_SliderController extends Zend_Controller_Action
         $titulo = urldecode( $this->_getParam('titulo') );
         $titulo = str_replace(' ', '_',$titulo);
         
+        $bdImagem = new Application_Model_DbTable_Imagens();
+        
         $formSlider = new Admin_Form_Imagens();
         
         if( $this->getRequest()->isPost() ) {
             $data = $this->getRequest()->getPost();
             
             if ( $formSlider->isValid($data) ){                
-                $dbImagens = new Application_Model_DbTable_Imagens();
         
                 /*Faz upload do arquivo*/
                 $upload = new Zend_File_Transfer_Adapter_Http();
@@ -52,16 +53,16 @@ class Admin_SliderController extends Zend_Controller_Action
                 /*Adicionar dados no banco de dados*/
         
                 $dados =array(
-                    'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
+                    'descricao'  =>   $data['descricao'],
                     'nome'      =>  'slider-'.$titulo.'.'.$extension,
                     'local'     =>  './images/',
                     'categoria' => '4'
                 );
         
-                $idImagem = $dbImagem->incluirImagem($dados);        
-                
-                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'slider'), null, true);
-                #$this->view->dados = $dadosMateria;
+                $bdImagem->incluirImagem($dados);        
+                       
+                #return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'article'), null, true);
+                $this->view->dados = $data;
                 
             }else{
                 $this->view->erro='Dados Invalidos';
@@ -70,17 +71,4 @@ class Admin_SliderController extends Zend_Controller_Action
         }
         $this->view->formSlider = $formSlider;
     }
-    
-    public function deleteAction(){
-        $id = $this->_getParam('id');
-        
-        $dbImagem = new Application_Model_DbTable_Imagens();
-        $dbImagem->excluirImagem($id);
-
-        return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'slider'), null, true);
-        
-    }
-
-
 }
-
