@@ -37,7 +37,7 @@ class Application_Model_DbTable_Imagens extends Zend_Db_Table_Abstract
             'descricao' => $request['descricao'],
             'local' => $request['local'],
             'nome' => $request['nome'],
-            'categoria' => '1'
+            'categoria' => $request['categoria']
             
         );
         
@@ -45,7 +45,15 @@ class Application_Model_DbTable_Imagens extends Zend_Db_Table_Abstract
         
         $lastInsertId = $this->getAdapter()->lastInsertId();
         return  $lastInsertId;
-    }    
+    }
+    
+    
+    public function excluirImagem($id)
+   {
+      $dao = new Application_Model_DbTable_Imagens();
+      $where = $dao->getAdapter()->quoteInto("idImagens = ?", $id);
+      $dao->delete($where);
+   }
 
 }
 

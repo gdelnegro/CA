@@ -29,22 +29,19 @@ class Admin_SliderController extends Zend_Controller_Action
         $titulo = urldecode( $this->_getParam('titulo') );
         $titulo = str_replace(' ', '_',$titulo);
         
-        $bdImagem = new Application_Model_DbTable_Imagens();
-        $dbArtigos = new Application_Model_DbTable_Artigo();
-        
-        $formMateria = new Admin_Form_Materia();
+        $formSlider = new Admin_Form_Imagens();
         
         if( $this->getRequest()->isPost() ) {
             $data = $this->getRequest()->getPost();
             
-            if ( $formMateria->isValid($data) ){                
+            if ( $formSlider->isValid($data) ){                
                 $dbImagens = new Application_Model_DbTable_Imagens();
         
                 /*Faz upload do arquivo*/
                 $upload = new Zend_File_Transfer_Adapter_Http();
                 foreach ($upload->getFileInfo() as $file => $info) {                                     
                     $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/materia-'.$titulo.'.'.$extension,'overwrite' => true,));
+                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/slider-'.$titulo.'.'.$extension,'overwrite' => true,));
                 }
             try {
                 $upload->receive();
@@ -56,22 +53,32 @@ class Admin_SliderController extends Zend_Controller_Action
         
                 $dados =array(
                     'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
-                    'nome'      =>  'materia-'.$titulo.'.'.$extension,
-                    'local'     =>  '../public/images/',
+                    'nome'      =>  'slider-'.$titulo.'.'.$extension,
+                    'local'     =>  './images/',
+                    'categoria' => '4'
                 );
         
-                $idImagem = $bdImagem->incluirImagem($dados);        
-                       
-                $dbArtigos->incluirArtigo($data, $idImagem);
-                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'article'), null, true);
+                $idImagem = $dbImagem->incluirImagem($dados);        
+                
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'slider'), null, true);
                 #$this->view->dados = $dadosMateria;
                 
             }else{
                 $this->view->erro='Dados Invalidos';
-                $this->view->formMateria = $formMateria->populate($data);
+                $this->view->formSlider = $formSlider->populate($data);
             }
         }
-        $this->view->formMateria = $formMateria;
+        $this->view->formSlider = $formSlider;
+    }
+    
+    public function deleteAction(){
+        $id = $this->_getParam('id');
+        
+        $dbImagem = new Application_Model_DbTable_Imagens();
+        $dbImagem->excluirImagem($id);
+
+        return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'slider'), null, true);
+        
     }
 
 
