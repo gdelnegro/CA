@@ -61,7 +61,6 @@ class Admin_IndexController extends Zend_Controller_Action
         $auth->clearIdentity();
         $this->_redirect('admin/index');
     }
-
-
+   
 }
 
