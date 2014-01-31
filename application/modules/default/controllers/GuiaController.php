@@ -16,6 +16,21 @@ class Default_GuiaController extends Zend_Controller_Action
         $this->view->dados = $dadosGuia;
     }
     
+    public function showAction()
+    {
+        $id = $this->_getParam('id');
+        $dbGuia = new Application_Model_DbTable_Guia();
+        $dadosGuia = $dbGuia->pesquisarGuia($id);
+        
+        $this->view->tituloGuia = $dadosGuia['nome'];
+        
+        $dbSponsor = new Admin_Model_DbTable_Sponsor();
+        $where = "categoria = $id";
+        $dadosSponsor = $dbSponsor->pesquisarSponsor(null,$where);
+        
+        $this->view->dadosSponsor = $dadosSponsor;
+    }
+    
 
 
 }

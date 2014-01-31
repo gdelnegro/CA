@@ -175,7 +175,7 @@ $dbImagens = new Application_Model_DbTable_Imagens();
                                     <img class="cms-icon" src="<?php echo $guia['local'].$guia['nome']?>" alt="<?php echo $guia['categoria']?>" width="80px" height="80px">
                                 </a>                        
                             </div>
-                            <h6 class="entry-title"><a href="<?php echo $this->url(array("controller"=>"guia","categoria"=>$guia['idCategoria']),null,true)?>"><?php echo $guia['categoria']?></a></h6>
+                            <h6 class="entry-title"><a href="<?php echo $this->url(array("controller"=>"guia","action"=>"show","id"=>$guia['idCategoria']),null,true)?>"><?php echo $guia['categoria']?></a></h6>
                             <p><?php echo $guia['descCat']?></p>
                         </article>
                         <?php endforeach;?>
@@ -195,24 +195,6 @@ $dbImagens = new Application_Model_DbTable_Imagens();
                     <div class="list-carousel responsive">
                         <ul class="recent-works clearfix">
                             
-                            <!-- 
-                            
-                                Fazer um foreach, que exibe os 4 ultimos programas (videos)
-                            
-                                foreach( $this->programas as $key => $programa ){
-                                
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="video-icon hover-effect" href="http://vimeo.com/46163823" rel="prettyPhoto"><img class="responsive-img" src="placeholders/205x144/205x144-1.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                            <!--
-                                    <a class="entry-title" href="#">Global child mortality declines</a>
-                                    <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                </article>
-                            </li>
-                            }
-                            -->
                             <?php for($i=0;$i<=3;$i++):
                                 if ( is_null( $this->dadosProgramas[$i]['url'] )):
                                     $i++;break;
