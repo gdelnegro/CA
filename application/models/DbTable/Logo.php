@@ -24,7 +24,7 @@ class Application_Model_DbTable_Logo extends Zend_Db_Table_Abstract
         
         $dados = array(
             'corFundo' => $cor,
-            'dtInclusao' => $date,
+            'dtAlteracao' => $date,
         );
         #$where = $this->getAdapter()->quoteInto("idPrograma = ?", $request['idPrograma']);
         $this->update($dados, $where);

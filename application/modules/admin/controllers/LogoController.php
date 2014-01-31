@@ -27,9 +27,25 @@ class Admin_LogoController extends Zend_Controller_Action
     
     public function editAction()
     {
+
         $formLogo = new Admin_Form_Logo();
         
+        if( $this->getRequest()->isPost() ) {
+            $data = $this->getRequest()->getPost();
+            
+            if ( $formLogo->isValid($data) ){                
+                $dbLogo = new Application_Model_DbTable_Logo();
+                $dbLogo->alterarLogo($data['cor']);
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'logo'), null, true);
+                #$this->view->dados = $data;
+                
+            }else{
+                $this->view->erro='Dados Invalidos';
+                $this->view->formLogo = $formLogo->populate($data);
+            }
+        }
         $this->view->formLogo = $formLogo;
+        
     }
 
 
