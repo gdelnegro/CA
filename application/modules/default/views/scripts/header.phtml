@@ -1,8 +1,12 @@
-    <header id="header">
+<?php $dbLogo = new Application_Model_DbTable_Logo();
+      $dadosLogo = $dbLogo->pesquisarLogo();
+?>
+
+<header id="header">
     	<div id="header-inner">
             <div class="wrapper clearfix"> 
-				<div id="logo-image">
-					<a href="index.html"><img src="placeholders/logo.png" alt="" /></a>
+				<div id="logo-image" style="background-color: <?php echo $dadosLogo[0]['corFundo']?>">
+                                    <a href="index.html"><img src="placeholders/logo.png" alt="" width="100%" height="100%"/></a>
 				</div><!--logo-image-->
                 <nav id="main-nav">
                     <ul id="main-menu" class="clearfix">

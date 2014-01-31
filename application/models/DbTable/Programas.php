@@ -38,7 +38,7 @@ class Application_Model_DbTable_Programas extends Zend_Db_Table_Abstract
             'titulo' => $request['titulo'],
             'descricao' => $request['descricao'],
             'url' => $url,
-            'dtInclusao' => $date,
+            'dtAlteracao' => $date,
         );
         return $this->insert($dados);
     }
