@@ -62,8 +62,6 @@ class Admin_SliderController extends Zend_Controller_Action
                 $bdImagem->incluirImagem($dados);        
                        
                 return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'slider'), null, true);
-                #$this->view->dados = $data;
-                
             }else{
                 $this->view->erro='Dados Invalidos';
                 $this->view->formSlider = $formSlider->populate($data);
@@ -82,6 +80,4 @@ class Admin_SliderController extends Zend_Controller_Action
         
     }
 
-
 }
-
