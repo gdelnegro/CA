@@ -23,11 +23,11 @@
     <td><center><img src="../images/<?php echo urldecode($sponsor['nome'])?>" alt="<?php echo $sponsor['descricao']?>" width="60%" height="60%"></center></td>
         <td><center>Status</center></td>
         <td><center><?php echo$sponsor['dtInclusao']?></center></td>
-        <td><center>Alterado por</center></td>
+        <td><center><?php  echo $sponsor['usrAlterou']?></center></td>
         <td><center><?php echo$sponsor['dtAlteracao']?></center></td>
       <td><center>
-         <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"show","id"=>"{$sponsor['idPrograma']}"),null,true)?>" title="Visualizar Cadastro"><i class='icon-eye-open'> </i></a>
-         <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"edit","id"=>"{$sponsor['idPrograma']}"),null,true)?>" title="Editar Cadastro"><i class='icon-pencil'></i></a> 
+         <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"show","id"=>"{$sponsor['idPatrocinador']}"),null,true)?>" title="Visualizar Cadastro"><i class='icon-eye-open'> </i></a>
+         <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"edit","id"=>"{$sponsor['idPatrocinador']}"),null,true)?>" title="Editar Cadastro"><i class='icon-pencil'></i></a> 
          </center>
       </td>
    </tr>

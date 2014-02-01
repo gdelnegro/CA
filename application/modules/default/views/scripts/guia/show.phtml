@@ -1,3 +1,34 @@
-<?php var_dump($this->dadosSponsor)?>
+<style>
+    .lime {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        width: 80px;
+        height: 80px;
+        -moz-border-radius: 80px;
+        border-radius: 80px;
+        -webkit-border-radius: 80px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    }
+</style>
 
-<?php echo $this->tituloGuia ?>
+<h1>Guia -> Categoria: <b><?php echo $this->tituloGuia ?></b></h1>
+<center>
+    <div id="content" style="width:400px;word-wrap: break-word;text-align:justify;text-justify:inter-word; ">
+<?php
+#var_dump($this->dadosSponsor);
+
+foreach ($this->dadosSponsor as $key => $sponsor) :
+
+    echo '<h1><b>'.$sponsor['patrocinador'].' <img class="lime" src="'.$sponsor['local'].$sponsor['logo'].'"></h1></b>';
+    echo '<h3><b>Tipo</b>: '.$sponsor['tipo'].'</h3>';
+    echo '<h3><b>Site</b> : <a href="'.$sponsor['site'].'">'.$sponsor['site'].'</a></h3>';
+    echo '<h3><b>Email</b>: '.$sponsor['email'].'</h3>';
+    echo '<h3><b>Telefone</b>: '.$sponsor['telefone'].'</h3>';
+    echo '<h3><b>Endereço</b>: '.$sponsor['endereco'].' - '.$sponsor['cep'].' , '.$sponsor['cidade'].' - '.$sponsor['estado'].'</h3><br><hr>';
+endforeach;
+?>
+        </div>
+</center>

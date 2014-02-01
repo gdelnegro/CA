@@ -24,7 +24,7 @@ class Default_GuiaController extends Zend_Controller_Action
         
         $this->view->tituloGuia = $dadosGuia['nome'];
         
-        $dbSponsor = new Admin_Model_DbTable_Sponsor();
+        $dbSponsor = new Admin_Model_DbTable_Sponsor('guia');
         $where = "categoria = $id";
         $dadosSponsor = $dbSponsor->pesquisarSponsor(null,$where);
         

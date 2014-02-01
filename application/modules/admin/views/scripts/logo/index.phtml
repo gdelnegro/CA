@@ -16,7 +16,7 @@
    <tr>
         <td><center><?php echo $logo['diretorio']?></center></td>
         <td><center><?php  echo $logo['nome']?></center></td>        
-        <td style="background-color: <?php echo $logo['corFundo']?>"><center><img src=".<?php echo $logo['diretorio']?><?php echo urldecode($logo['nome'])?>" alt="<?php echo $logo['descricao']?>" width="60%" height="60%"></center></td>
+        <td style="background-color: <?php echo $logo['corFundo']?>"><center><img src=".<?php echo $logo['diretorio']?><?php echo urldecode($logo['nome'])?>" alt="<?php echo $logo['nome']?>" width="60%" height="60%"></center></td>
         <td><center><?php echo $logo['dtAlteracao']?></center></td>
       <td><center>
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"logo","action"=>"edit"),null,true)?>" title="Editar Cadastro"><i class='icon-pencil'></i></a> 
