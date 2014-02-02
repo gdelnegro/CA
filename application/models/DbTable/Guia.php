@@ -18,6 +18,14 @@ class Application_Model_DbTable_Guia extends Zend_Db_Table_Abstract
             return $this->fetchAll($select)->toArray();
         }
     }
+    
+    public function getListaGuia(){
+        $select = $this->_db->select()
+                ->from($this->_name, array('key'=>'idCategoria','value'=>'nome'));
+        $result = $this->getAdapter()->fetchAll($select);
+        
+        return $result;
+    }
 
 
 }

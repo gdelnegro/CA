@@ -74,10 +74,83 @@ class Admin_SponsorController extends Zend_Controller_Action
     
     public function newAction()
     {
-        #$formImagem = new Admin_Form_Imagens();
-        $formImagem = new Admin_Form_Sponsor();
-        $this->view->formImagem = $formImagem;
-        $this->view->url = $this->view->baseUrl();
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = ($user->idUsuario);
+        
+        $titulo = urldecode( $this->_getParam('nome') );
+        $titulo = str_replace(' ', '_',$titulo);
+        
+        $formSponsor = new Admin_Form_Sponsor('new');
+        
+        if( $this->getRequest()->isPost() ) {
+            $data = $this->getRequest()->getPost();
+            
+            if ( $formSponsor->isValid($data) ){                
+                $dbSponsor = new Admin_Model_DbTable_Sponsor('patrocinador');
+                $bdImagem = new Application_Model_DbTable_Imagens();
+        
+                $upload = new Zend_File_Transfer_Adapter_Http();
+                foreach ($upload->getFileInfo() as $file => $info) {                                     
+                    $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
+                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'.$extension,'overwrite' => true,));
+                }
+            try {
+                $upload->receive();
+                } catch (Zend_File_Transfer_Exception $e) {
+                    echo $e->getMessage();
+                }
+        
+        
+                $dados =array(
+                    'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
+                    'nome'      =>  'sponsor-'.$titulo.'.'.$extension,
+                    'local'     =>  '/images/',
+                    'categoria' =>  '1',
+                );
+        
+                $idImagem = $bdImagem->incluirImagem($dados);        
+                       
+                $dbSponsor->incluirSponsor($data, $idImagem, $usr);
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'sponsor'), null, true);
+
+                #$this->view->dados = $data;
+                
+            }else{
+                $this->view->erro='Dados Invalidos';
+                $this->view->formSponsor = $formSponsor->populate($data);
+            }
+        }
+        $this->view->formSponsor = $formSponsor;
+    }
+    
+    public function editAction()
+    {
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = ($user->idUsuario);
+        
+        $dbSponsor = new Admin_Model_DbTable_Sponsor('patrocinador');
+        $dadosSponsor = $dbSponsor->pesquisarSponsor( $this->_getParam('id') );
+        $formSponsor = new Admin_Form_Sponsor('edit');
+        $formSponsor->populate($dadosSponsor);
+        
+        if( $this->getRequest()->isPost() ) {
+            $data = $this->getRequest()->getPost();
+            
+            if ( $formSponsor->isValid($data) ){                
+                $idImagem = $dadosSponsor['logo'];
+                $dbSponsor->alterarSponsor($data, $idImagem, $usr);
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'sponsor'), null, true);
+                #$this->view->data = $data;
+                
+            }else{
+                $this->view->erro='Dados Invalidos';
+                $this->view->formSponsor = $formSponsor->populate($data);
+            }
+        }
+        $this->view->dados = $dadosSponsor;
+        $this->view->formSponsor = $formSponsor;
     }
 
 }

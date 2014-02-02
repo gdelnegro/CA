@@ -53,9 +53,7 @@ class Admin_Form_Materia extends Twitter_Form
                 ->setAttrib('disabled', $this->exibir);
         
         $texto = new Zend_Form_Element_Textarea('texto');
-        $texto->setLabel('Texto da Matéria')
-                ->setAttrib('rows',40)
-                ->setAttrib('cols', 40)
+        $texto->setLabel('Texto da Matéria')   
                 ->setRequired(true)
                 ->setFilters(array('StringTrim'))
                 ->setValidators( array(
@@ -92,7 +90,8 @@ class Admin_Form_Materia extends Twitter_Form
                 $titulo,
                 $descricao,
                 $texto,
-                $sponsor
+                $sponsor,
+                $arquivo
             ));
             
         }elseif ( $this->tipo == 'EDIT' ) {

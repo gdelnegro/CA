@@ -37,7 +37,7 @@ class Admin_Model_DbTable_Sponsor extends Zend_Db_Table_Abstract
      * @param array $request dados que serão enviados ao BD
      * @return inserção dos dados no BD
      */
-    public function incluirSponsor(array $request, $idImagem){
+    public function incluirSponsor(array $request, $idImagem, $usr){
         
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
         
@@ -46,12 +46,53 @@ class Admin_Model_DbTable_Sponsor extends Zend_Db_Table_Abstract
              * formato:
              * 'nome_campo => valor,
              */
-            'nome' => $request['sponsor'],
-            'logo' => $idImagem
+            'nome' => $request['nome'],
+            'categoria' => $request['categoria'],
+            'logo' => $idImagem,
+            'dtInclusao' => $date,
+            'usrCriou' => $usr,
+            'site' => $request['site'],
+            'email' => $request['email'],
+            'endereco' => $request['endereco'],
+            'cidade' => $request['cidade'],
+            'estado' => $request['estado'],
+            'tipo' => $request['tipo'],
+            'cep' => $request['cep'],
+            'telefone' => $request['telefone'],
             
         );
         return $this->insert($dados);
     }
+    
+    public function alterarSponsor(array $request, $idImagem, $usr){
+        
+        $date = Zend_Date::now()->toString('yyyy-MM-dd');
+        
+        $dados = array(
+            /*
+             * formato:
+             * 'nome_campo => valor,
+             */
+            'nome' => $request['nome'],
+            'categoria' => $request['categoria'],
+            'logo' => $idImagem,
+            'dtInclusao' => $date,
+            'usrCriou' => $usr,
+            'site' => $request['site'],
+            'email' => $request['email'],
+            'endereco' => $request['endereco'],
+            'cidade' => $request['cidade'],
+            'estado' => $request['estado'],
+            'tipo' => $request['tipo'],
+            'cep' => $request['cep'],
+            'telefone' => $request['telefone'],
+            
+        );
+        
+        $where = $this->getAdapter()->quoteInto("idPatrocinador = ?", $request['idPatrocinador']);
+        $this->update($dados, $where);
+    }
+    
     
     public function getListaSponsor(){
         $select = $this->_db->select()
