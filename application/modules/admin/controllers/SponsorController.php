@@ -59,7 +59,8 @@ class Admin_SponsorController extends Zend_Controller_Action
         $dados =array(
           'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
             'nome'      =>  'sponsor-'.$titulo.'.'.$extension,
-            'local'     =>  '../public/images/',
+            'local'     =>  '/images/',
+            'categoria' =>  '1',
         );
         
         $idImagem = $dbImagens->incluirImagem($dados);        
@@ -76,6 +77,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         #$formImagem = new Admin_Form_Imagens();
         $formImagem = new Admin_Form_Sponsor();
         $this->view->formImagem = $formImagem;
+        $this->view->url = $this->view->baseUrl();
     }
 
 }

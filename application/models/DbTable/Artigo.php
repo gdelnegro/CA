@@ -19,9 +19,15 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
         }
     }
     
-    public function incluirArtigo(array $request, $idImagem){
+    public function incluirArtigo(array $request, $idImagem, $usr){
         
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
+        
+        $sponsor = $request['sponsor'];
+        
+        if ( $request['sponsor'] == 0 ) {
+            $sponsor = null;
+        }
         
         $dados = array(
             /*
@@ -31,18 +37,32 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
             'titulo'        =>  $request['titulo'],
             'descricao'     =>  $request['descricao'],
             'texto'         =>  $request['texto'],
+            'autor'         =>  $usr,
             'dtInclusao'    =>  $date,
-            'patrocinador'  =>  $request['sponsor'],
+            'patrocinador'  =>  $sponsor,
             'thumb' => $idImagem
         );
         
-        #try {
+        try {
            return $this->insert($dados);
-        #    return true;
-        #} catch (Zend_Db_Exception $exc) {
-        #    echo $exc->getMessage();
-        #}
-    }   
+            return true;
+        } catch (Zend_Db_Exception $exc) {
+            echo $exc->getMessage();
+        }
+    }
+    
+    public function updateArtigo($request, $usr){
+        if ( !is_null( $request ) ){
+            $where = $this->getAdapter()->quoteInto("idMateria = ?", $request['idMateria']);
+            $dados = array(
+                'texto' =>  $request['texto']
+            );
+            
+            $this->update($dados, $where);
+        }else{
+            echo 'Não foram passados dados para serem atualizados';
+        }
+    }
 
 
 }

@@ -47,6 +47,7 @@ function custom_echo($x)
         <td><center><?php echo$programa['dtAlteracao']?></center></td>
       <td><center>
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"edit","id"=>"{$programa['idPrograma']}"),null,true)?>" title="Editar Cadastro"><i class='icon-pencil'></i></a> 
+         <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"delete","id"=>"{$programa['idPrograma']}"),null,true)?> " title="Deletar Cadastro" onclick='if (confirm("Deseja remover o cadastro?")) { document.form.submit(); } return false;'><i class='icon-remove'></i></a> 
          </center>
       </td>
    </tr>

@@ -46,7 +46,7 @@ class Admin_Form_Materia extends Twitter_Form
                 ->setValidators( array(
                      array('notEmpty', true, array(
                          'messages' => array(
-                             'isEmpty' => 'A descrição da matéria não pode ser nulo'
+                             'isEmpty' => 'A descrição da matéria não pode ser nula'
                          )
                      ))
                ))
@@ -54,6 +54,8 @@ class Admin_Form_Materia extends Twitter_Form
         
         $texto = new Zend_Form_Element_Textarea('texto');
         $texto->setLabel('Texto da Matéria')
+                ->setAttrib('rows',40)
+                ->setAttrib('cols', 40)
                 ->setRequired(true)
                 ->setFilters(array('StringTrim'))
                 ->setValidators( array(
@@ -70,7 +72,7 @@ class Admin_Form_Materia extends Twitter_Form
                 ->setRequired('true')
                 ->addValidator('Count', false, 1)
                 ->addValidator('Size',false,5502400)
-                ->addValidator('Extension',false,'jpg,png,gif');
+                ->addValidator('Extension',false,'jpg,png,gif');        
         
         $dbSponsor = new Admin_Model_DbTable_Sponsor();
         $listaSponsor = $dbSponsor->getListaSponsor();
@@ -82,19 +84,40 @@ class Admin_Form_Materia extends Twitter_Form
                 )
                 ->addMultiOptions($listaSponsor);
         #$tag;
-        
-        $this->addElements( array(
-            $idMateria,
-            $titulo,
-            $descricao,
-            $texto,
-            $arquivo,
-            $sponsor
-        ));
-        
-        
         $submit = new Zend_Form_Element_Submit('Enviar');
         
-        $this->addElement($submit);
+        if( $this->tipo == 'NEW' or $this->tipo == 'SHOW'){
+            $this->addElements( array(
+                $idMateria,
+                $titulo,
+                $descricao,
+                $texto,
+                $sponsor
+            ));
+            
+        }elseif ( $this->tipo == 'EDIT' ) {
+            
+            $this->addElements(array(
+                $idMateria,
+                $texto,
+                $submit
+            ));
+            
+        }
+        
+        if ($this->tipo != 'SHOW' AND $this->tipo != 'EDIT') {
+            
+            $this->addElements(array($idMateria,$arquivo,$submit));
+            
+        }
+        
+        if ( $this->tipo == 'SHOW' ) {
+            
+            $this->addElement("button", "imprimir", array(
+                            "class" => "btn-primary",
+                            "label" => "Imprimir",
+                            "onclick" => 'window.print()',
+                    ));
+        }
     }
 }

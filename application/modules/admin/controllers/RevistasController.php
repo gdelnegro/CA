@@ -58,7 +58,7 @@ class Admin_RevistasController extends Zend_Controller_Action
                 $dados =array(
                     'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
                     'nome'      =>  'revista-'.$titulo.'.'.$extension,
-                    'local'     =>  '../public/images/',
+                    'local'     =>  '/images/',
                     'categoria' => '5'
                 );
         

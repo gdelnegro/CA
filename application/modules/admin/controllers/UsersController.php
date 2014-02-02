@@ -41,7 +41,7 @@ class Admin_UsersController extends Zend_Controller_Action
         
         $auth = Zend_Auth::getInstance();
         $user = $auth->getIdentity();
-        $usr = $this->view->escape(ucfirst($user->idUsuario));
+        $usr = ($user->idUsuario);
         
         $dbUsuarios = new Admin_Model_DbTable_Usuario();
         #$this->view->dados = $dbUsuarios->incluirUsuario($dados, $usr);

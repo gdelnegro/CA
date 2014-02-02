@@ -55,7 +55,7 @@ class Admin_SliderController extends Zend_Controller_Action
                 $dados =array(
                     'descricao'  =>   $data['descricao'],
                     'nome'      =>  'slider-'.$titulo.'.'.$extension,
-                    'local'     =>  './images/',
+                    'local'     =>  '/images/',
                     'categoria' => '4'
                 );
         

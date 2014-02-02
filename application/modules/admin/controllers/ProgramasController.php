@@ -29,15 +29,21 @@ class Admin_ProgramasController extends Zend_Controller_Action
     public function newAction()
     {
         $formPrograma = new Admin_Form_Programas('new');
-        $this->view->formPrograma = $formPrograma;
-    }
-    
-    public function createAction()
-    {
-        $dbPrograma = new Default_Model_DbTable_Programas();
-        $dbPrograma->incluirPrograma( $this->getAllParams() );
-        $this->_helper->redirector('index');
         
+        if( $this->getRequest()->isPost() ) {
+            $dadosPrograma = $this->getRequest()->getPost();
+            
+            if ( $formPrograma->isValid($dadosPrograma) ){                
+                $dbPrograma = new Application_Model_DbTable_Programas();
+                $dbPrograma->incluirPrograma($dadosPrograma);
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'programas'), null, true);
+                
+            }else{
+                $this->view->erro='Dados Invalidos';
+                $this->view->formPrograma = $formPrograma->populate($dadosPrograma);
+            }
+        }
+        $this->view->formPrograma = $formPrograma;
     }
     
     public function showAction(){
@@ -73,6 +79,16 @@ class Admin_ProgramasController extends Zend_Controller_Action
        $bdProgramas->alterarPrograma( $this->_getAllParams(), $usuario->idUsr );
        
        $this->_helper->redirector('index');
+   }
+   
+   public function deleteAction()
+   {
+       $id = $this->_getParam('id');
+       $dao = new Application_Model_DbTable_Programas();
+       $where = $dao->getAdapter()->quoteInto("idPrograma = ?", $id);
+       $dao->delete($where);
+
+       return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'programas'), null, true);
    }
 
 

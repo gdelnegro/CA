@@ -30,19 +30,22 @@ class Admin_ArticleController extends Zend_Controller_Action
     
     public function newAction()
     {
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = ($user->idUsuario);
+        
         $titulo = urldecode( $this->_getParam('titulo') );
         $titulo = str_replace(' ', '_',$titulo);
-        
-        $bdImagem = new Application_Model_DbTable_Imagens();
+                
         $dbArtigos = new Application_Model_DbTable_Artigo();
         
-        $formMateria = new Admin_Form_Materia();
+        $formMateria = new Admin_Form_Materia('new');
         
         if( $this->getRequest()->isPost() ) {
             $data = $this->getRequest()->getPost();
             
             if ( $formMateria->isValid($data) ){                
-                $dbImagens = new Application_Model_DbTable_Imagens();
+                $bdImagem = new Application_Model_DbTable_Imagens();
         
                 /*Faz upload do arquivo*/
                 $upload = new Zend_File_Transfer_Adapter_Http();
@@ -61,12 +64,13 @@ class Admin_ArticleController extends Zend_Controller_Action
                 $dados =array(
                     'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
                     'nome'      =>  'materia-'.$titulo.'.'.$extension,
-                    'local'     =>  '../public/images/',
+                    'local'     =>  '/images/',
+                    'categoria' =>  '2'
                 );
         
                 $idImagem = $bdImagem->incluirImagem($dados);        
                        
-                $dbArtigos->incluirArtigo($data, $idImagem);
+                $dbArtigos->incluirArtigo($data, $idImagem, $usr);
                 return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'article'), null, true);
                 #$this->view->dados = $dadosMateria;
                 
@@ -76,5 +80,28 @@ class Admin_ArticleController extends Zend_Controller_Action
             }
         }
         $this->view->formMateria = $formMateria;
+    }
+    
+    public function editAction(){
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = ($user->idUsuario);
+        
+        
+        $dbMateria = new Application_Model_DbTable_Artigo();
+        $dadosMateria = $dbMateria->pesquisarArtigo( $this->_getParam('id') );
+        $formMateria = new Admin_Form_Materia('edit');
+        
+        $this->view->formMateria = $formMateria->populate($dadosMateria);
+        
+        if( $this->getRequest()->isPost() ) {
+            $data = $this->getRequest()->getPost();
+            
+            if ( $formMateria->isValid($data) ){
+                $this->view->dados = $data;
+                $dbMateria->updateArtigo($data, $usr);
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'article'), null, true);
+            }
+        }
     }
 }

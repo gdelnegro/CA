@@ -67,7 +67,6 @@ class Application_Model_DbTable_Programas extends Zend_Db_Table_Abstract
         $where = $this->getAdapter()->quoteInto("idPrograma = ?", $request['idPrograma']);
         $this->update($dados, $where);
     }
-
-
+  
 }
 
