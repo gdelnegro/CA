@@ -18,13 +18,13 @@ $baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl();
 $dbImagens = new Application_Model_DbTable_Imagens();
 ?>
 
+<center>
 <?php foreach($this->dados as $key => $guia):
     $imagem = $dbImagens->pesquisarImagem($guia['thumb']);
     ?>
-    <center>
         <img class="lime" src="<?php echo $baseUrl.$imagem['local'].$imagem['nome'];?>" alt="<?php echo $guia['nome']?>">
         <h2><a href="<?php echo $this->url(array("controller"=>"guia","action"=>"show","id"=>$guia['idCategoria']),null,true)?>"><?php echo $guia['nome']?></a></h2>
-    </center>
 <?php
 endforeach;
 ?>
+</center>
