@@ -1,4 +1,38 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Guide</b> and script/action name <b>index</b></p>
-</div>
+<head>
+</head>
+<?php
+$dbUsuario = new Admin_Model_DbTable_Usuario();?>
+<body>
+<center>
+    
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml'); ?>
+    <p class="text-right"> <a class="btn btn-primary" href="<?php echo $this->url(array("module"=>"admin","controller"=>"guide","action"=>"new"),null,true)?>">Cadastrar Guia</a></p>
+    <table class="table table-striped table-hover table-bordered table-condensed" width="100%" cellpadding="3" cellspacing="0" border="1">
+   <tr>
+        <th><center>Descrição</center></th>
+        <th><center>Criado por</center></th>
+        <th><center>Data de Inclusao</center></th>
+        <th><center>Alterado por</center></th>
+        <th><center>Data de Alteraçao</center></th>
+        <th><center>Açoes</center></th>
+   </tr>
+   <?php foreach($this->paginator AS $key => $guide):?>
+   <tr>
+        <td><center><?php  echo $guide['nome']?></center></td>
+    <td><center><?php $usuario = $dbUsuario->pesquisarUsuario( $guide['usrCriou'] );
+        echo $usuario['nome'] ;?></center></td>
+        <td><center><?php echo $guide['dtInclusao']?></center></td>
+        <td><center><?php $usuario = $dbUsuario->pesquisarUsuario( $guide['usrAlterou'] ); 
+        echo $usuario['nome'];?></center></td>
+        <td><center><?php echo $guide['dtAlteracao']?></center></td>
+      <td><center>
+         <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"guide","action"=>"show","id"=>"{$guide['idCategoria']}"),null,true)?>" title="Visualizar Cadastro"><i class='icon-eye-open'> </i></a>
+         <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"guide","action"=>"edit","id"=>"{$guide['idCategoria']}"),null,true)?>" title="Editar Cadastro" ><i class='icon-pencil'></i></a> 
+         </center>
+      </td>
+   </tr>
+   <?php endforeach;?>
+</table>
+    
+</center>
+</body>

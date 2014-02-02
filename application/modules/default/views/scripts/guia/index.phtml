@@ -22,8 +22,8 @@ $dbImagens = new Application_Model_DbTable_Imagens();
     $imagem = $dbImagens->pesquisarImagem($guia['thumb']);
     ?>
     <center>
-        <img class="lime" src="<?php echo $baseUrl.$imagem['local'].$imagem['nome'];?>" alt="<?php echo $revista['titulo']?>">
-        <h2><?php echo $guia['nome']?></h2>
+        <img class="lime" src="<?php echo $baseUrl.$imagem['local'].$imagem['nome'];?>" alt="<?php echo $guia['nome']?>">
+        <h2><a href="<?php echo $this->url(array("controller"=>"guia","action"=>"show","id"=>$guia['idCategoria']),null,true)?>"><?php echo $guia['nome']?></a></h2>
     </center>
 <?php
 endforeach;
