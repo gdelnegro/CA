@@ -51,36 +51,41 @@ class Admin_Model_DbTable_Usuario extends Zend_Db_Table_Abstract
         }
     }
     
-    protected function validaUsr(array $request, $coluna ){
-        
-        $where = $this->getAdapter()->quoteInto($coluna."= ?", $request[$coluna]);
-        
-        $select = $this->select()
-                ->from($this,array('count(*) as cont'));
-        
-        $select->where($where);
-        
-        $resultado = $this->fetchAll($select);
-        
-        if ( $resultado[0]['cont'] !=0 ){
-            switch ($coluna) {
-                case 'login':
-                        $result = 'Erro: Login já cadastrado';
-                    break;
-                case 'nome':
-                        $result = 'Erro: Nome já cadastrado';
-                    break;
-                case 'email':
-                        $result = 'Erro: Email já cadastrado';
-                default:
-                    $result = false;
-                    break;
-            }
+    public function alterarUsuario(array $request, $usr,$oldPass){
+        $date = Zend_Date::now()->toString('yyyy-MM-dd HH:mm:ss');
+        $senha = $request['senha'];
+        if( $senha == '' OR md5($senha) == $oldPass){
+            $senha = $oldPass;
         }else{
-            $result = true;
-            return $result;
+            $senha = md5($senha);
         }
+        $dados = array(
+            /*
+             * formato:
+             * 'nome_campo => valor,
+             */
+            'login'         =>  $request['login'],
+            'senha'         =>  $senha,
+            'email'         =>  $request['email'],
+            'nome'          =>  $request['nome'],
+            'grupo'         =>  $request['grupo'],
+            'dtInclusao'    =>  $date,
+            'usrAlterou'    =>  $usr,
+            'status'        =>  $request['status'],
+            
+        );
         
+        /*Validação antes da inserção*/
+        #$valida =  $this->validaUsr($request,'login');
+        
+        #return $valida;
+        $where = $this->getAdapter()->quoteInto("idUsuario = ?", $request['idUsuario']);        
+        try {
+            $this->update($dados, $where);
+            return 'ok';
+        } catch (Zend_Db_Exception $e) {
+            return $e->getMessage();
+        }
     }
     
     

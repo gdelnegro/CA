@@ -1,6 +1,6 @@
 <?php
 $dbGrupo = new Admin_Model_DbTable_Grupo();
-?>
+$dbUsuario = new Admin_Model_DbTable_Usuario();?>
 <head>
 </head>
 <body>
@@ -12,6 +12,7 @@ $dbGrupo = new Admin_Model_DbTable_Grupo();
    <tr>
         <th><center>Nome</center></th>        
         <th><center>login</center></th>        
+        <th><center>Criado por</center></th>
         <th><center>Data de Inclusao</center></th>
         <th><center>Alterado por</center></th>
         <th><center>Data de Alteraçao</center></th>
@@ -22,8 +23,11 @@ $dbGrupo = new Admin_Model_DbTable_Grupo();
    <tr>
         <td><center><?php  echo $user['nome']?></center></td>        
         <td><center><?php  echo $user['login']?></center></td>
+    <td><center><?php $usuario = $dbUsuario->pesquisarUsuario( $user['usrCriou'] );
+        echo $usuario['nome'] ;?></center></td>
         <td><center><?php echo$user['dtInclusao']?></center></td>
-        <td><center>Alterado por</center></td>
+        <td><center><?php $usuario = $dbUsuario->pesquisarUsuario( $user['usrAlterou'] );
+        echo $usuario['nome'] ;?></center></td>
         <td><center><?php echo$user['dtAlteracao']?></center></td>
     <td><center><?php $grupo = $dbGrupo->getListaGrupo( $user['grupo'] );
                 echo $grupo[0]['value']; ?>

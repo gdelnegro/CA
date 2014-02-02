@@ -24,6 +24,8 @@ class Admin_Form_Usuario extends Twitter_Form
         
         $this->setAttrib('horizontal', true);
         
+        $idUsuario = new Zend_Form_Element_Hidden('idUsuario');
+        
         $nome = new Zend_Form_Element_Text('nome');
         $nome->setLabel('Nome do usuário')
                 ->setAttrib('placeholder', 'Nome completo')
@@ -53,8 +55,10 @@ class Admin_Form_Usuario extends Twitter_Form
                ));
         
         $senha = new Zend_Form_Element_Password('senha');
-        $senha->setLabel('Senha')
-                ->setAttrib('disabled', $this->exibir)
+        $senha->setLabel('Senha');
+        
+        if ($this->tipo != 'EDIT'){
+            $senha->setAttrib('disabled', $this->exibir)
                 ->setRequired('true')
                 ->setAttrib('autocomplete', 'off')
                 ->setValidators( array(
@@ -64,6 +68,7 @@ class Admin_Form_Usuario extends Twitter_Form
                          )
                      ))
                ));
+        }
         
         $email = new Zend_Form_Element_Text('email');
         $email->setLabel('E-mail')
@@ -89,6 +94,7 @@ class Admin_Form_Usuario extends Twitter_Form
         $status->setLabel('Ativo');
         
         $this->addElements( array( 
+            $idUsuario,
             $nome,
             $login,
             $senha,

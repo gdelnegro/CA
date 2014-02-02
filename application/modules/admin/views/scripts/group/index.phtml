@@ -19,12 +19,11 @@ $dbUsuario = new Admin_Model_DbTable_Usuario();?>
    <?php foreach($this->paginator AS $key => $group):?>
    <tr>
         <td><center><?php  echo $group['descricao']?></center></td>
-    <td><center><?php #$usuario = $dbUsuario->pesquisarUsuario( $group['usrCriou'] );
-                echo $group['usrCriou'] ;?></center></td>
+    <td><center><?php $usuario = $dbUsuario->pesquisarUsuario( $group['usrCriou'] );
+        echo $usuario['nome'] ;?></center></td>
         <td><center><?php echo$group['dtInclusao']?></center></td>
-    
-        <td><center><?php ;
-                echo $group['usrAlterou']; ?></center></td>
+        <td><center><?php $usuario = $dbUsuario->pesquisarUsuario( $group['usrAlterou'] ); 
+        echo $usuario['nome'];?></center></td>
         <td><center><?php echo$group['dtAlteracao']?></center></td>
       <td><center>
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"group","action"=>"show","id"=>"{$group['idGrupo']}"),null,true)?>" title="Visualizar Cadastro"><i class='icon-eye-open'> </i></a>

@@ -44,9 +44,6 @@ class Admin_UsersController extends Zend_Controller_Action
         $usr = ($user->idUsuario);
         
         $dbUsuarios = new Admin_Model_DbTable_Usuario();
-        #$this->view->dados = $dbUsuarios->incluirUsuario($dados, $usr);
-        #
-        #return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'users'), null, true);
         
         $result = $dbUsuarios->incluirUsuario($dados, $usr);
         
@@ -59,12 +56,30 @@ class Admin_UsersController extends Zend_Controller_Action
     
     public function editAction()
     {
-        $dbUsuarios = new Admin_Model_DbTable_Usuario();
-        $dadosUsuario = $dbUsuarios->pesquisarUsuario($this->_getParam('id'));
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = ($user->idUsuario);
         
+        $dbUsuario = new Admin_Model_DbTable_Usuario();
+        $dadosUsuario = $dbUsuario->pesquisarUsuario( $this->_getParam('id') );
         $formUsuario = new Admin_Form_Usuario('edit');
         $formUsuario->populate($dadosUsuario);
         
+        if( $this->getRequest()->isPost() ) {
+            $data = $this->getRequest()->getPost();
+            
+            if ( $formUsuario->isValid($data) ){                
+                $senha = $dadosUsuario['senha'];
+                $dbUsuario->alterarUsuario($data, $usr, $senha);
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'users'), null, true);
+                #$this->view->data = $data;
+                
+            }else{
+                $this->view->erro='Dados Invalidos';
+                $this->view->formSponsor = $formUsuario->populate($data);
+            }
+        }
+        $this->view->dados = $dadosUsuario;
         $this->view->formUsuario = $formUsuario;
     }
 
