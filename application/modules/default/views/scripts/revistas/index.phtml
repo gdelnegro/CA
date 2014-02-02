@@ -1,0 +1,19 @@
+<?php
+$dbImagens = new Application_Model_DbTable_Imagens();
+?>
+
+<?php foreach($this->dadosRevista as $key => $revista):
+    $imagem = $dbImagens->pesquisarImagem($revista['capa']);
+    ?>
+    <center>
+        <h1><?php echo $revista['titulo']?></h1>
+        <p><small>Resumo: <?php echo $revista['descricao']?></small></p>
+        <p><small>Ano: <?php echo $revista['ano']?></small></p>
+        <br>
+        <img src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php echo $revista['titulo']?>">
+        <div style="width:400px;word-wrap: break-word;text-align:justify;text-justify:inter-word;">
+        </div>
+    </center>
+<?php
+endforeach;
+?>

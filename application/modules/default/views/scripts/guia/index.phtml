@@ -13,7 +13,8 @@
 	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
     }
 </style>
-<?php 
+<?php
+$baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl();
 $dbImagens = new Application_Model_DbTable_Imagens();
 ?>
 
@@ -21,7 +22,7 @@ $dbImagens = new Application_Model_DbTable_Imagens();
     $imagem = $dbImagens->pesquisarImagem($guia['thumb']);
     ?>
     <center>
-        <img class="lime" src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php echo $guia['titulo']?>">
+        <img class="lime" src="<?php echo $baseUrl.$imagem['local'].$imagem['nome'];?>" alt="<?php echo $revista['titulo']?>">
         <h2><?php echo $guia['nome']?></h2>
     </center>
 <?php

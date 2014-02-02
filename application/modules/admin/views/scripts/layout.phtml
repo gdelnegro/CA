@@ -46,7 +46,7 @@ $dadosLogo = $dbLogo->pesquisarLogo();
           <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"index"),null,true)?>">Programas</a></li>          
           <li><a href="#">Midia</a></li>          
           <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"article","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Artigos</a></li>
-        
+          <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"revistas","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Revista</a></li>
           <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Sponsor</a></li>
           <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"slider","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Slider</a></li>
           <?php if( $this->layout()->usuario->grupo == 1){?>
