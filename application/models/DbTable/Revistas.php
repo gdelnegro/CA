@@ -19,7 +19,7 @@ class Application_Model_DbTable_Revistas extends Zend_Db_Table_Abstract
         }
     }
     
-    public function incluirRevista(array $request, $idImagem){
+    public function incluirRevista(array $request, $idImagem, $usr){
         
         $date = Zend_Date::now()->toString('yyyy-MM-dd');
         
@@ -42,6 +42,29 @@ class Application_Model_DbTable_Revistas extends Zend_Db_Table_Abstract
         #} catch (Zend_Db_Exception $exc) {
         #    echo $exc->getMessage();
         #}
+    }
+    
+    public function alterarRevista(array $request, $usr){
+        $date = Zend_Date::now()->toString('yyyy-MM-dd');
+        
+        $dados = array(
+            'titulo'        =>  $request['titulo'],
+            'descricao'     =>  $request['descricao'],
+            'edicao'         =>  $request['edicao'],
+            'dtInclusao'    =>  $date,
+            'ano'           => $request['ano'],
+            'dtAlteracao' => $date,
+        );
+        $where = $this->getAdapter()->quoteInto("idRevista = ?", $request['idRevista']);
+        $this->update($dados, $where);
+    }
+    
+    public function getListaRevista(){
+        $select = $this->_db->select()
+                ->from($this->_name, array('key'=>'idRevista','value'=>'titulo'));
+        $result = $this->getAdapter()->fetchAll($select);
+        
+        return $result;
     }
 
 

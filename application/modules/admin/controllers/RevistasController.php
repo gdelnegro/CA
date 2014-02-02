@@ -27,6 +27,10 @@ class Admin_RevistasController extends Zend_Controller_Action
     
     public function newAction()
     {
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = ($user->idUsuario);
+        
         $titulo = urldecode( $this->_getParam('titulo') );
         $titulo = str_replace(' ', '_',$titulo);
         
@@ -45,7 +49,7 @@ class Admin_RevistasController extends Zend_Controller_Action
                 $upload = new Zend_File_Transfer_Adapter_Http();
                 foreach ($upload->getFileInfo() as $file => $info) {                                     
                     $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/capa-'.$titulo.'.'.$extension,'overwrite' => true,));
+                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/capaRevista-'.$titulo.'.'.$extension,'overwrite' => true,));
                 }
             try {
                 $upload->receive();
@@ -57,15 +61,15 @@ class Admin_RevistasController extends Zend_Controller_Action
         
                 $dados =array(
                     'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
-                    'nome'      =>  'revista-'.$titulo.'.'.$extension,
+                    'nome'      =>  'capaRevista-'.$titulo.'.'.$extension,
                     'local'     =>  '/images/',
                     'categoria' => '5'
                 );
         
                 $idImagem = $bdImagem->incluirImagem($dados);        
                        
-                $dbRevista->incluirRevista($data, $idImagem);
-                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'article'), null, true);
+                $dbRevista->incluirRevista($data, $idImagem, $usr);
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'revistas'), null, true);
                 #$this->view->dados = $data;
                 
             }else{
@@ -76,6 +80,33 @@ class Admin_RevistasController extends Zend_Controller_Action
         $this->view->formMateria = $formRevista;
     }
 
+    public function editAction(){
+        $auth = Zend_Auth::getInstance();
+        $user = $auth->getIdentity();
+        $usr = ($user->idUsuario);
+        
+        
+        $dbRevista = new Application_Model_DbTable_Revistas();
+        $dadosRevista = $dbRevista->pesquisarRevista( $this->_getParam('id') );
+        $formRevista = new Admin_Form_Revistas('edit');
+        
+        $this->view->formRevista = $formRevista->populate($dadosRevista);
+        
+        if( $this->getRequest()->isPost() ) {
+            $data = $this->getRequest()->getPost();
+            
+            if ( $formRevista->isValid($data) ){
+                $this->view->dados = $data;
+                $dbRevista->alterarRevista($data, $usr);
+                return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'revistas'), null, true);
+            }
+        }
+    }
+    
+    public function adcionarMateriaAction()
+    {
+        
+    }
 
 }
 

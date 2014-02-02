@@ -92,12 +92,15 @@ class Admin_Form_Revistas extends Twitter_Form
             $descricao,
             $edicao,
             $ano,
-            $arquivo,            
         ));
         
+        if ( $this->tipo == 'NEW'){
+            $this->addElement($arquivo);
+        }
         
         $submit = new Zend_Form_Element_Submit('Enviar');
-        
-        $this->addElement($submit);
+        if( $this->tipo != 'SHOW'){
+            $this->addElement($submit);
+        }
     }
 }

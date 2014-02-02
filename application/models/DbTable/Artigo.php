@@ -51,7 +51,7 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
         }
     }
     
-    public function updateArtigo($request, $usr){
+    public function updateArtigo($request, $usr = null){
         if ( !is_null( $request ) ){
             $where = $this->getAdapter()->quoteInto("idMateria = ?", $request['idMateria']);
             $dados = array(
@@ -62,6 +62,14 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
         }else{
             echo 'Não foram passados dados para serem atualizados';
         }
+    }
+    
+    public function getListaArtigo(){
+        $select = $this->_db->select()
+                ->from($this->_name, array('key'=>'idMateria','value'=>'titulo'));
+        $result = $this->getAdapter()->fetchAll($select);
+        
+        return $result;
     }
 
 
