@@ -2,8 +2,8 @@
     $dbImagens = new Application_Model_DbTable_Imagens();
     $where = 'categoria = 4';
     $dadosImagens = $dbImagens->pesquisarImagem(null, $where);
+    #echo $imagem['local'].$imagem['nome'];
 ?>
-
 <section id="slider-wrapper">
         <div id="main-slider">               
             <div class="wave-bg">
@@ -11,10 +11,12 @@
                 <div id="banner_topo">
                     <div class="slider-wrapper theme-default">
                         <div id="slider" class="nivoSlider">
-                            <?php foreach ($dadosImagens as $key => $imagem):?>
-                            <img src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php ucfirst($imagem['nome'])?>" title="<?php ucfirst($imagem['nome'])?>" />
-                            <?php endforeach ?>
-
+                            <?php foreach($dadosImagens as $key => $imagem):?>
+                                <img src="<?php echo $imagem['local'].$imagem['nome']?>" alt="" title="#htmlcaption1" />
+                            <?php endforeach;?>
+                            <!--<img src="images/slider/banners/1.jpg" alt="" title="#htmlcaption1" />
+                            <img src="images/slider/banners/2.jpg" alt="" title="#htmlcaption2" />
+                            <img src="images/slider/banners/3.jpg" alt="" title="#htmlcaption3" />-->
                         </div>
                         
                         <div id="htmlcaption1" class="nivo-html-caption">
