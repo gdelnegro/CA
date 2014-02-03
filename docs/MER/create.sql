@@ -2,14 +2,14 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `casasul` ;
-CREATE SCHEMA IF NOT EXISTS `casasul` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `casasul` ;
+DROP SCHEMA IF EXISTS `casasul_gustavo` ;
+CREATE SCHEMA IF NOT EXISTS `casasul_gustavo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `casasul_gustavo` ;
 
 -- -----------------------------------------------------
--- Table `casasul`.`categoriaImagens`
+-- Table `casasul_gustavo`.`categoriaImagens`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`categoriaImagens` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`categoriaImagens` (
   `idCategoria` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NULL,
   `dtInclusao` DATE NULL,
@@ -22,9 +22,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`imagens`
+-- Table `casasul_gustavo`.`imagens`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`imagens` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`imagens` (
   `idImagens` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
   `local` TEXT NOT NULL,
@@ -35,16 +35,16 @@ CREATE TABLE IF NOT EXISTS `casasul`.`imagens` (
   INDEX `fk_imagem_categoria_idx` (`categoria` ASC),
   CONSTRAINT `fk_imagem_categoria`
     FOREIGN KEY (`categoria`)
-    REFERENCES `casasul`.`categoriaImagens` (`idCategoria`)
+    REFERENCES `casasul_gustavo`.`categoriaImagens` (`idCategoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`categoriaGuia`
+-- Table `casasul_gustavo`.`categoriaGuia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`categoriaGuia` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`categoriaGuia` (
   `idCategoria` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `descricao` TINYTEXT NULL,
@@ -59,16 +59,16 @@ CREATE TABLE IF NOT EXISTS `casasul`.`categoriaGuia` (
   UNIQUE INDEX `nome_UNIQUE` (`nome` ASC),
   CONSTRAINT `fk_guia_imagem`
     FOREIGN KEY (`thumb`)
-    REFERENCES `casasul`.`imagens` (`idImagens`)
+    REFERENCES `casasul_gustavo`.`imagens` (`idImagens`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`patrocinador`
+-- Table `casasul_gustavo`.`patrocinador`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`patrocinador` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`patrocinador` (
   `idPatrocinador` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `dtInclusao` DATE NULL,
@@ -92,21 +92,21 @@ CREATE TABLE IF NOT EXISTS `casasul`.`patrocinador` (
   INDEX `fk_patrocinador_catGuia_idx` (`categoria` ASC),
   CONSTRAINT `fk_patrocinador_logo`
     FOREIGN KEY (`logo`)
-    REFERENCES `casasul`.`imagens` (`idImagens`)
+    REFERENCES `casasul_gustavo`.`imagens` (`idImagens`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_patrocinador_catGuia`
     FOREIGN KEY (`categoria`)
-    REFERENCES `casasul`.`categoriaGuia` (`idCategoria`)
+    REFERENCES `casasul_gustavo`.`categoriaGuia` (`idCategoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`revistas`
+-- Table `casasul_gustavo`.`revistas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`revistas` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`revistas` (
   `idRevista` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NOT NULL,
   `edicao` VARCHAR(45) NOT NULL,
@@ -123,16 +123,16 @@ CREATE TABLE IF NOT EXISTS `casasul`.`revistas` (
   UNIQUE INDEX `capa_UNIQUE` (`capa` ASC),
   CONSTRAINT `fk_revistas_imagens`
     FOREIGN KEY (`capa`)
-    REFERENCES `casasul`.`imagens` (`idImagens`)
+    REFERENCES `casasul_gustavo`.`imagens` (`idImagens`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`materias`
+-- Table `casasul_gustavo`.`materias`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`materias` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`materias` (
   `idMateria` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(45) NOT NULL,
@@ -152,26 +152,26 @@ CREATE TABLE IF NOT EXISTS `casasul`.`materias` (
   INDEX `fk_materias_revista_idx` (`revista` ASC),
   CONSTRAINT `fk_materias_patrocinador`
     FOREIGN KEY (`patrocinador`)
-    REFERENCES `casasul`.`patrocinador` (`idPatrocinador`)
+    REFERENCES `casasul_gustavo`.`patrocinador` (`idPatrocinador`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_materias_img`
     FOREIGN KEY (`thumb`)
-    REFERENCES `casasul`.`imagens` (`idImagens`)
+    REFERENCES `casasul_gustavo`.`imagens` (`idImagens`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_materias_revista`
     FOREIGN KEY (`revista`)
-    REFERENCES `casasul`.`revistas` (`idRevista`)
+    REFERENCES `casasul_gustavo`.`revistas` (`idRevista`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`programas`
+-- Table `casasul_gustavo`.`programas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`programas` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`programas` (
   `idPrograma` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NOT NULL,
   `dtInclusao` DATE NULL,
@@ -186,16 +186,16 @@ CREATE TABLE IF NOT EXISTS `casasul`.`programas` (
   INDEX `fk_programa_patrocinador_idx` (`patrocinador` ASC),
   CONSTRAINT `fk_programa_patrocinador`
     FOREIGN KEY (`patrocinador`)
-    REFERENCES `casasul`.`patrocinador` (`idPatrocinador`)
+    REFERENCES `casasul_gustavo`.`patrocinador` (`idPatrocinador`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`grupos`
+-- Table `casasul_gustavo`.`grupos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`grupos` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`grupos` (
   `idGrupo` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
   `dtAlteracao` TIMESTAMP NULL,
@@ -208,9 +208,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`usuarios`
+-- Table `casasul_gustavo`.`usuarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`usuarios` (
   `idUsuario` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
@@ -228,16 +228,16 @@ CREATE TABLE IF NOT EXISTS `casasul`.`usuarios` (
   INDEX `fk_usr_grupo_idx` (`grupo` ASC),
   CONSTRAINT `fk_usr_grupo`
     FOREIGN KEY (`grupo`)
-    REFERENCES `casasul`.`grupos` (`idGrupo`)
+    REFERENCES `casasul_gustavo`.`grupos` (`idGrupo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`categoriaTag`
+-- Table `casasul_gustavo`.`categoriaTag`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`categoriaTag` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`categoriaTag` (
   `idCategoria` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NULL,
   `dtInclusao` TIMESTAMP NULL,
@@ -250,9 +250,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`tag`
+-- Table `casasul_gustavo`.`tag`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`tag` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`tag` (
   `idTag` INT ZEROFILL NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
   `dtInclusao` TIMESTAMP NULL,
@@ -266,37 +266,37 @@ CREATE TABLE IF NOT EXISTS `casasul`.`tag` (
   INDEX `fk_tag_categoria_idx` (`categoria` ASC),
   CONSTRAINT `fk_tag_categoria`
     FOREIGN KEY (`categoria`)
-    REFERENCES `casasul`.`categoriaTag` (`idCategoria`)
+    REFERENCES `casasul_gustavo`.`categoriaTag` (`idCategoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`materiaTag`
+-- Table `casasul_gustavo`.`materiaTag`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`materiaTag` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`materiaTag` (
   `idMateria` INT ZEROFILL NOT NULL,
   `idTag` INT ZEROFILL NOT NULL,
   PRIMARY KEY (`idMateria`, `idTag`),
   INDEX `fk_link_tag_idx` (`idTag` ASC),
   CONSTRAINT `fk_link_tag`
     FOREIGN KEY (`idTag`)
-    REFERENCES `casasul`.`tag` (`idTag`)
+    REFERENCES `casasul_gustavo`.`tag` (`idTag`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_link_materia`
     FOREIGN KEY (`idMateria`)
-    REFERENCES `casasul`.`materias` (`idMateria`)
+    REFERENCES `casasul_gustavo`.`materias` (`idMateria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `casasul`.`logo`
+-- Table `casasul_gustavo`.`logo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`logo` (
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`logo` (
   `diretorio` VARCHAR(45) NOT NULL,
   `titulo` VARCHAR(45) NULL,
   `corFundo` VARCHAR(45) NULL,
@@ -305,28 +305,28 @@ CREATE TABLE IF NOT EXISTS `casasul`.`logo` (
   PRIMARY KEY (`diretorio`))
 ENGINE = InnoDB;
 
-USE `casasul` ;
+USE `casasul_gustavo` ;
 
 -- -----------------------------------------------------
--- Placeholder table for view `casasul`.`sponsor`
+-- Placeholder table for view `casasul_gustavo`.`sponsor`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`sponsor` (`idPatrocinador` INT, `'Patrocinador'` INT, `dtInclusao` INT, `dtAlteracao` INT, `usrAlterou` INT, `logo` INT, `idImagens` INT, `descricao` INT, `local` INT, `nome` INT, `categoria` INT);
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`sponsor` (`idPatrocinador` INT, `'Patrocinador'` INT, `dtInclusao` INT, `dtAlteracao` INT, `usrAlterou` INT, `logo` INT, `idImagens` INT, `descricao` INT, `local` INT, `nome` INT, `categoria` INT);
 
 -- -----------------------------------------------------
--- Placeholder table for view `casasul`.`guiaImagem`
+-- Placeholder table for view `casasul_gustavo`.`guiaImagem`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`guiaImagem` (`idCategoria` INT, `'descCat'` INT, `'categoria'` INT, `local` INT, `descricao` INT, `nome` INT);
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`guiaImagem` (`idCategoria` INT, `'descCat'` INT, `'categoria'` INT, `local` INT, `descricao` INT, `nome` INT);
 
 -- -----------------------------------------------------
--- Placeholder table for view `casasul`.`guia`
+-- Placeholder table for view `casasul_gustavo`.`guia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `casasul`.`guia` (`idPatrocinador` INT, `'patrocinador'` INT, `tipo` INT, `site` INT, `endereco` INT, `cidade` INT, `estado` INT, `'categoria'` INT, `'telefone'` INT, `'cep'` INT, `'email'` INT, `'descLogo'` INT, `local` INT, `'logo'` INT, `'tituloCategoria'` INT, `'thumbCategoria'` INT);
+CREATE TABLE IF NOT EXISTS `casasul_gustavo`.`guia` (`idPatrocinador` INT, `'patrocinador'` INT, `tipo` INT, `site` INT, `endereco` INT, `cidade` INT, `estado` INT, `'categoria'` INT, `'telefone'` INT, `'cep'` INT, `'email'` INT, `'descLogo'` INT, `local` INT, `'logo'` INT, `'tituloCategoria'` INT, `'thumbCategoria'` INT);
 
 -- -----------------------------------------------------
--- View `casasul`.`sponsor`
+-- View `casasul_gustavo`.`sponsor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `casasul`.`sponsor`;
-USE `casasul`;
+DROP TABLE IF EXISTS `casasul_gustavo`.`sponsor`;
+USE `casasul_gustavo`;
 CREATE  OR REPLACE VIEW `sponsor` AS
 
 select idPatrocinador, p.nome as 'Patrocinador', dtInclusao, dtAlteracao, usrAlterou, logo, i.*
@@ -334,10 +334,10 @@ from patrocinador as p
 join imagens as i on p.logo = i.idImagens;
 
 -- -----------------------------------------------------
--- View `casasul`.`guiaImagem`
+-- View `casasul_gustavo`.`guiaImagem`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `casasul`.`guiaImagem`;
-USE `casasul`;
+DROP TABLE IF EXISTS `casasul_gustavo`.`guiaImagem`;
+USE `casasul_gustavo`;
 CREATE  OR REPLACE VIEW `guiaImagem` AS
 
 select cat.idCategoria,cat.descricao as 'descCat',cat.nome as 'categoria',img.local, img.descricao, img.nome 
@@ -345,10 +345,10 @@ From categoriaGuia as cat, imagens as img
 where cat.thumb = img.idImagens;
 
 -- -----------------------------------------------------
--- View `casasul`.`guia`
+-- View `casasul_gustavo`.`guia`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `casasul`.`guia`;
-USE `casasul`;
+DROP TABLE IF EXISTS `casasul_gustavo`.`guia`;
+USE `casasul_gustavo`;
 CREATE  OR REPLACE VIEW `guia` AS
 
 select p.idPatrocinador, p.nome as 'patrocinador',p.tipo, p.site, p.endereco, p.cidade, p.estado, p.categoria as 'categoria', p.telefone as 'telefone', p.cep as 'cep', p.email as 'email',
@@ -362,102 +362,113 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`categoriaImagens`
+-- Data for table `casasul_gustavo`.`categoriaImagens`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'sponsor', NULL, NULL, NULL, NULL);
-INSERT INTO `casasul`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'noticia', NULL, NULL, NULL, NULL);
-INSERT INTO `casasul`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'guia', NULL, NULL, NULL, NULL);
-INSERT INTO `casasul`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'slider', NULL, NULL, NULL, NULL);
-INSERT INTO `casasul`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'capaRevista', NULL, NULL, NULL, NULL);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'sponsor', NULL, NULL, NULL, NULL);
+INSERT INTO `casasul_gustavo`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'noticia', NULL, NULL, NULL, NULL);
+INSERT INTO `casasul_gustavo`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'guia', NULL, NULL, NULL, NULL);
+INSERT INTO `casasul_gustavo`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'slider', NULL, NULL, NULL, NULL);
+INSERT INTO `casasul_gustavo`.`categoriaImagens` (`idCategoria`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'capaRevista', NULL, NULL, NULL, NULL);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`imagens`
+-- Data for table `casasul_gustavo`.`imagens`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000001, 'LogoLala', '/images/', 'logo.jpg', 1);
-INSERT INTO `casasul`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000002, 'teste de envio', '/images/', 'sponsor-teste.jpg', 3);
-INSERT INTO `casasul`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000004, 'LOREM IPSUM', '/images/', 'sponsor-Baden Banho.jpg', 1);
-INSERT INTO `casasul`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000005, 'Noticia Teste', '/images/', 'noticia-1.jpg', 2);
-INSERT INTO `casasul`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (NULL, 'Slider1', '/images/', 'slider-1.jpg', 4);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000001, 'LogoLala', '/images/', 'logo.jpg', 0000000001);
+INSERT INTO `casasul_gustavo`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000002, 'teste de envio', '/images/', 'sponsor-teste.jpg', 0000000003);
+INSERT INTO `casasul_gustavo`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000004, 'LOREM IPSUM', '/images/', 'sponsor-Baden Banho.jpg', 0000000001);
+INSERT INTO `casasul_gustavo`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000005, 'Noticia Teste', '/images/', 'noticia-1.jpg', 0000000002);
+INSERT INTO `casasul_gustavo`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000006, 'Slider1', '/images/', 'slider-1.jpg', 0000000004);
+INSERT INTO `casasul_gustavo`.`imagens` (`idImagens`, `descricao`, `local`, `nome`, `categoria`) VALUES (0000000007, 'Logotipo', '/images/', 'capaRevista-Ao_Ar_Livre.jpg', 0000000005);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`categoriaGuia`
+-- Data for table `casasul_gustavo`.`categoriaGuia`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`, `thumb`) VALUES (1, 'Teste', 'Lorem ipsum dolor sit amet', NULL, NULL, 1, 1, 2);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`, `thumb`) VALUES (1, 'Teste', 'Lorem ipsum dolor sit amet', NULL, NULL, 1, 1, 2);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`patrocinador`
+-- Data for table `casasul_gustavo`.`patrocinador`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`patrocinador` (`idPatrocinador`, `nome`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`, `logo`, `tipo`, `site`, `email`, `endereco`, `cidade`, `estado`, `categoria`, `cep`, `telefone`) VALUES (1, 'Baden Banho', '2014-02-01', '2014-02-01', 2, 1, 4, 'empresa', 'http://www.badenbanho.com.br/', '', NULL, NULL, NULL, 1, '00000-000', NULL);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`patrocinador` (`idPatrocinador`, `nome`, `dtInclusao`, `dtAlteracao`, `usrAlterou`, `usrCriou`, `logo`, `tipo`, `site`, `email`, `endereco`, `cidade`, `estado`, `categoria`, `cep`, `telefone`) VALUES (1, 'Baden Banho', '2014-02-01', '2014-02-01', 2, 1, 4, 'empresa', 'http://www.badenbanho.com.br/', '', NULL, NULL, NULL, 1, '00000-000', NULL);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`materias`
+-- Data for table `casasul_gustavo`.`revistas`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`materias` (`idMateria`, `titulo`, `descricao`, `texto`, `autor`, `dtInclusao`, `dtAlteracao`, `patrocinador`, `usrAlterou`, `tag`, `thumb`, `revista`) VALUES (1, 'Teste', 'Materia de Teste', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius accumsan arcu vel dictum. Aliquam blandit risus a odio convallis, pellentesque dapibus massa fringilla. Proin id venenatis sapien, vitae porttitor tortor. Quisque placerat velit velit, nec vehicula felis scelerisque quis. Nam nibh nisi, sodales varius feugiat at, tincidunt in lorem. Pellentesque sollicitudin cursus nibh eu tristique. Aenean auctor orci id odio euismod placerat. In pulvinar massa dui, eu consectetur augue pulvinar a. Nam vel aliquet dolor. Sed malesuada est vitae tristique condimentum. Curabitur eleifend enim vitae massa consectetur, eu porttitor tortor vehicula. Nulla nulla nibh, consequat eu gravida eget, ultrices eu urna. Integer tortor magna, fringilla nec lacus ut, lobortis convallis odio. Vivamus in malesuada sem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris sed erat semper, condimentum tortor ac, ultricies libero.', NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`revistas` (`idRevista`, `titulo`, `edicao`, `capa`, `ano`, `dtInclusao`, `dtAlteracao`, `descricao`, `status`) VALUES (0000000001, 'Ao Ar Livre', '1', 0000000007, 2014, '2014-02-03 00:00:00', 'NULL', 'Teste de revista', 0);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`programas`
+-- Data for table `casasul_gustavo`.`materias`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`programas` (`idPrograma`, `titulo`, `dtInclusao`, `dtAlteracao`, `patrocinador`, `descricao`, `url`, `usrAlterou`, `usrCriou`) VALUES (1, 'teste', '2014-01-01', NULL, NULL, 'Video de teste que mostra lorem ipsum dolor sit amet', 'QjBU_tPmVDM', NULL, NULL);
-INSERT INTO `casasul`.`programas` (`idPrograma`, `titulo`, `dtInclusao`, `dtAlteracao`, `patrocinador`, `descricao`, `url`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'Fonte', NULL, NULL, NULL, NULL, 'rEWDhUizR8E', NULL, NULL);
-INSERT INTO `casasul`.`programas` (`idPrograma`, `titulo`, `dtInclusao`, `dtAlteracao`, `patrocinador`, `descricao`, `url`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'Casa Sul2', NULL, NULL, NULL, NULL, '2aKnpZIzZ98', NULL, NULL);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`materias` (`idMateria`, `titulo`, `descricao`, `texto`, `autor`, `dtInclusao`, `dtAlteracao`, `patrocinador`, `usrAlterou`, `tag`, `thumb`, `revista`) VALUES (1, 'Teste', 'Materia de Teste', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius accumsan arcu vel dictum. Aliquam blandit risus a odio convallis, pellentesque dapibus massa fringilla. Proin id venenatis sapien, vitae porttitor tortor. Quisque placerat velit velit, nec vehicula felis scelerisque quis. Nam nibh nisi, sodales varius feugiat at, tincidunt in lorem. Pellentesque sollicitudin cursus nibh eu tristique. Aenean auctor orci id odio euismod placerat. In pulvinar massa dui, eu consectetur augue pulvinar a. Nam vel aliquet dolor. Sed malesuada est vitae tristique condimentum. Curabitur eleifend enim vitae massa consectetur, eu porttitor tortor vehicula. Nulla nulla nibh, consequat eu gravida eget, ultrices eu urna. Integer tortor magna, fringilla nec lacus ut, lobortis convallis odio. Vivamus in malesuada sem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris sed erat semper, condimentum tortor ac, ultricies libero.', 1, NULL, '2014-01-29', NULL, NULL, NULL, 5, 1);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`grupos`
+-- Data for table `casasul_gustavo`.`programas`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`grupos` (`idGrupo`, `descricao`, `dtAlteracao`, `dtInclusao`, `usrAlterou`, `usrCriou`) VALUES (1, 'Administradores', NULL, NULL, NULL, NULL);
-INSERT INTO `casasul`.`grupos` (`idGrupo`, `descricao`, `dtAlteracao`, `dtInclusao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'Usuário', NULL, NULL, NULL, NULL);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`programas` (`idPrograma`, `titulo`, `dtInclusao`, `dtAlteracao`, `patrocinador`, `descricao`, `url`, `usrAlterou`, `usrCriou`) VALUES (1, 'teste', '2014-01-01', NULL, NULL, 'Video de teste que mostra lorem ipsum dolor sit amet', 'QjBU_tPmVDM', NULL, NULL);
+INSERT INTO `casasul_gustavo`.`programas` (`idPrograma`, `titulo`, `dtInclusao`, `dtAlteracao`, `patrocinador`, `descricao`, `url`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'Fonte', NULL, NULL, NULL, NULL, 'rEWDhUizR8E', NULL, NULL);
+INSERT INTO `casasul_gustavo`.`programas` (`idPrograma`, `titulo`, `dtInclusao`, `dtAlteracao`, `patrocinador`, `descricao`, `url`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'Casa Sul2', NULL, NULL, NULL, NULL, '2aKnpZIzZ98', NULL, NULL);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`usuarios`
+-- Data for table `casasul_gustavo`.`grupos`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`usuarios` (`idUsuario`, `login`, `senha`, `email`, `nome`, `grupo`, `dtAlteracao`, `dtInclusao`, `usrAlterou`, `usrCriou`, `status`) VALUES (1, 'admin', '698dc19d489c4e4db73e28a713eab07b', NULL, 'Administrador', 1, 'NULL', 'NULL', 1, 1, 1);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`grupos` (`idGrupo`, `descricao`, `dtAlteracao`, `dtInclusao`, `usrAlterou`, `usrCriou`) VALUES (1, 'Administradores', NULL, NULL, NULL, NULL);
+INSERT INTO `casasul_gustavo`.`grupos` (`idGrupo`, `descricao`, `dtAlteracao`, `dtInclusao`, `usrAlterou`, `usrCriou`) VALUES (NULL, 'Usuário', NULL, NULL, NULL, NULL);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `casasul`.`logo`
+-- Data for table `casasul_gustavo`.`usuarios`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `casasul`;
-INSERT INTO `casasul`.`logo` (`diretorio`, `titulo`, `corFundo`, `nome`, `dtAlteracao`) VALUES ('./placeholders/', 'Logo', 'blue', 'logo.png', NULL);
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`usuarios` (`idUsuario`, `login`, `senha`, `email`, `nome`, `grupo`, `dtAlteracao`, `dtInclusao`, `usrAlterou`, `usrCriou`, `status`) VALUES (1, 'admin', '698dc19d489c4e4db73e28a713eab07b', NULL, 'Administrador', 1, 'NULL', 'NULL', 1, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `casasul_gustavo`.`logo`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `casasul_gustavo`;
+INSERT INTO `casasul_gustavo`.`logo` (`diretorio`, `titulo`, `corFundo`, `nome`, `dtAlteracao`) VALUES ('./placeholders/', 'Logo', 'blue', 'logo.png', NULL);
 
 COMMIT;
 
