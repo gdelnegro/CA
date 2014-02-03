@@ -3,11 +3,11 @@ Common styles
 ============================================================ */
 @font-face {
     font-family: 'BebasNeueRegular';
-    src: url('fonts/BebasNeue-webfont.eot');
-    src: url('fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/BebasNeue-webfont.woff') format('woff'),
-         url('fonts/BebasNeue-webfont.ttf') format('truetype'),
-         url('fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    src: url('/fonts/BebasNeue-webfont.eot');
+    src: url('/fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/BebasNeue-webfont.woff') format('woff'),
+         url('/fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('/fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -138,7 +138,7 @@ Elements
 	width:36px;
 }
 blockquote {
-    background: url("images/icons/blockquote-icon.png") no-repeat scroll 15px 15px transparent;
+    background: url("//images/icons/blockquote-icon.png") no-repeat scroll 15px 15px transparent;
     color: #666;
     font-family: 'Lora',serif;
     font-size: 14px;
@@ -318,18 +318,18 @@ Clear Floated Elements
 	Header
 ============================================================ */
 .home #header {
-	background:url(images/background/header-bg.png) repeat-x 0 bottom;
+	background:url(//images/background/header-bg.png) repeat-x 0 bottom;
 	border-bottom:1px solid #bebebe;
 	margin-top:-1px;
 }
 .home #header-inner {
-	background:url(images/background/header-top-line.gif) repeat-x 0 top;
+	background:url(//images/background/header-top-line.gif) repeat-x 0 top;
 	border-top:1px solid #bebebe;
 	position:relative;
 	z-index:1;
 }
 .sub #header {
-	background:url(images/background/sub-header-bg.png) repeat-x 0 0;
+	background:url(//images/background/sub-header-bg.png) repeat-x 0 0;
 	border-bottom:1px solid #d8d8d8;
 	position:relative;
 	z-index:1;
@@ -355,7 +355,7 @@ Clear Floated Elements
 	padding:0;
 }
 #main-menu > li.menu-arrow:hover {
-	background:url(images/background/arr-up.png) no-repeat center bottom;
+	background:url(//images/background/arr-up.png) no-repeat center bottom;
 }
 .home #main-menu > li > a {
 	font-size:16px;
@@ -463,7 +463,7 @@ Clear Floated Elements
  	transition: all 0.3s ease-in-out;
 }
 .sub .search-box .search-text {
-	background:url(images/background/search-box-bg.png) repeat 0 0;
+	background:url(//images/background/search-box-bg.png) repeat 0 0;
 	border:1px solid #313131;
 	color:#dadada;	
 }
@@ -473,7 +473,7 @@ Clear Floated Elements
 	border:1px solid #27a5d3;
 }
 .search-box .search-submit {
-    background: url("images/icons/search-icon.png") no-repeat scroll 0 0 transparent;
+    background: url("//images/icons/search-icon.png") no-repeat scroll 0 0 transparent;
     border: medium none;
     cursor: pointer;
     height: 17px;
@@ -484,7 +484,7 @@ Clear Floated Elements
     z-index: 100;
 }
 .search-box .search-submit:hover {
-    background: url("images/icons/search-icon.png") no-repeat scroll 0 -32px transparent;
+    background: url("//images/icons/search-icon.png") no-repeat scroll 0 -32px transparent;
 }
 /* =========================================================
 	Main Content
@@ -579,7 +579,7 @@ Clear Floated Elements
 	color:#27A5D3;
 	display:block;
 	margin-right:15px;
-	background:url(images/background/view-all-bg.png) no-repeat left 10px;
+	background:url(//images/background/view-all-bg.png) no-repeat left 10px;
 	padding-left:20px;
 	float:right;
 }
@@ -616,7 +616,7 @@ Clear Floated Elements
 	top:50px;
 }
 .list-carousel .carousel-next, .list-carousel .carousel-prev {
-    background: url("images/slider/carousel-nav.png") no-repeat scroll 0 0 #cecece;
+    background: url("/images/slider/carousel-nav.png") no-repeat scroll 0 0 #cecece;
     cursor: pointer;
     display: block;
 	float:left;
@@ -687,11 +687,11 @@ p.descr {
 	cursor:pointer;
 }
 .zoom-icon {
-	background:url(images/icons/img-icon.png) no-repeat center center #000;
+	background:url(//images/icons/img-icon.png) no-repeat center center #000;
 	display:block;
 }
 .video-icon {
-	background:url(images/icons/video-icon.png) no-repeat center center #000;
+	background:url(//images/icons/video-icon.png) no-repeat center center #000;
 	display:block;
 }
 .border-img {
@@ -862,7 +862,7 @@ p.descr {
 	display:inline-block;
 	width:22px;
 	height:17px;
-	background:url(images/icons/tweet-icon.png) no-repeat 0 0;
+	background:url(//images/icons/tweet-icon.png) no-repeat 0 0;
 	margin:0px 5px 0 0;
 }
 .tweet_avatar img {
@@ -903,7 +903,7 @@ p.descr {
 	margin-top:52px;
 }
 #footer-inner {
-	background:url(images/background/social-link-bg.png) no-repeat right top;
+	background:url(//images/background/social-link-bg.png) no-repeat right top;
 	margin-top:-25px;
 	height:91px;
 }
@@ -928,19 +928,19 @@ p.descr {
 	height:100%;	
 }
 .social-links li.twitter-icon a {
-	background:url(images/icons/twitter-icon-hover.png) no-repeat center center;
+	background:url(//images/icons/twitter-icon-hover.png) no-repeat center center;
 }
 .social-links li.gplus-icon a {
-	background:url(images/icons/gplus-icon-hover.png) no-repeat center center;
+	background:url(//images/icons/gplus-icon-hover.png) no-repeat center center;
 }
 .social-links li.rss-icon a {
-	background:url(images/icons/rss-icon-hover.png) no-repeat center center;
+	background:url(//images/icons/rss-icon-hover.png) no-repeat center center;
 }
 .social-links li.dribbble-icon a {
-	background:url(images/icons/dribbble-icon-hover.png) no-repeat center center;
+	background:url(//images/icons/dribbble-icon-hover.png) no-repeat center center;
 }
 .social-links li.facebook-icon a {
-	background:url(images/icons/facebook-icon-hover.png) no-repeat center center;
+	background:url(//images/icons/facebook-icon-hover.png) no-repeat center center;
 }
 /* =========================================================
 	About page
@@ -951,14 +951,14 @@ p.descr {
 	left:0;
 	width:250px;
 	height:21px;
-	background:url(images/background/blue-corner-left.png) no-repeat 0 0;
+	background:url(//images/background/blue-corner-left.png) no-repeat 0 0;
 	z-index:5;
 }
 .sub #left-corner {
 	top:-6px;
 	width:312px;
 	height:27px;
-	background:url(images/background/sub-blue-corner-left.png) no-repeat 0 0;
+	background:url(//images/background/sub-blue-corner-left.png) no-repeat 0 0;
 }
 /*------------------- Breadcrumb -----------------------*/
 .breadcrumb {
@@ -1018,10 +1018,10 @@ p.descr {
 	display:block;
 }
 .entry-social-links li.facebook-icon a {
-	background:url(images/icons/entry-facebook-icon-hover.png) no-repeat center center;
+	background:url(//images/icons/entry-facebook-icon-hover.png) no-repeat center center;
 }
 .entry-social-links li.twitter-icon a {
-	background:url(images/icons/entry-twitter-icon-hover.png) no-repeat center center;
+	background:url(//images/icons/entry-twitter-icon-hover.png) no-repeat center center;
 }
 .our-team-col .entry-content header h6 {
 	font-size:14px;
@@ -1138,11 +1138,11 @@ p.descr {
 	margin:0;
 }
 .pagination li.pagination-prev {
-	background:url(images/background/pagination-left.png) no-repeat left 0;
+	background:url(/images/background/pagination-left.png) no-repeat left 0;
 	padding-left:8px;
 }
 .pagination li.pagination-next {
-	background:url(images/background/pagination-right.png) no-repeat right 0;
+	background:url(/images/background/pagination-right.png) no-repeat right 0;
 	padding-right:8px;
 }
 .pagination li a {
@@ -1196,11 +1196,11 @@ p.descr {
 	display:inline-block;
 }
 .pf-content .pf-img {
-	background:url(images/icons/pf-img-icon.png) no-repeat center center #fff;
+	background:url(/images/icons/pf-img-icon.png) no-repeat center center #fff;
 	margin-right:-1px;
 }
 .pf-content .pf-detail {
-	background:url(images/icons/pf-detail-icon.png) no-repeat center center #fff;
+	background:url(/images/icons/pf-detail-icon.png) no-repeat center center #fff;
 	margin-left:-1px;
 }
 /* =========================================================
@@ -1278,7 +1278,7 @@ p.descr {
 .entry-header-right .entry-comment {
 	width:40px;
 	height:36px;
-	background:url(images/background/comment-bg.png) no-repeat 0 0;
+	background:url(/images/background/comment-bg.png) no-repeat 0 0;
 	color:#d6d6d6;
 	font-size:20px;
 	font-family:Arial, Helvetica, sans-serif;
@@ -1310,7 +1310,7 @@ p.descr {
 }
 .entry-box .entry-item ul li {
 	list-style:none;
-	background:url(images/icons/list-icon.png) no-repeat left center;
+	background:url(/images/icons/list-icon.png) no-repeat left center;
 	padding-left:20px;
 }
 /*--------- About Author ----------*/
@@ -1708,16 +1708,16 @@ p.descr {
 	padding-left:30px;
 }
 .contact-address {
-	background:url(images/icons/contact-add-icon.png) no-repeat left 0;
+	background:url(/images/icons/contact-add-icon.png) no-repeat left 0;
 }
 .contact-phone {
-	background:url(images/icons/contact-phone-icon.png) no-repeat left 0;
+	background:url(/images/icons/contact-phone-icon.png) no-repeat left 0;
 }
 .contact-email {
-	background:url(images/icons/contact-email-icon.png) no-repeat left 0;
+	background:url(/images/icons/contact-email-icon.png) no-repeat left 0;
 }
 .contact-web {
-	background:url(images/icons/contact-web-icon.png) no-repeat left 0;
+	background:url(/images/icons/contact-web-icon.png) no-repeat left 0;
 }
 /* =========================================================
 	Elements page
