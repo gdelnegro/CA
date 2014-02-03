@@ -57,7 +57,9 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
             $where = $this->getAdapter()->quoteInto("idMateria = ?", $request['idMateria']);
             $dados = array(
                 'texto' =>  $request['texto'],
-                'revista'       =>  $request['revista']
+                'revista'       =>  $request['revista'],
+                'usrAlterou'    =>  $usr,
+                'dtAlterou'     =>  $date
             );
             
             $this->update($dados, $where);

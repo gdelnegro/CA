@@ -72,7 +72,7 @@ class Admin_ArticleController extends Zend_Controller_Action
                        
                 $dbArtigos->incluirArtigo($data, $idImagem, $usr);
                 return $this->_helper->redirector->goToRoute( array('module'=>'admin','controller' => 'article'), null, true);
-                #$this->view->dados = $dadosMateria;
+                #$this->view->dados = $data;
                 
             }else{
                 $this->view->erro='Dados Invalidos';

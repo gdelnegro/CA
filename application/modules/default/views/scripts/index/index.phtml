@@ -114,47 +114,62 @@ $dadosImagens = $dbImagens->pesquisarImagem();
             	<div class="kopa-widget-left">
                 	<h3 class="widget-title">Notícias</h3>
                 </div><!--kopa-widget-left-->
+                
+                <?php 
+                    $thumbNoticia = $dbImagens->pesquisarImagem($this->dadosNoticias[0]['thumb']);
+                ?>
+                
                 <div class="main-col">
                 	<article class="entry-item">
-                    	<a class="k-featured-img border-img" href="#"><img src="placeholders/535x220/535x220-1.png" class="responsive-img scale-hover" alt="" /></a>
+                    	<a class="k-featured-img border-img" href="#"><img src="<?php echo $thumbNoticia['local'].$thumbNoticia['nome']?>" class="responsive-img scale-hover" alt="" /></a>
                         <div class="entry-content">
-                        	<span class="entry-date">08 Nov 2012</span>
-                            <span class="entry-meta">por&nbsp;</span><a href="#" class="entry-author">Admin</a>
-                            <span class="entry-meta">, em&nbsp;</span><a class="entry-categories" href="#">Eventos</a>
-                            <span class="entry-meta">, 28&nbsp;</span><a class="entry-comment" href="#">Comentarios</a>
-                            <h2 class="entry-title"><a href="#">Design Awards 2014</a></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum enim magna, in malesuada metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        	<span class="entry-date"><?php echo $this->dadosNoticias[0]['dtInclusao']?></span>
+                            <span class="entry-meta">por&nbsp;</span><a class="entry-author"><?php
+                            $usuario = $dbUsuario->pesquisarUsuario( $this->dadosNoticias[0]['autor']);
+                            echo $usuario['nome'];
+                            ?></a>
+                            <h2 class="entry-title"><a href="<?php echo $this->url(array("controller"=>"noticias","action"=>"show","id"=>$this->dadosNoticias[0]['idMateria']),null,true)?>"><?php echo $this->dadosNoticias[0]['titulo']?></a></h2>
+                            <p><?php echo custom_echo( $this->dadosNoticias[0]['texto'])?></p>
                         </div><!--entry-content-->
                     </article><!--entry-item-->
                     <ul class="older-posts">
                     	<li>
                         	<article>
-                            	<h6 class="entry-title"><a href="#">Para inspirar!</a></h6>
+                            	<h6 class="entry-title"><a href="<?php echo $this->url(array("controller"=>"noticias","action"=>"show","id"=>$this->dadosNoticias[1]['idMateria']),null,true)?>"><?php echo $this->dadosNoticias[1]['titulo']?></a></h6>
                                 <span class="entry-meta">Postado:&nbsp;</span>
-                                <span class="entry-date">08 Nov 2012</span>
+                                <span class="entry-date"><?php echo $this->dadosNoticias[1]['dtInclusao']?></span>
                                 <span class="entry-meta">&nbsp;&nbsp;por&nbsp;</span>
-                                <a href="#" class="entry-author">Admin</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum enim magna, in malesuada metus.</p>
+                                <span class="entry-author"><?php
+                            $usuario = $dbUsuario->pesquisarUsuario( $this->dadosNoticias[1]['autor']);
+                            echo $usuario['nome'];
+                            ?></span>
+                                <p><?php echo custom_echo( $this->dadosNoticias[1]['texto'])?></p>
                             </article>
                         </li>
                         <li>
                         	<article>
-                            	<h6 class="entry-title"><a href="#">Hight Lights</a></h6>
+                            	<h6 class="entry-title"><a href="<?php echo $this->url(array("controller"=>"noticias","action"=>"show","id"=>$this->dadosNoticias[2]['idMateria']),null,true)?>"><?php echo $this->dadosNoticias[2]['titulo']?></a></h6>
                                 <span class="entry-meta">Postado:&nbsp;</span>
-                                <span class="entry-date">08 Nov 2012</span>
+                                <span class="entry-date"><?php echo $this->dadosNoticias[2]['dtInclusao']?></span>
                                 <span class="entry-meta">&nbsp;&nbsp;por&nbsp;</span>
-                                <a href="#" class="entry-author">Admin</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum enim magna, in malesuada metus.</p>
+                                <span class="entry-author"><?php
+                            $usuario = $dbUsuario->pesquisarUsuario( $this->dadosNoticias[2]['autor']);
+                            echo $usuario['nome'];
+                            ?></span>
+                                <p><?php echo custom_echo( $this->dadosNoticias[2]['texto'])?></p>
                             </article>
                         </li>
                         <li>
                         	<article>
-                            	<h6 class="entry-title"><a href="#">A sala de Estar</a></h6>
+                            	<h6 class="entry-title"><a href="<?php echo $this->url(array("controller"=>"noticias","action"=>"show","id"=>$this->dadosNoticias[3]['idMateria']),null,true)?>"><?php echo $this->dadosNoticias[3]['titulo']?></a></h6>
                                 <span class="entry-meta">Postado:&nbsp;</span>
-                                <span class="entry-date">08 Nov 2012</span>
+                                <span class="entry-date"><?php echo $this->dadosNoticias[3]['dtInclusao']?></span>
                                 <span class="entry-meta">&nbsp;&nbsp;por&nbsp;</span>
-                                <a href="#" class="entry-author">Admin</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum enim magna, in malesuada metus.</p>
+                                <span class="entry-author"><?php
+                            $usuario = $dbUsuario->pesquisarUsuario( $this->dadosNoticias[3]['autor']);
+                            echo $usuario['nome'];
+                            ?></span>
+                                <p><?php echo custom_echo( $this->dadosNoticias[3]['texto'])?></p>
                             </article>
                         </li>
                     </ul><!--older-posts-->
