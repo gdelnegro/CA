@@ -1,3 +1,28 @@
 <?php 
-var_dump($this->dados);
-echo $this->form ?>
+#var_dump($this->dados);
+#echo $this->form ?>
+
+<?php
+
+var_dump($_REQUEST);
+
+$bdArtigos = new Application_Model_DbTable_Artigo();
+$listaArtigos = $bdArtigos->getListaArtigo();
+
+$dbRevista = new Application_Model_DbTable_Revistas();
+$listaRevista = $dbRevista->getListaRevista();
+?>
+<form action ="" method="POST">
+    <select name='revista'>
+        <option value='0'>Selecione a Revista</option>
+    <?php foreach($listaRevista as $key => $value):
+        echo '<option value='.$value['key'].'>'.$value['value'].'</option>';
+    endforeach;?>
+    </select>
+<?php
+foreach( $listaArtigos as $key => $value):
+    echo '<input type="checkbox" name="vehicle[]" value="'.$value['key'].'">'.$value['value'].'<br>';
+endforeach;
+?>
+    <input type='submit'/>
+</form>
