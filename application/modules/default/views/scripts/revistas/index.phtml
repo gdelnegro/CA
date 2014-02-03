@@ -20,13 +20,15 @@ $dbUsuario = new Admin_Model_DbTable_Usuario();
     </center>
   </div>
   <div class="span4">
+      <h2><center>Artigos</center></h2>
       <?php 
       $where = ('revista ='.$revista['idRevista']);
       $dadosArtigo = $dbArtigos->pesquisarArtigo(null, $where);
       #var_dump($dadosArtigo);
       foreach ($dadosArtigo as $key => $artigo){
+          #var_dump($artigo);
           $dadosUsuario = $dbUsuario->pesquisarUsuario($artigo['autor']);
-          echo '<h2><a href="'.$this->url(array("controller"=>"noticias","action"=>"show","id"=>$artigo['idMateria']),null,true).'"<b>'.$artigo['titulo'].'</b></a></h2>';
+          echo '<h3><a href="'.$this->url(array("controller"=>"noticias","action"=>"show","id"=>$artigo['idMateria']),null,true).'"<b>'.$artigo['titulo'].'</b></a></h3>';
           echo '<p><small> Autor:'.$dadosUsuario['nome'].' - Data de Publicação: '.$artigo['dtInclusao'].'</small></p>';
           echo '<span> Resumo: '.$artigo['descricao'].'</span>';
           
