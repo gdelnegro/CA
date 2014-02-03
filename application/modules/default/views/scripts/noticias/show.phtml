@@ -1,3 +1,10 @@
+<style>
+    .TextWrapLeft{
+        clear:right;
+        float:left;
+        margin:10px;
+    }
+</style>
 <?php
 $dbImagens = new Application_Model_DbTable_Imagens();
 $dbUsuario = new Admin_Model_DbTable_Usuario();
@@ -11,8 +18,53 @@ $usuario = $dbUsuario->pesquisarUsuario($this->noticia['autor']);
         <p><small>Resumo: <?php echo $this->noticia['descricao']?></small></p>
         <p><small>Autor:<?php echo $usuario['nome']?> Data de Publicação: <?php echo $this->noticia['dtInclusao']?></small></p>
         <br>
-        <img src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php echo $this->noticia['titulo']?>">
+        <img class='TextWrapLeft' align="top" src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php echo $this->noticia['titulo']?>">
+        <p></p>
         <div style="width:400px;word-wrap: break-word;text-align:justify;text-justify:inter-word;">
             <?php echo $this->noticia['texto']?>
         </div>
     </center>
+<p>
+<hr>
+
+<section class="kopa-widget kp-carousel">
+            
+                <div class="kopa-widget-left clearfix">
+                	<h3 class="widget-title">Veja também</h3>
+                </div><!--kopa-widget-left-->
+                
+                <div class="main-col">
+                
+                    <div class="list-carousel responsive">
+                        <ul class="recent-works clearfix">
+                            <?php
+                                foreach($this->dadosNoticias as $key => $editorial):
+                                    if ( $editorial['idMateria'] != $this->noticia['idMateria']):
+                                    $dadosImagem = $dbImagens->pesquisarImagem( $editorial['thumb'] );
+                            ?>
+                            
+                            <li>
+                                <article>
+                                    <div class="article-thumb border-img">                                        
+                                        <a class="zoom-icon hover-effect" href="<?php echo $this->url(array("controller"=>"noticias","action"=>"show","id"=>$editorial['idMateria']),null,true)?>"><img class="responsive-img" src="<?php echo $dadosImagem['local'].$dadosImagem['nome']?>" alt="<?php echo $editorial['titulo']?>" /></a>
+                                    </div><!--article-thumb-->
+                                    <a class="entry-title" href=""></a>                                   
+                                </article>
+                               
+                            </li>
+                            <?php endif;
+                            endforeach; ?>
+                        </ul><!--end:recent-works-->
+                        <div class="clear"></div>
+                        <div class="carousel-nav clearfix">
+                            <a id="prev-1" class="carousel-prev" href="#">&nbsp;</a>
+                            <a id="next-1" class="carousel-next" href="#">&nbsp;</a>
+                        </div><!--carousel-nav-->
+                    </div><!--end:list-carousel-->
+                    <div class="divider"></div>
+                </div><!--main-col-->
+                
+                
+                
+                <div class="clear"></div>
+            </section><!--kopa-widget-->
