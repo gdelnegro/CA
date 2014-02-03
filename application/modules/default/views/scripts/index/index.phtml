@@ -10,7 +10,13 @@ function custom_echo($str)
     $y=substr($str,0,150) .' ' .'<span class="entry-meta"></span><a href="#" class="entry-author"> continuar lendo&nbsp;...</a>';
     return $y;
   }
-}?>
+}
+
+$dbImagens = new Application_Model_DbTable_Imagens();
+$dbUsuario = new Admin_Model_DbTable_Usuario();
+$dadosImagens = $dbImagens->pesquisarImagem();
+
+?>
 
 <div class="main-content clearfix">
     	<div id="left-corner"></div>
@@ -27,97 +33,23 @@ function custom_echo($str)
                 
                     <div class="list-carousel responsive">
                         <ul class="recent-works clearfix">
+                            <?php
+                                foreach($this->dadosEditoriais as $key => $editorial):
+                                    $dadosImagem = $dbImagens->pesquisarImagem( $editorial['thumb'] );
+                            ?>
+                            
                             <li>
                                 <article>
                                     <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag01.jpg" alt="" /></a>
+                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="<?php echo $dadosImagem['local'].$dadosImagem['nome']?>" alt="<?php echo $editorial['titulo']?>" /></a>
                                     </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Dicas para tornar suas salas ambientais agradáveis</a>
-                                    <p class="descr"> Quando os ambientes estão
-                                integrados, a dica é escolher
-                                o mesmo estilo em todas as
-                                ambientações, observando as
-                                cores e revestimentos com 
-                                paleta de cores. Em uma sala
-                                deve compor sofás e poltronas
-                                confortáveis e uma mesa de 
-                                centro...</p>
+                                    <a class="entry-title" href="<?php echo $this->url(array("controller"=>"noticias","action"=>"show","id"=>$editorial['idMateria']),null,true)?>"><?php echo $editorial['titulo']?></a>
+                                    <p class="descr"> <?php echo custom_echo($editorial['titulo'])?></p>
                                    
                                 </article>
                                
                             </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag02.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Tudo sobre como decorar seu quarto de solteiro</a>
-                                    <p class="descr">Quando os ambientes estão
-                                integrados, a dica é escolher
-                                o mesmo estilo em todas as
-                                ambientações, observando as
-                                cores e revestimentos com 
-                                paleta de cores. Em uma sala
-                                deve compor sofás e poltronas
-                                confortáveis e uma mesa de 
-                                centro...</p>
-                                   
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag03.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Descubra o diferencial na iluminação de ambientes</a>
-                                    <p class="descr">Quando os ambientes estão
-                                integrados, a dica é escolher
-                                o mesmo estilo em todas as
-                                ambientações, observando as
-                                cores e revestimentos com 
-                                paleta de cores. Em uma sala
-                                deve compor sofás e poltronas
-                                confortáveis e uma mesa de 
-                                centro...</p>
-                                    
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag04.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Ambientes sofisticados com sensibilidade e estética</a>
-                                    <p class="descr">Quando os ambientes estão
-                                integrados, a dica é escolher
-                                o mesmo estilo em todas as
-                                ambientações, observando as
-                                cores e revestimentos com 
-                                paleta de cores. Em uma sala
-                                deve compor sofás e poltronas
-                                confortáveis e uma mesa de 
-                                centro...</p>
-                                    
-                                </article>
-                            </li>
-                            <li>
-                                <article>
-                                    <div class="article-thumb border-img">                                        
-                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag01.jpg" alt="" /></a>
-                                    </div><!--article-thumb-->
-                                    <a class="entry-title" href="#">Descubra o diferencial na iluminação de ambientes</a>
-                                    <p class="descr">Quando os ambientes estão
-                                integrados, a dica é escolher
-                                o mesmo estilo em todas as
-                                ambientações, observando as
-                                cores e revestimentos com 
-                                paleta de cores. Em uma sala
-                                deve compor sofás e poltronas
-                                confortáveis e uma mesa de 
-                                centro...</p>
-                                  
-                                </article>
-                            </li>
+                            <?php endforeach; ?>
                         </ul><!--end:recent-works-->
                         <div class="clear"></div>
                         <div class="carousel-nav clearfix">
@@ -146,11 +78,6 @@ function custom_echo($str)
                     <div class="list-carousel responsive">
                         <ul class="recent-works2 clearfix">
                             <?php 
-$dbImagens = new Application_Model_DbTable_Imagens();
-$dbUsuario = new Admin_Model_DbTable_Usuario();
-#'categoria = 1'
-$dadosImagens = $dbImagens->pesquisarImagem(null);
-
 			foreach ($this->dadosImagens as $key => $imagem):
 ?>
 			<li>
