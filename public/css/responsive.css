@@ -42,7 +42,7 @@
 	Slider
 ============================================================ */
 #main-slider {
-	height:350px;
+	height:510px;
 }
 #sequence, #sequence-wrapper {
 	height:350px;
@@ -348,7 +348,7 @@
 	Slider
 ============================================================ */
 #main-slider {
-	height:350px;
+	height:auto;
 }
 #sequence-wrapper, #sequence {
 	height:350px;

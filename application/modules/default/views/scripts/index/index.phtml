@@ -11,257 +11,281 @@ function custom_echo($str)
     return $y;
   }
 }?>
-<style>
-    .lime {
-        display: inline-block;
-        position: relative;
-        overflow: hidden;
-        width: 80px;
-        height: 80px;
-        -moz-border-radius: 80px;
-        border-radius: 80px;
-        -webkit-border-radius: 80px;
-        box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-    }
-</style>
 
-<?php 
-$dbImagens = new Application_Model_DbTable_Imagens();
-$dbUsuario = new Admin_Model_DbTable_Usuario();
-?>
-    <div class="main-content clearfix">
+<div class="main-content clearfix">
     	<div id="left-corner"></div>
         <div class="wrapper">
+
+			<section class="kopa-widget kp-carousel">
+            
+                <div class="kopa-widget-left clearfix">
+                	<h3 class="widget-title">Editorial</h3>
+                    <a href="#" class="view-all">Veja nossa revista</a>
+                </div><!--kopa-widget-left-->
+                
+                <div class="main-col">
+                
+                    <div class="list-carousel responsive">
+                        <ul class="recent-works clearfix">
+                            <li>
+                                <article>
+                                    <div class="article-thumb border-img">                                        
+                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag01.jpg" alt="" /></a>
+                                    </div><!--article-thumb-->
+                                    <a class="entry-title" href="#">Dicas para tornar suas salas ambientais agradáveis</a>
+                                    <p class="descr"> Quando os ambientes estão
+                                integrados, a dica é escolher
+                                o mesmo estilo em todas as
+                                ambientações, observando as
+                                cores e revestimentos com 
+                                paleta de cores. Em uma sala
+                                deve compor sofás e poltronas
+                                confortáveis e uma mesa de 
+                                centro...</p>
+                                   
+                                </article>
+                               
+                            </li>
+                            <li>
+                                <article>
+                                    <div class="article-thumb border-img">                                        
+                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag02.jpg" alt="" /></a>
+                                    </div><!--article-thumb-->
+                                    <a class="entry-title" href="#">Tudo sobre como decorar seu quarto de solteiro</a>
+                                    <p class="descr">Quando os ambientes estão
+                                integrados, a dica é escolher
+                                o mesmo estilo em todas as
+                                ambientações, observando as
+                                cores e revestimentos com 
+                                paleta de cores. Em uma sala
+                                deve compor sofás e poltronas
+                                confortáveis e uma mesa de 
+                                centro...</p>
+                                   
+                                </article>
+                            </li>
+                            <li>
+                                <article>
+                                    <div class="article-thumb border-img">                                        
+                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag03.jpg" alt="" /></a>
+                                    </div><!--article-thumb-->
+                                    <a class="entry-title" href="#">Descubra o diferencial na iluminação de ambientes</a>
+                                    <p class="descr">Quando os ambientes estão
+                                integrados, a dica é escolher
+                                o mesmo estilo em todas as
+                                ambientações, observando as
+                                cores e revestimentos com 
+                                paleta de cores. Em uma sala
+                                deve compor sofás e poltronas
+                                confortáveis e uma mesa de 
+                                centro...</p>
+                                    
+                                </article>
+                            </li>
+                            <li>
+                                <article>
+                                    <div class="article-thumb border-img">                                        
+                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag04.jpg" alt="" /></a>
+                                    </div><!--article-thumb-->
+                                    <a class="entry-title" href="#">Ambientes sofisticados com sensibilidade e estética</a>
+                                    <p class="descr">Quando os ambientes estão
+                                integrados, a dica é escolher
+                                o mesmo estilo em todas as
+                                ambientações, observando as
+                                cores e revestimentos com 
+                                paleta de cores. Em uma sala
+                                deve compor sofás e poltronas
+                                confortáveis e uma mesa de 
+                                centro...</p>
+                                    
+                                </article>
+                            </li>
+                            <li>
+                                <article>
+                                    <div class="article-thumb border-img">                                        
+                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="placeholders/205x144/imag01.jpg" alt="" /></a>
+                                    </div><!--article-thumb-->
+                                    <a class="entry-title" href="#">Descubra o diferencial na iluminação de ambientes</a>
+                                    <p class="descr">Quando os ambientes estão
+                                integrados, a dica é escolher
+                                o mesmo estilo em todas as
+                                ambientações, observando as
+                                cores e revestimentos com 
+                                paleta de cores. Em uma sala
+                                deve compor sofás e poltronas
+                                confortáveis e uma mesa de 
+                                centro...</p>
+                                  
+                                </article>
+                            </li>
+                        </ul><!--end:recent-works-->
+                        <div class="clear"></div>
+                        <div class="carousel-nav clearfix">
+                            <a id="prev-1" class="carousel-prev" href="#">&nbsp;</a>
+                            <a id="next-1" class="carousel-next" href="#">&nbsp;</a>
+                        </div><!--carousel-nav-->
+                    </div><!--end:list-carousel-->
+                    <div class="divider"></div>
+                </div><!--main-col-->
+                
+                
+                
+                <div class="clear"></div>
+            </section><!--kopa-widget-->
+            
+            
+            
+            <section class="kopa-widget kp-carousel">
+            
+                <div class="kopa-widget-left clearfix">
+                	<h3 class="widget-title">Destaque</h3>
+                </div><!--kopa-widget-left-->
+                
+                <div class="main-col">
+                
+                    <div class="list-carousel responsive">
+                        <ul class="recent-works2 clearfix">
+                            <?php 
+$dbImagens = new Application_Model_DbTable_Imagens();
+$dbUsuario = new Admin_Model_DbTable_Usuario();
+#'categoria = 1'
+$dadosImagens = $dbImagens->pesquisarImagem(null);
+
+			foreach ($this->dadosImagens as $key => $imagem):
+?>
+			<li>
+                                 <article>
+                                    <div class="article-thumb border-img">                                        
+                                        <a class="zoom-icon hover-effect" href=""><img class="responsive-img" src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php ucfirst($imagem['nome'])?>" /></a>
+                                    </div><!--article-thumb-->
+
+                                </article>
+                            </li>
+<?php endforeach;?>
+
+                            
+                        </ul><!--end:recent-works-->
+                        <div class="clear"></div>
+                        <div class="carousel-nav clearfix">
+                            <a id="prev-2" class="carousel-prev" href="#">&nbsp;</a>
+                            <a id="next-2" class="carousel-next" href="#">&nbsp;</a>
+                        </div><!--carousel-nav-->
+                    </div><!--end:list-carousel-->
+                    <div class="divider"></div>
+                </div><!--main-col-->
+                
+                
+                
+                <div class="clear"></div>
+            </section><!--kopa-widget-->
+            
+            
+            
+
+            
             <section class="kopa-widget">
             	<div class="kopa-widget-left">
-                	<h3 class="widget-title">Revista CasaSUL</h3>
+                	<h3 class="widget-title">Notícias</h3>
                 </div><!--kopa-widget-left-->
                 <div class="main-col">
-                    <?php for($i=0;$i<=3;$i++):
-                            if( ($i == 0) AND (!is_null( $this->dadosNoticias[$i] ) ) ){
-                                $thumbNoticia = $dbImagens->pesquisarImagem( $this->dadosNoticias[$i]['thumb'] );
-                                ?>
-                                <article class="entry-item">
-                                    <a class="k-featured-img border-img" href="#"><img src="<?php echo $thumbNoticia['local'].$thumbNoticia['nome'];?>" class="responsive-img scale-hover" alt="" /></a>
-                                        <div class="entry-content">
-                                            <span class="entry-date"><?php echo $this->dadosNoticias[$i]['dtInclusao']?></span>
-                                            <span class="entry-meta">por&nbsp;</span><a href="#" class="entry-author"><?php $dadosUsuario = $dbUsuario->pesquisarUsuario( $this->dadosNoticias[$i]['autor'] ); echo $dadosUsuario['nome'];?></a>
-                                            <h2 class="entry-title"><a href="#"><?php echo $this->dadosNoticias[$i]['titulo']?></a></h2>
-                                            <p><?php echo custom_echo( $this->dadosNoticias[$i]['texto'] )?></p>
-                                        </div><!--entry-content-->
-                                </article><!--entry-item-->
-                            <?php }elseif ( ($i!=0) AND ( !is_null( $this->dadosNoticias[$i] ) ) ) { ?>
-                                        <li>
-                                            <article>
-                                                <h6 class="entry-title"><a href="#"><?php echo $this->dadosNoticias[$i]['titulo']?></a></h6>
-                                                <span class="entry-meta">Update:&nbsp;</span>
-                                                <span class="entry-date"><?php echo $this->dadosNoticias[$i]['dtInclusao']?></span>
-                                                <span class="entry-meta">&nbsp;&nbsp;by&nbsp;</span>
-                                                <a href="#" class="entry-author">Admin</a>
-                                                <p><?php echo custom_echo( $this->dadosNoticias[$i]['texto'] )?></p>
-                                            </article>
-                                        </li>
-                                    <?php }else{
-                                        $i++;
-                                    }
-                    endfor;?>
-
-                    
-                    <!-- <ul class="older-posts">
+                	<article class="entry-item">
+                    	<a class="k-featured-img border-img" href="#"><img src="placeholders/535x220/535x220-1.png" class="responsive-img scale-hover" alt="" /></a>
+                        <div class="entry-content">
+                        	<span class="entry-date">08 Nov 2012</span>
+                            <span class="entry-meta">por&nbsp;</span><a href="#" class="entry-author">Admin</a>
+                            <span class="entry-meta">, em&nbsp;</span><a class="entry-categories" href="#">Eventos</a>
+                            <span class="entry-meta">, 28&nbsp;</span><a class="entry-comment" href="#">Comentarios</a>
+                            <h2 class="entry-title"><a href="#">Design Awards 2014</a></h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum enim magna, in malesuada metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div><!--entry-content-->
+                    </article><!--entry-item-->
+                    <ul class="older-posts">
+                    	<li>
+                        	<article>
+                            	<h6 class="entry-title"><a href="#">Para inspirar!</a></h6>
+                                <span class="entry-meta">Postado:&nbsp;</span>
+                                <span class="entry-date">08 Nov 2012</span>
+                                <span class="entry-meta">&nbsp;&nbsp;por&nbsp;</span>
+                                <a href="#" class="entry-author">Admin</a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum enim magna, in malesuada metus.</p>
+                            </article>
+                        </li>
+                        <li>
+                        	<article>
+                            	<h6 class="entry-title"><a href="#">Hight Lights</a></h6>
+                                <span class="entry-meta">Postado:&nbsp;</span>
+                                <span class="entry-date">08 Nov 2012</span>
+                                <span class="entry-meta">&nbsp;&nbsp;por&nbsp;</span>
+                                <a href="#" class="entry-author">Admin</a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum enim magna, in malesuada metus.</p>
+                            </article>
+                        </li>
+                        <li>
+                        	<article>
+                            	<h6 class="entry-title"><a href="#">A sala de Estar</a></h6>
+                                <span class="entry-meta">Postado:&nbsp;</span>
+                                <span class="entry-date">08 Nov 2012</span>
+                                <span class="entry-meta">&nbsp;&nbsp;por&nbsp;</span>
+                                <a href="#" class="entry-author">Admin</a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum enim magna, in malesuada metus.</p>
+                            </article>
+                        </li>
                     </ul><!--older-posts-->
                     <div class="clear"></div>
-                    
+                    <div class="divider"></div>
                 </div><!--main-col-->
                 <div class="clear"></div>
-            </section><!--kopa-widget-->
-            <div class="divider"></div>
-        
-            <section class="kopa-widget kp-carousel">
-                <div class="kopa-widget-left clearfix">
-                	<h3 class="widget-title">Patrocinadores</h3>
-                </div><!--kopa-widget-left-->
                 
-                <!-- Patrocinadores-->
-                
-                <div class="main-col">
-                    <div class="list-carousel responsive">
-                        <ul class="recent-works clearfix">
-                            
-                            <?php for($i=0;$i<=3;$i++):
-                                if ( is_null( $this->dadosImagens[$i]['nome'] )):
-                                    $i++;break;
-                                endif;?>
-                                <li>
-                                    <article>
-                                        <div class="article-thumb border-img">                                        
-                                            <a class="video-icon hover-effect" rel="prettyPhoto"><img class="responsive-img" src="<?php echo $this->dadosImagens[$i]['local'].$this->dadosImagens[$i]['nome'];?>" alt="<?php ucfirst($this->dadosImagens[$i]['nome'])?>" /></a>
-                                        </div><!--article-thumb-->
-                                        <a class="entry-title" ><?php echo $this->dadosImagens[$i]['descricao']?></a>
-                                    </article>
-                                </li>
-                                
-                            <?php endfor;?>
-
-                        </ul><!--end:Patrocinadores-->
-                        
-                        <div class="clear"></div>
-                        <div class="carousel-nav clearfix">
-                            <a id="prev-1" class="carousel-prev" href="#">&nbsp;</a>
-                            <a id="next-1" class="carousel-next" href="#">&nbsp;</a>
-                        </div><!--carousel-nav-->
-                    </div><!--end:list-carousel-->
-                </div><!--main-col-->
-                <div class="clear"></div>
             </section><!--kopa-widget-->
-            <div class="divider"></div>
             
-            <section class="kopa-widget kp-carousel">
-                <div class="kopa-widget-left clearfix">
-                	<h3 class="widget-title">Noticias</h3>
-                </div><!--kopa-widget-left-->
-                <div class="main-col">
-                    <div class="list-carousel responsive">
-                        <ul class="recent-works clearfix">
-                            
-                           <!-- Notícias-->
-                
-                <div class="main-col">
-                    <div class="list-carousel responsive">
-                        <ul class="recent-works clearfix">
-                            
-                            <?php foreach($this->dadosNoticias as $key => $noticia):?>
-                            <?php $imgNoticia = $dbImagens->pesquisarImagem($noticia['thumb']);?>
-                                <li>
-                                    <article>
-                                        <div class="article-thumb border-img">                                        
-                                            <a class="video-icon hover-effect" href="<?php echo $this->url(array("controller"=>"noticias","action"=>"show","id"=>$noticia['idMateria']),null,true)?>" rel="prettyPhoto"><img class="responsive-img" src="<?php echo $imgNoticia['local'].$imgNoticia['nome'];?>" alt="<?php ucfirst($this->noticia['titulo'])?>" /></a>
-                                        </div><!--article-thumb-->
-                                        <a class="entry-title" href="#"><?php echo $noticia['titulo']?></a>
-                                        <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                    </article>
-                                </li>
-                            <?php endforeach;?>
-
-                        </ul><!--end:Notícias-->
-                        </ul><!--end:recent-works-->
-                        <div class="clear"></div>
-                        <div class="carousel-nav clearfix">
-                            <a id="prev-1" class="carousel-prev" href="#">&nbsp;</a>
-                            <a id="next-1" class="carousel-next" href="#">&nbsp;</a>
-                        </div><!--carousel-nav-->
-                    </div><!--end:list-carousel-->
-                </div><!--main-col-->
-                <div class="clear"></div>
-            </section><!--kopa-widget-->
-            <div class="divider"></div>
             
-        
-            <section class="kopa-widget">
-            	<div class="kopa-widget-left">
-                	<h3 class="widget-title">Guia CasaSUL</h3>
-                </div><!--kopa-widget-left-->
-                <div class="main-col">
-                    <div class="list-carousel responsive">
-                    	<?php foreach ($this->dadosGuias as $key => $guia) :?>
-                        <?php #var_dump($this->dadosGuias)?>
-                        <article class="one-fifth feature-service clearfix">
-                            <div class="lime">
-                                <a class="kopacms-icon-hover" href="#">
-                                    <img class="hover-icon" src="<?php echo $guia['local'].$guia['nome']?>" alt="<?php echo $guia['categoria']?>" width="80px" height="80px">
-                                    <img class="cms-icon" src="<?php echo $guia['local'].$guia['nome']?>" alt="<?php echo $guia['categoria']?>" width="80px" height="80px">
-                                </a>                        
-                            </div>
-                            <h6 class="entry-title"><a href="<?php echo $this->url(array("controller"=>"guia","action"=>"show","id"=>$guia['idCategoria']),null,true)?>"><?php echo $guia['categoria']?></a></h6>
-                            <p><?php echo $guia['descCat']?></p>
-                        </article>
-                        <?php endforeach;?>
-                    </div>
-                    <div class="clear"></div>
-                </div><!--main-col-->
-                <div class="clear"></div>
-				
-            </section><!--kopa-widget-->
-            <div class="divider"></div>
             
-            <section class="kopa-widget kp-carousel">
+            
+            
+             <section class="kopa-widget kp-carousel">
+            
                 <div class="kopa-widget-left clearfix">
                 	<h3 class="widget-title">Programa</h3>
+                    <a href="#" class="view-all">Veja nossos últimos programas</a>
                 </div><!--kopa-widget-left-->
+                
                 <div class="main-col">
+                
                     <div class="list-carousel responsive">
-                        <ul class="recent-works clearfix">
+                        <ul class="recent-works3 clearfix">
+                         
+			<?php
+				foreach($this->dadosProgramas as $key => $programa):
+			?>
+   
+			 <li>
+                                <article>
+                                    <div class="article-thumb border-img">                                        
+                                        <iframe width="300" height="315" src="http://www.youtube.com/embed/<?php echo $programa['url'];?>?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+                                    </div><!--article-thumb-->
+                                    <a class="entry-title" href="#"><?php echo ucwords($programa['titulo'])?></a>
+                                </article>
+                            </li>
+			<?php
+				endforeach;
+			?>
                             
-                            <?php for($i=0;$i<=3;$i++):
-                                if ( is_null( $this->dadosProgramas[$i]['url'] )):
-                                    $i++;break;
-                                endif;?>
-                                <li>
-                                    <article>
-                                        <div class="article-thumb border-img" >
-                                            <iframe width="300" height="315" src="http://www.youtube.com/embed/<?php echo $this->dadosProgramas[$i]['url'];?>?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
-                                            <a class="entry-title" href="<?php echo $this->url(array("controller"=>"programa","action"=>"index",'video'=>$this->dadosProgramas[$i]['idPrograma']),null,true)?>"><?php echo ucwords( $this->dadosProgramas[$i]['titulo'] )?></a>
-                                            <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
-                                        </div>
-                                    </article>
-                                </li>
-                                
-                            <?php endfor;?>        
                         </ul><!--end:recent-works-->
                         <div class="clear"></div>
                         <div class="carousel-nav clearfix">
-                            <a id="prev-1" class="carousel-prev" href="#">&nbsp;</a>
-                            <a id="next-1" class="carousel-next" href="#">&nbsp;</a>
+                            <a id="prev-3" class="carousel-prev" href="#">&nbsp;</a>
+                            <a id="next-3" class="carousel-next" href="#">&nbsp;</a>
                         </div><!--carousel-nav-->
                     </div><!--end:list-carousel-->
+                    <div class="divider"></div>
                 </div><!--main-col-->
+                
+                
+                
                 <div class="clear"></div>
             </section><!--kopa-widget-->
-            <div class="divider"></div>
-			
+            
+            
+            
         </div><!--wrapper-->
     </div><!--main-content-->
-    
-    <script>// By Chris Coyier & tweaked by Mathias Bynens
-
-$(function() {
-
-	// Find all YouTube videos
-	var $allVideos = $("iframe[src^='http://www.youtube.com']"),
-
-	    // The element that is fluid width
-	    $fluidEl = $("iframe");
-
-	// Figure out and save aspect ratio for each video
-	$allVideos.each(function() {
-
-		$(this)
-			.data('aspectRatio', this.height / this.width)
-			
-			// and remove the hard coded width/height
-			.removeAttr('height')
-			.removeAttr('width');
-
-	});
-
-	// When the window is resized
-	// (You'll probably want to debounce this)
-	$(window).resize(function() {
-
-		var newWidth = $fluidEl.width();
-		
-		// Resize all videos according to their own aspect ratio
-		$allVideos.each(function() {
-
-			var $el = $(this);
-			$el
-				.width(newWidth)
-				.height(newWidth * $el.data('aspectRatio'));
-
-		});
-
-	// Kick off one resize to fix all videos on page load
-	}).resize();
-
-});</script>

@@ -77,6 +77,41 @@ jQuery(window).load(function() {
 			}
 		}
 	});	
+	
+	jQuery('.recent-works2').carouFredSel({
+		responsive: true,
+		prev: '#prev-2',
+		next: '#next-2',
+		width: '100%',
+		scroll: 1,
+		auto: false,
+		items: {
+			width: 205,
+			height: 'auto',
+			visible: {				
+				min: 1,
+				max: 4
+			}
+		}
+	});		
+	
+	jQuery('.recent-works3').carouFredSel({
+		responsive: true,
+		prev: '#prev-3',
+		next: '#next-3',
+		width: '100%',
+		scroll: 1,
+		auto: false,
+		items: {
+			width: 205,
+			height: 'auto',
+			visible: {				
+				min: 1,
+				max: 4
+			}
+		}
+	});	
+	
 });
 /* =========================================================
 Image hover effect
@@ -115,7 +150,7 @@ jQuery(document).ready(function(){
 
 /* =========================================================
 Testimonials
-============================================================ */		
+	
 jQuery(function() {
     jQuery('.flexslider').flexslider({
         animation: "slide",
@@ -123,6 +158,8 @@ jQuery(function() {
         controlsContainer: ".flexslider-container"
     });
 });
+
+============================================================ */	
 
 /* =========================================================
 Twitter

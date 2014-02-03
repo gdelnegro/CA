@@ -1,16 +1,3 @@
-<?php $baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl();?>
-
-<style>
-    img.center {        
-        position: absolute;
-        margin: auto;
-        left: 0; 
-        right: 0;
-        top: 0;
-        bottom: 0;  
-    }
-</style>
-
 <?php
     $dbImagens = new Application_Model_DbTable_Imagens();
     $where = 'categoria = 4';
@@ -20,24 +7,33 @@
 <section id="slider-wrapper">
         <div id="main-slider">               
             <div class="wave-bg">
-				<div id="sequence-wrapper">
-                    <div id="sequence">
-                        <ul>
-                            <!--<li class="animate-in" style="text-align: center;">
-                                <img src="placeholders/slider1.jpg" alt="" />
-                            </li>-->
+				
+                <div id="banner_topo">
+                    <div class="slider-wrapper theme-default">
+                        <div id="slider" class="nivoSlider">
                             <?php foreach ($dadosImagens as $key => $imagem):?>
-                                <li class="animate-in" style="text-align: center;">
-                                    <img class='center' src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php ucfirst($imagem['nome'])?>" /></a>
-                                </li>
+                            <img src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php ucfirst($imagem['nome'])?>" title="<?php ucfirst($imagem['nome'])?>" />
                             <?php endforeach ?>
-                        </ul>
-                    </div><!--sequence-->
-                    <div class="controls">
-                        <span class="prev"></span>
-                        <span class="next"></span>
-                    </div><!--controls-->
-                </div><!--sequence-wrapper-->
+
+                        </div>
+                        
+                        <div id="htmlcaption1" class="nivo-html-caption">
+                            
+                        </div>
+                        
+                        <div id="htmlcaption2" class="nivo-html-caption">
+                            
+                        </div> 
+                        
+                        <div id="htmlcaption3" class="nivo-html-caption">
+                            
+                        </div> 
+                        
+                    </div>
+                </div>
+                
+                
+                
             </div><!--wave-bg-->
             <span id="slider-corner">&nbsp;</span>
         </div><!--main-slider-->
