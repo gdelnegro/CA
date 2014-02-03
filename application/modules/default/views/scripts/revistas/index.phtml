@@ -1,19 +1,40 @@
 <?php
 $dbImagens = new Application_Model_DbTable_Imagens();
+$dbArtigos = new Application_Model_DbTable_Artigo();
+$dbUsuario = new Admin_Model_DbTable_Usuario();
 ?>
+<link rel="stylesheet" type="text/css" href="/assets/bootstrap.css" media="screen">
 
 <?php foreach($this->dadosRevista as $key => $revista):
     $imagem = $dbImagens->pesquisarImagem($revista['capa']);
     ?>
-    <center>
+
+<div class="row-fluid">
+  <div class="span8">
+      <center>
         <h1><?php echo $revista['titulo']?></h1>
         <p><small>Resumo: <?php echo $revista['descricao']?></small></p>
         <p><small>Ano: <?php echo $revista['ano']?></small></p>
         <br>
-        <img src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php echo $revista['titulo']?>">
-        <div style="width:400px;word-wrap: break-word;text-align:justify;text-justify:inter-word;">
-        </div>
+        <img src="<?php echo $imagem['local'].$imagem['nome'];?>" alt="<?php echo $revista['titulo']?>" width="40%" height="">
     </center>
+  </div>
+  <div class="span4">
+      <?php 
+      $where = ('revista ='.$revista['idRevista']);
+      $dadosArtigo = $dbArtigos->pesquisarArtigo(null, $where);
+      #var_dump($dadosArtigo);
+      foreach ($dadosArtigo as $key => $artigo){
+          $dadosUsuario = $dbUsuario->pesquisarUsuario($artigo['autor']);
+          echo '<h2><a href="'.$this->url(array("controller"=>"noticias","action"=>"show","id"=>$artigo['idMateria']),null,true).'"<b>'.$artigo['titulo'].'</b></a></h2>';
+          echo '<p><small> Autor:'.$dadosUsuario['nome'].' - Data de Publicação: '.$artigo['dtInclusao'].'</small></p>';
+          echo '<span> Resumo: '.$artigo['descricao'].'</span>';
+          
+      }
+      ?>
+  </div>
+</div>
+<hr>
 <?php
 endforeach;
 ?>
