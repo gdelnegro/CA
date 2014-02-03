@@ -40,7 +40,8 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
             'autor'         =>  $usr,
             'dtInclusao'    =>  $date,
             'patrocinador'  =>  $sponsor,
-            'thumb' => $idImagem
+            'thumb' => $idImagem,
+            'revista'       =>  $request['revista']
         );
         
         try {
@@ -55,7 +56,8 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
         if ( !is_null( $request ) ){
             $where = $this->getAdapter()->quoteInto("idMateria = ?", $request['idMateria']);
             $dados = array(
-                'texto' =>  $request['texto']
+                'texto' =>  $request['texto'],
+                'revista'       =>  $request['revista']
             );
             
             $this->update($dados, $where);

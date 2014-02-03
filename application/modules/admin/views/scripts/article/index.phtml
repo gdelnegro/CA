@@ -1,6 +1,8 @@
 <head>
 </head>
 <?php
+$dbUsuario = new Admin_Model_DbTable_Usuario();
+
 function custom_echo($x)
 {
   if(strlen($x)<=50)
@@ -33,12 +35,12 @@ function custom_echo($x)
         <td><center><?php  echo $article['titulo']?></center></td>
         <td><center><?php  echo $article['descricao']?></center></td>
     <td><center><?php  echo custom_echo( $article['texto'] )?></center></td>
-    <td><center><?php #$usuario = $dbUsuario->pesquisarUsuario( $article['usrCriou'] );
-                echo $article['autor'] ;?></center></td>
+    <td><center><?php $usuario = $dbUsuario->pesquisarUsuario( $article['autor'] );
+        echo $usuario['nome'] ;?></center></td>
         <td><center><?php echo$article['dtInclusao']?></center></td>
     
-        <td><center><?php ;
-                echo $article['usrAlterou']; ?></center></td>
+        <td><center><?php $usuario = $dbUsuario->pesquisarUsuario( $article['usrAlterou'] );
+        echo $usuario['nome'] ;?></center></td>
         <td><center><?php echo$article['dtAlteracao']?></center></td>
       <td><center>
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"article","action"=>"edit","id"=>"{$article['idMateria']}"),null,true)?>" title="Editar Cadastro" ><i class='icon-pencil'></i></a> 

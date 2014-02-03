@@ -37,7 +37,7 @@ class Admin_RevistasController extends Zend_Controller_Action
         $bdImagem = new Application_Model_DbTable_Imagens();
         $dbRevista = new Application_Model_DbTable_Revistas();
         
-        $formRevista = new Admin_Form_Revistas();
+        $formRevista = new Admin_Form_Revistas('new');
         
         if( $this->getRequest()->isPost() ) {
             $data = $this->getRequest()->getPost();

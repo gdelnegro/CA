@@ -82,6 +82,15 @@ class Admin_Form_Materia extends Twitter_Form
                 )
                 ->addMultiOptions($listaSponsor);
         #$tag;
+        
+        $dbRevista = new Application_Model_DbTable_Revistas();
+        $listaRevistas = $dbRevista->getListaRevista();
+        
+        $revista = new Zend_Form_Element_Select('revista');
+        $revista->setLabel('Revista:')
+                ->addMultiOptions(array('0'=>'Escolha uma revista'))
+                ->addMultiOptions($listaRevistas);
+
         $submit = new Zend_Form_Element_Submit('Enviar');
         
         if( $this->tipo == 'NEW' or $this->tipo == 'SHOW'){
@@ -91,7 +100,8 @@ class Admin_Form_Materia extends Twitter_Form
                 $descricao,
                 $texto,
                 $sponsor,
-                $arquivo
+                $arquivo,
+                $revista
             ));
             
         }elseif ( $this->tipo == 'EDIT' ) {
@@ -99,6 +109,7 @@ class Admin_Form_Materia extends Twitter_Form
             $this->addElements(array(
                 $idMateria,
                 $texto,
+                $revista,
                 $submit
             ));
             
