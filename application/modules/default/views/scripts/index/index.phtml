@@ -29,6 +29,7 @@ function custom_echo($str)
 
 <?php 
 $dbImagens = new Application_Model_DbTable_Imagens();
+$dbUsuario = new Admin_Model_DbTable_Usuario();
 ?>
     <div class="main-content clearfix">
     	<div id="left-corner"></div>
@@ -46,9 +47,7 @@ $dbImagens = new Application_Model_DbTable_Imagens();
                                     <a class="k-featured-img border-img" href="#"><img src="<?php echo $thumbNoticia['local'].$thumbNoticia['nome'];?>" class="responsive-img scale-hover" alt="" /></a>
                                         <div class="entry-content">
                                             <span class="entry-date"><?php echo $this->dadosNoticias[$i]['dtInclusao']?></span>
-                                            <span class="entry-meta">por&nbsp;</span><a href="#" class="entry-author"><?php $this->dadosNoticias[$i]['autor']?></a>
-                                            <span class="entry-meta">, in&nbsp;</span><a class="entry-categories" href="#">Motion</a>
-                                            <span class="entry-meta">, 28&nbsp;</span><a class="entry-comment" href="#">Comments</a>
+                                            <span class="entry-meta">por&nbsp;</span><a href="#" class="entry-author"><?php $dadosUsuario = $dbUsuario->pesquisarUsuario( $this->dadosNoticias[$i]['autor'] ); echo $dadosUsuario['nome'];?></a>
                                             <h2 class="entry-title"><a href="#"><?php echo $this->dadosNoticias[$i]['titulo']?></a></h2>
                                             <p><?php echo custom_echo( $this->dadosNoticias[$i]['texto'] )?></p>
                                         </div><!--entry-content-->
@@ -97,10 +96,9 @@ $dbImagens = new Application_Model_DbTable_Imagens();
                                 <li>
                                     <article>
                                         <div class="article-thumb border-img">                                        
-                                            <a class="video-icon hover-effect" href="#" rel="prettyPhoto"><img class="responsive-img" src="<?php echo $this->dadosImagens[$i]['local'].$this->dadosImagens[$i]['nome'];?>" alt="<?php ucfirst($this->dadosImagens[$i]['nome'])?>" /></a>
+                                            <a class="video-icon hover-effect" rel="prettyPhoto"><img class="responsive-img" src="<?php echo $this->dadosImagens[$i]['local'].$this->dadosImagens[$i]['nome'];?>" alt="<?php ucfirst($this->dadosImagens[$i]['nome'])?>" /></a>
                                         </div><!--article-thumb-->
-                                        <a class="entry-title" href="#"><?php echo $this->dadosImagens[$i]['descricao']?></a>
-                                        <span class="entry-meta">in&nbsp;</span><a class="entry-categories" href="#">Photoshop,</a>&nbsp;<a class="entry-categories" href="#">illustrator</a>
+                                        <a class="entry-title" ><?php echo $this->dadosImagens[$i]['descricao']?></a>
                                     </article>
                                 </li>
                                 
