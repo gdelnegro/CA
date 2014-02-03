@@ -103,9 +103,13 @@ class Admin_RevistasController extends Zend_Controller_Action
         }
     }
     
-    public function adcionarMateriaAction()
+    public function addAction()
     {
+        $formMateriaRevista = new Admin_Form_MateriaRevista();
+        $this->view->form = $formMateriaRevista;
         
+        $data = $this->getRequest()->getPost();
+        $this->view->dados = $data;
     }
 
 }
