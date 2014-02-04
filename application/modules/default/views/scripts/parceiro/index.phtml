@@ -51,8 +51,8 @@
 	width: 580px;
 	height: 115px;
 	z-index: 2;
-	left: 21px;
-	top: 179px;
+	left: 30px;
+	top: 175px;
 	background-image: url(/images/background/cestaFrutas.png);
 	background-repeat: no-repeat;
 }
@@ -68,13 +68,10 @@ h1{
 }
 
 hr {
-  border-top: 5px dotted #0098DA;
-  color: #fff;
-  text-align: center;
+  border-top: 3px dotted #0098DA; 
   height: 1px;
   width:80%;
 }
-
 </style>
 <?php #var_dump($this->dados);
 $bdImagens = new Application_Model_DbTable_Imagens();
@@ -91,14 +88,20 @@ $logo = $bdImagens->pesquisarImagem($this->dados['logo']);?>
       <?php for($i=0;$i<=3;$i++){
           if(isset($this->noticias[$i])){
               #var_dump($this->noticias[$i]);
-              echo '<h2 style="padding-left: 20px;color:#0098DA"> '.$this->noticias[$i]['titulo'].'</h2><hr>';
-              echo '<span style="padding-left: 20px">'.$this->noticias[$i]['descricao'].'</span>';
-              echo '<center>'.$this->noticias[0]['texto'].'</center>';
+              echo '<h2 style="padding-left: 40px;color:#0098DA;font-family:Arial;"> '.$this->noticias[$i]['titulo'].'</h2><hr>';
+              echo '<span style="padding-left: 40px;font-family:Arial;">'.$this->noticias[$i]['descricao'].'</span>';
+              echo '<p></p>';
+              ?>
+                <div style="width:80%;word-wrap: break-word;text-align:justify;text-justify:inter-word;font-family: Arial;font-size: 130%;padding-left: 40px;">
+                    <?php echo $this->noticias[$i]['texto']?>
+                </div>
+      <?php
           }
       }?>
   </div>
   <div id="dadosParceiro">
-      <h1 id="textoParceiro" style="color: #3e4095;"><?php echo $this->dados['nome']?></h1>
+      <h1  style="color: #3e4095;font-family: DejaVu"><?php echo $this->dados['nome']?></h1>
+      <h1  style="color: #3e4095;font-family: DejaVu">Portobello S.A.</h1>
       <p id="textoParceiro"><?php echo $this->dados['endereco']?></p>
       <?php if($this->dados['email']!= ''){
           echo '<p>'.$this->dados['email'].'</p>';
