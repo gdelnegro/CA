@@ -15,7 +15,12 @@ class Default_ParceiroController extends Zend_Controller_Action
         $dbSponsor = new Admin_Model_DbTable_Sponsor();
         $dadosSponsor = $dbSponsor->pesquisarSponsor($id);
         
+        $dbNoticias = new Application_Model_DbTable_Artigo();
+        $where = 'patrocinador = '.$dadosSponsor['idPatrocinador'];
+        $noticias = $dbNoticias->pesquisarArtigo(null,$where);
+        
         $this->view->dados = $dadosSponsor;
+        $this->view->noticias = $noticias;
     }
 
 

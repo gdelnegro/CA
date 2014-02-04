@@ -1,4 +1,8 @@
 <style type="text/css">
+    @font-face{
+    font-family: DejaVu;
+    src: url(/fonts/DejaVuSans.ttf);
+}
 #conteudo {
 	position: relative;
 	width: 1514px;
@@ -12,7 +16,7 @@
 
 #logoParceiro {
 	position: absolute;
-	width: 498px;
+	width: 500px;
 	height: 281px;
 	z-index: 1;
 	left: 444px;
@@ -53,12 +57,24 @@
 	background-repeat: no-repeat;
 }
 
+.textoParceiro{
+    font-family: DejaVu;
+}
 p{
     padding-left: 20px;
 }
 h1{
     padding-left: 10px;
 }
+
+hr {
+  border-top: 5px dotted #0098DA;
+  color: #fff;
+  text-align: center;
+  height: 1px;
+  width:80%;
+}
+
 </style>
 <?php #var_dump($this->dados);
 $bdImagens = new Application_Model_DbTable_Imagens();
@@ -67,19 +83,30 @@ $logo = $bdImagens->pesquisarImagem($this->dados['logo']);?>
   <div id="logoParceiro">
       <img src="<?php echo $logo['local'].$logo['nome']?>" style="width:100%;max-height: 100%">
   </div>
-  <div id="noticiaParceiro">
-      NOTICIAS
+  <div id="noticiaParceiro" style="font-family:Arial">
+      <h1 style="color:#0098DA">
+          Notícias <?php echo $this->dados['nome']?>
+          <hr>
+      </h1>
+      <?php for($i=0;$i<=3;$i++){
+          if(isset($this->noticias[$i])){
+              #var_dump($this->noticias[$i]);
+              echo '<h2 style="padding-left: 20px;color:#0098DA"> '.$this->noticias[$i]['titulo'].'</h2><hr>';
+              echo '<span style="padding-left: 20px">'.$this->noticias[$i]['descricao'].'</span>';
+              echo '<center>'.$this->noticias[0]['texto'].'</center>';
+          }
+      }?>
   </div>
   <div id="dadosParceiro">
-      <h1 style="color: #3e4095;"><?php echo $this->dados['nome']?></h1>
-      <p><?php echo $this->dados['endereco']?></p>
+      <h1 id="textoParceiro" style="color: #3e4095;"><?php echo $this->dados['nome']?></h1>
+      <p id="textoParceiro"><?php echo $this->dados['endereco']?></p>
       <?php if($this->dados['email']!= ''){
           echo '<p>'.$this->dados['email'].'</p>';
       }
       ?>
-      <p><?php echo $this->dados['cep'].' - '.$this->dados['cidade'].' - '.$this->dados['estado']?></p>
-      <p><?php echo $this->dados['telefone']?></p>
-      <p><a href="<?php echo $this->dados['site']?>"><?php echo $this->dados['site']?></a></p>
+      <p id="textoParceiro"><?php echo $this->dados['cep'].' - '.$this->dados['cidade'].' - '.$this->dados['estado']?></p>
+      <p id="textoParceiro"><?php echo $this->dados['telefone']?></p>
+      <p id="textoParceiro"><a href="<?php echo $this->dados['site']?>"><?php echo $this->dados['site']?></a></p>
     <div id="logoParceiroDados" >
         <img src="<?php echo $logo['local'].$logo['nome']?>" style="min-width: 30px;max-width: 200px;">
     </div>
