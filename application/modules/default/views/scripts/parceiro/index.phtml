@@ -65,7 +65,7 @@ $bdImagens = new Application_Model_DbTable_Imagens();
 $logo = $bdImagens->pesquisarImagem($this->dados['logo']);?>
 <div id="conteudo">
   <div id="logoParceiro">
-      <center><img src="<?php echo $logo['local'].$logo['nome']?>" style="min-width: 30px;max-width: 200px;"></center>
+      <img src="<?php echo $logo['local'].$logo['nome']?>" style="width:100%;max-height: 100%">
   </div>
   <div id="noticiaParceiro">
       NOTICIAS
