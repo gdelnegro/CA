@@ -11,7 +11,7 @@ class Default_NoticiasController extends Zend_Controller_Action
     public function indexAction()
     {
         $dbNoticias = new Application_Model_DbTable_Artigo();
-        $noticias = $dbNoticias->pesquisarArtigo();
+        $noticias = $dbNoticias->pesquisarArtigo(null);
         
         $this->view->noticias = $noticias;
     }

@@ -59,7 +59,7 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
                 'texto' =>  $request['texto'],
                 'revista'       =>  $request['revista'],
                 'usrAlterou'    =>  $usr,
-                'dtAlterou'     =>  $date
+                'dtAlteracao'     =>  $date
             );
             
             $this->update($dados, $where);

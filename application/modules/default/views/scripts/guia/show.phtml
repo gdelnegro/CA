@@ -3,32 +3,45 @@
         display: inline-block;
         position: relative;
         overflow: hidden;
-        width: 80px;
-        height: 80px;
-        -moz-border-radius: 80px;
+        width: 150px;
+        box-shadow: 2px 2px 2px #888888;
+        /*-moz-border-radius: 80px;
         border-radius: 80px;
         -webkit-border-radius: 80px;
         box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+        */
     }
 </style>
 
-<h1>Guia -> Categoria: <b><?php echo $this->tituloGuia ?></b></h1>
-<center>
-    <div id="content" style="width:400px;word-wrap: break-word;text-align:justify;text-justify:inter-word; ">
-<?php
-#var_dump($this->dadosSponsor);
-
-foreach ($this->dadosSponsor as $key => $sponsor) :
-
-    echo '<h1><b>'.$sponsor['patrocinador'].' <img class="lime" src="'.$sponsor['local'].$sponsor['logo'].'"></h1></b>';
-    echo '<h3><b>Tipo</b>: '.$sponsor['tipo'].'</h3>';
-    echo '<h3><b>Site</b> : <a target="_blank" href="'.$sponsor['site'].'">'.$sponsor['site'].'</a></h3>';
-    echo '<h3><b>Email</b>: '.$sponsor['email'].'</h3>';
-    echo '<h3><b>Telefone</b>: '.$sponsor['telefone'].'</h3>';
-    echo '<h3><b>Endereço</b>: '.$sponsor['endereco'].' - '.$sponsor['cep'].' , '.$sponsor['cidade'].' - '.$sponsor['estado'].'</h3><br><hr>';
-endforeach;
-?>
+<div class="row-fluid pull-left">
+        <h2><img src="/images/guia/guiaCasaSul.png"alt="Guia CasaSul"></h2>
+        <p></p>
+    </div>
+    <div class="row-fluid ">
+        <div class="span4 offset2">
+            <h1><img src="<?php echo $this->logoGuia?>" width="45"><b><?php echo $this->tituloGuia ?></b></h1>
         </div>
-</center>
+        
+    </div>
+    <div class="row-fluid">
+        <hr>
+    </div>
+        
+    <div class="row-fluid offset2">  
+        
+            <center>
+            <?php
+                foreach ($this->dadosSponsor as $key => $sponsor) :
+                    echo '<div class="span2">';
+                    echo '<h1><b> <a href="'.$this->url(array("controller"=>"parceiro","action"=>"index","id"=>$sponsor['idPatrocinador']),null,true).'"><img class="lime" src="'.$sponsor['local'].$sponsor['logo'].'" ></h1></b>';
+                    echo '</div>';
+                endforeach;
+            ?>
+            </center>
+    </div>
+
+    <div class="row-fluid">
+        <hr>
+    </div>
