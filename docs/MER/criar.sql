@@ -2,6 +2,9 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+DROP SCHEMA IF EXISTS `casasul` ;
+CREATE SCHEMA IF NOT EXISTS `casasul` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `casasul` ;
 
 -- -----------------------------------------------------
 -- Table `casasul`.`categoriaImagens`
@@ -280,6 +283,57 @@ CREATE TABLE IF NOT EXISTS `casasul`.`revistas` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+USE `casasul` ;
+
+-- -----------------------------------------------------
+-- Placeholder table for view `casasul`.`sponsor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `casasul`.`sponsor` (`idPatrocinador` INT, `'Patrocinador'` INT, `dtInclusao` INT, `dtAlteracao` INT, `usrAlterou` INT, `logo` INT, `idImagens` INT, `descricao` INT, `local` INT, `nome` INT, `categoria` INT);
+
+-- -----------------------------------------------------
+-- Placeholder table for view `casasul`.`guiaImagem`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `casasul`.`guiaImagem` (`idCategoria` INT, `'descCat'` INT, `'categoria'` INT, `local` INT, `descricao` INT, `nome` INT);
+
+-- -----------------------------------------------------
+-- Placeholder table for view `casasul`.`guia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `casasul`.`guia` (`idPatrocinador` INT, `'patrocinador'` INT, `tipo` INT, `site` INT, `endereco` INT, `cidade` INT, `estado` INT, `'categoria'` INT, `'telefone'` INT, `'cep'` INT, `'email'` INT, `'descLogo'` INT, `local` INT, `'logo'` INT, `'tituloCategoria'` INT, `'thumbCategoria'` INT);
+
+-- -----------------------------------------------------
+-- View `casasul`.`sponsor`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `casasul`.`sponsor`;
+USE `casasul`;
+CREATE  OR REPLACE VIEW `sponsor` AS
+
+select idPatrocinador, p.nome as 'Patrocinador', dtInclusao, dtAlteracao, usrAlterou, logo, i.*
+from patrocinador as p
+join imagens as i on p.logo = i.idImagens;
+
+-- -----------------------------------------------------
+-- View `casasul`.`guiaImagem`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `casasul`.`guiaImagem`;
+USE `casasul`;
+CREATE  OR REPLACE VIEW `guiaImagem` AS
+
+select cat.idCategoria,cat.descricao as 'descCat',cat.nome as 'categoria',img.local, img.descricao, img.nome 
+From categoriaGuia as cat, imagens as img 
+where cat.thumb = img.idImagens;
+
+-- -----------------------------------------------------
+-- View `casasul`.`guia`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `casasul`.`guia`;
+USE `casasul`;
+CREATE  OR REPLACE VIEW `guia` AS
+
+select p.idPatrocinador, p.nome as 'patrocinador',p.tipo, p.site, p.endereco, p.cidade, p.estado, p.categoria as 'categoria', p.telefone as 'telefone', p.cep as 'cep', p.email as 'email',
+i.descricao as 'descLogo', i.local, i.nome as 'logo',
+guia.nome as 'tituloCategoria', guia.thumb as 'thumbCategoria'
+from patrocinador as p, imagens as i, categoriaGuia as guia
+where p.logo = i.idImagens AND p.categoria = guia.idCategoria;
 CREATE USER 'appCasaSul' IDENTIFIED BY '123mudar';
 
 GRANT ALL ON `casasul`.* TO 'appCasaSul';
@@ -307,9 +361,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `casasul`;
-INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (1, 'Acessório para Banheiro', 'Acessório para Banheiro', '/images/guia/banheiro.png');
-INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (2, 'Banheira', 'Banheira', '/images/guia/banheira.png');
-INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (3, 'Beleza e Estética', 'Beleza e Estética', '/images/guia/beleza.png');
+INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (NULL, 'Acessório para Banheiro', 'Acessório para Banheiro', '/images/guia/banheiro.png');
+INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (NULL, 'Banheira', 'Banheira', '/images/guia/banheira.png');
+INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (NULL, 'Beleza e Estética', 'Beleza e Estética', '/images/guia/beleza.png');
 INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (NULL, 'Colchões', 'Colchões', '/images/guia/colchoes.png');
 INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (NULL, 'Construção', 'Construção', '/images/guia/construcao.png');
 INSERT INTO `casasul`.`categoriaGuia` (`idCategoria`, `nome`, `descricao`, `thumb`) VALUES (NULL, 'Cortinas', 'Cortinas', '/images/guia/cortinas.png');
