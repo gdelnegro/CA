@@ -42,7 +42,7 @@ class Admin_SliderController extends Zend_Controller_Action
                 $upload = new Zend_File_Transfer_Adapter_Http();
                 foreach ($upload->getFileInfo() as $file => $info) {                                     
                     $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/slider-'.$titulo.'.'.$extension,'overwrite' => true,));
+                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/slider/'.$titulo.'.'.$extension,'overwrite' => true,));
                 }
             try {
                 $upload->receive();
@@ -55,7 +55,7 @@ class Admin_SliderController extends Zend_Controller_Action
                 $dados =array(
                     'descricao'  =>   $data['descricao'],
                     'nome'      =>  'slider-'.$titulo.'.'.$extension,
-                    'local'     =>  '/images/',
+                    'local'     =>  '/images/slider/',
                     'categoria' => '4'
                 );
         

@@ -47,9 +47,9 @@ $dadosLogo = $dbLogo->pesquisarLogo();
           <li><a href="#">Midia</a></li>          
           <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"article","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Artigos</a></li>
           <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"revistas","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Revista</a></li>
-          <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Sponsor</a></li>
+          <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Parceiros</a></li>
           <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"slider","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Slider</a></li>
-          <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"guide","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Guia</a></li>
+          <!-- <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"guide","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Guia</a></li> -->
           <?php if( $this->layout()->usuario->grupo == 1){?>
             <li><a href="<?php echo $this->url(array("module"=>"admin","controller"=>"logo","action"=>"index"),null,true)?>"><i class="icon-chevron-right"></i>Logo</a></li>
             <li><a>Administração</a></li>

@@ -43,7 +43,7 @@ class Admin_SponsorController extends Zend_Controller_Action
         
         foreach ($upload->getFileInfo() as $file => $info) {                                     
             $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-            $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'.$extension,'overwrite' => true,));
+            $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/parceiro/'.$titulo.'.'.$extension,'overwrite' => true,));
         }
         
         try {
@@ -58,8 +58,8 @@ class Admin_SponsorController extends Zend_Controller_Action
         
         $dados =array(
           'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
-            'nome'      =>  'sponsor-'.$titulo.'.'.$extension,
-            'local'     =>  '/images/',
+            'nome'      =>  $titulo.'.'.$extension,
+            'local'     =>  '/images/parceiro/',
             'categoria' =>  '1',
         );
         
@@ -93,7 +93,7 @@ class Admin_SponsorController extends Zend_Controller_Action
                 $upload = new Zend_File_Transfer_Adapter_Http();
                 foreach ($upload->getFileInfo() as $file => $info) {                                     
                     $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/sponsor-'.$titulo.'.'.$extension,'overwrite' => true,));
+                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/parceiros/'.$titulo.'.'.$extension,'overwrite' => true,));
                 }
             try {
                 $upload->receive();
@@ -104,8 +104,8 @@ class Admin_SponsorController extends Zend_Controller_Action
         
                 $dados =array(
                     'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
-                    'nome'      =>  'sponsor-'.$titulo.'.'.$extension,
-                    'local'     =>  '/images/',
+                    'nome'      =>  $titulo.'.'.$extension,
+                    'local'     =>  '/images/parceiros/',
                     'categoria' =>  '1',
                 );
         

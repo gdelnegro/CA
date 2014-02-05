@@ -2,6 +2,9 @@
 </head>
 <body>
 <center>
+    <?php
+        $dbImagens = new Application_Model_DbTable_Imagens();
+    ?>
     
     <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml'); ?>
     <p class="text-right"> <a class="btn btn-primary" href="<?php echo $this->url(array("module"=>"admin","controller"=>"sponsor","action"=>"new"),null,true)?>">Cadastrar Patrocinador</a></p>
@@ -14,11 +17,13 @@
         <th><center>Data de Alteraçao</center></th>
         <th><center>Açoes</center></th>
    </tr>
-   <?php foreach($this->paginator AS $key => $sponsor):?>
+   <?php foreach($this->paginator AS $key => $sponsor):
+       $dadosImagem = $dbImagens->pesquisarImagem($sponsor['logo']);
+       ?>
    <tr>
       <td><center><?php echo $sponsor['Patrocinador']?></center></td>
         <td><center><?php  echo $sponsor['descricao']?></center></td>        
-    <td><center><img src="../images/<?php echo urldecode($sponsor['nome'])?>" alt="<?php echo $sponsor['descricao']?>" width="60%" height="60%"></center></td>
+    <td><center><img src="<?php echo $dadosImagem['local'].$dadosImagem['nome']?>" alt="<?php echo $sponsor['descricao']?>" width="60%" height="60%"></center></td>
         <td><center><?php echo$sponsor['dtInclusao']?></center></td>
         <td><center><?php echo$sponsor['dtAlteracao']?></center></td>
       <td><center>

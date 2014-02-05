@@ -49,7 +49,7 @@ class Admin_RevistasController extends Zend_Controller_Action
                 $upload = new Zend_File_Transfer_Adapter_Http();
                 foreach ($upload->getFileInfo() as $file => $info) {                                     
                     $extension = pathinfo($info['name'], PATHINFO_EXTENSION); 
-                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/capaRevista-'.$titulo.'.'.$extension,'overwrite' => true,));
+                    $upload->addFilter('Rename', array( 'target' => APPLICATION_PATH.'/../public/images/revista/'.$titulo.'.'.$extension,'overwrite' => true,));
                 }
             try {
                 $upload->receive();
@@ -61,8 +61,8 @@ class Admin_RevistasController extends Zend_Controller_Action
         
                 $dados =array(
                     'descricao'  =>   'Logotipo'.$this->_getParam('sponsor'),
-                    'nome'      =>  'capaRevista-'.$titulo.'.'.$extension,
-                    'local'     =>  '/images/',
+                    'nome'      =>  $titulo.'.'.$extension,
+                    'local'     =>  '/images/revista/',
                     'categoria' => '5'
                 );
         
