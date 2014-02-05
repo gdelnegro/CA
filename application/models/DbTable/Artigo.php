@@ -25,10 +25,6 @@ class Application_Model_DbTable_Artigo extends Zend_Db_Table_Abstract
         
         $sponsor = $request['sponsor'];
         
-        if ( $request['sponsor'] == 0 ) {
-            $sponsor = null;
-        }
-        
         $dados = array(
             /*
              * formato:

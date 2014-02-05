@@ -16,7 +16,7 @@
    <tr>
       <td><center><?php echo $slider['nome']?></center></td>
         <td><center><?php  echo $slider['descricao']?></center></td>        
-    <td><center><img src="../images/<?php echo urldecode($slider['nome'])?>" alt="<?php echo $slider['descricao']?>" width="60%" height="60%"></center></td>
+    <td><center><img src="<?php echo $slider['local'].urldecode($slider['nome'])?>" alt="<?php echo $slider['descricao']?>" width="60%" height="60%"></center></td>
       <td><center>
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"slider","action"=>"edit","id"=>"{$slider['idImagens']}"),null,true)?>" title="Editar Cadastro"><i class='icon-pencil'></i></a> 
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"slider","action"=>"delete","id"=>"{$slider['idImagens']}"),null,true)?> " title="Deletar Cadastro" onclick='if (confirm("Deseja remover o cadastro?")) { document.form.submit(); } return false;'><i class='icon-remove'></i></a> 

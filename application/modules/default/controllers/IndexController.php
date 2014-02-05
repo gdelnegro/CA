@@ -26,7 +26,7 @@ class Default_IndexController extends Zend_Controller_Action
         $this->view->dadosImagens = $dadosImagens;
         
         $dbNoticias = new Application_Model_DbTable_Artigo();
-        $dadosNoticias = $dbNoticias->pesquisarArtigo(null,'revista = 0 OR revista = null');
+        $dadosNoticias = $dbNoticias->pesquisarArtigo(null,'((revista = 0 OR revista = null) AND (patrocinador = 0 OR patrocinador = 0) )');
         $dadosEditoriais = $dbNoticias->pesquisarArtigo(null,'revista != 0');
         
         $this->view->dadosNoticias = $dadosNoticias;
