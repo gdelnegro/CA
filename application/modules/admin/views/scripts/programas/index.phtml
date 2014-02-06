@@ -30,9 +30,6 @@ function custom_echo($x)
         <th><center>Título</center></th>
         <th><center>Descrição</center></th>        
         <th><center>Link</center></th>
-        <th><center>Status</center></th>
-        <th><center>Data de Inclusao</center></th>
-        <th><center>Alterado por</center></th>
         <th><center>Data de Alteraçao</center></th>
         <th><center>Ações</center></th>
    </tr>
@@ -41,9 +38,6 @@ function custom_echo($x)
       <td><center><?php echo $programa['titulo']?></center></td>
         <td><center><?php  custom_echo($programa['descricao'])?></center></td>        
         <td><center><?php echo$programa['url']?></center></td>
-        <td><center>Status</center></td>
-        <td><center><?php echo$programa['dtInclusao']?></center></td>
-        <td><center>Alterado por</center></td>
         <td><center><?php echo$programa['dtAlteracao']?></center></td>
       <td><center>
          <a href="<?php echo $this->url(array("module"=>"admin","controller"=>"programas","action"=>"edit","id"=>"{$programa['idPrograma']}"),null,true)?>" title="Editar Cadastro"><i class='icon-pencil'></i></a> 
