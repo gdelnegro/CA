@@ -101,7 +101,6 @@ $logo = $bdImagens->pesquisarImagem($this->dados['logo']);?>
   </div>
   <div id="dadosParceiro">
       <h1  style="color: #3e4095;font-family: DejaVu"><?php echo $this->dados['nome']?></h1>
-      <h1  style="color: #3e4095;font-family: DejaVu">Portobello S.A.</h1>
       <p id="textoParceiro"><?php echo $this->dados['endereco']?></p>
       <?php if($this->dados['email']!= ''){
           echo '<p>'.$this->dados['email'].'</p>';
